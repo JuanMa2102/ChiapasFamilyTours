@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('generalViews.inicio');
-});
 
+Route::resource('/','inicioController');
 Route::resource('/paquetesPrivados','paquetesPrivadosController');
 Route::resource('/contactos','contactosController');
 Route::resource('/preguntasFrecuentes','preguntasFrecuentesController');
