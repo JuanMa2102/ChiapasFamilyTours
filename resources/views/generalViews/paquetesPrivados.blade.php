@@ -14,7 +14,7 @@
 					<span></h2>
 						<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
 					</div>
-
+					@foreach($paquetes as $item)
 					<div class="row">
 						<div class="paquetePrivado col-md-12">
 							<div class="imageContainer">
@@ -23,12 +23,11 @@
 										<div class="ribbon_3 popular"><span>PAQUETE</span></div>
 										<div class="img_container">
 											<a href="/paquetesPrivadosPorDia">
-												<img src="{{asset('img/CHFTcslimage/san-cristobal-catedral.jpg')}}" class="img-responsive" alt="image">
+												<img src="{{asset($item->imagen)}}" class="img-responsive" alt="image">
 											</a>
 										</div>
 										<div class="tour_title">
-											<h3><strong>San Cristobal de las Casas </strong></h3>
-
+											<h3><strong>{{$item -> titulo_imagen}}</strong></h3>
 										</div>
 									</div>
 									<!-- End box tour -->
@@ -39,64 +38,31 @@
 									<div class="tour_list_desc">
 
 
-										<h3><strong>SAN CRISTOBAL Y ALREDEDORES</strong> </h3>
-										<p>NATURALEZA Y CULTURA : CAÑON DEL SUMIDERO POR RIO, 3  PUEBLOS  MAGICOS: <span class="textImportant">"CHIAPA DE CORZO, SAN CRISTOBAL Y  COMITAN"</span> , CLIMA  DE MONTAÑA:  BOSQUES DE PINOS  Y  ENCINOS , LO  MEJOR  EN HOPEDAJE  Y  LOS  MEJORES   RESTAURANTES,  LA MEJOR  OFERTA  DE TEXTILES INDIGENAS.<span class="textImportant"> POCO TIEMPO   EN   CARRETERA.</span> LLEGADA  Y   SALIDA  POR  EL AEROPUERTO  DE TUXTLA GUTIERREZ. </p>
-
+										<h3><strong>{{ $item -> nombre }}</strong> </h3>
+										<p>{{ $item->descripcion }}</p>
 										<div class="diasPaquete">
 											<p class="paqueteTitle">PAQUETES</p>
 											<ul>
+											@foreach($dias as $itemDias)
+											@if($itemDias->id_paquete == $item->id_paquete)
 												<li>
 													<a href="/paquetesPrivadosPorDia">
 														<div class="paqueteItem">
 															<!--  -->
-															<p>2</p>
-															<p>DÍAS</p>
+															<p>{{$itemDias -> cantidad}}</p>
+															<p>DÍAS{{$itemDias->descripcion}}</p>
 														</div>
 													</a>
 												</li>
-												<li>
-													<a href="/paquetesPrivadosPorDia">
-														<div class="paqueteItem">
-															<!--  -->
-															<p>3</p>
-															<p>DÍAS</p>
-														</div>
-													</a>
-												</li>
-												<li>
-													<a href="/paquetesPrivadosPorDia">
-														<div class="paqueteItem">
-															<!--  -->
-															<p>4</p>
-															<p>DÍAS</p>
-														</div>
-													</a>
-												</li>
-												<li>
-													<a href="/paquetesPrivadosPorDia">
-														<div class="paqueteItem">
-															<!--  -->
-															<p>5</p>
-															<p>DÍAS</p>
-														</div>
-													</a>
-												</li>
-												<li>
-													<a href="/paquetesPrivadosPorDia">
-														<div class="paqueteItem">
-															<!--  -->
-															<p>6</p>
-															<p>DÍAS</p>
-														</div>
-													</a>
-												</li>
+											@endif
+											@endforeach
 											</ul>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-2 col-md-2 col-sm-2">
 									<div class="price_list">
-										<div><sup>$</sup>1800*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
+										<div><sup>$</sup>{{$item -> precio}}*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
 										<!-- <p><a href="single_hotel.html" class="btn_1">Details</a>
 										</p> -->
 									</div>
@@ -106,251 +72,7 @@
 
 					</div>
 					<!-- End col-md-4 -->
-					<div class="paquetePrivado col-md-12">
-						<div class="imageContainer">
-							<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-								<div class="tour_container">
-									<div class="ribbon_3 popular"><span>PAQUETE</span></div>
-									<div class="img_container">
-										<a href="/paquetesPrivadosPorDia">
-											<img src="{{asset('img/CHFTcslimage/agua-azul.jpg')}}" width="800" height="533" class="img-responsive" alt="image">
-										</a>
-									</div>
-									<div class="tour_title">
-										<h3><strong>Cascadas de Agua Azul </strong></h3>
-										
-									</div>
-								</div>
-								<!-- End box tour -->
-							</div>
-						</div>
-						<div class="paqueteDescription">
-							<div class="col-lg-6 col-md-6 col-sm-6">
-								<div class="tour_list_desc">
-									
-									
-									<h3><strong>PALENQUE Y ALREDEDORES</strong> </h3>
-									<p>DISFRUTE  DE LA  NATURALEZA (CASCADAS DE AGUA AZUL, MISOL HA, ROBERTO BARRIOS Y LAS GOLONDRINAS)  Y     3  FAMOSAS   ZONAS ARQUEOLOGICAS, ( PALENQUE, BONAMPAK Y  YAXCHILAN ) LLEGANDO HASTA EL  CENTRO  ECOTURISTICO DE LAS  GUACAMAYAS.</p>
-									
-									<ul>
-										<li>
-											ACTIVIDADES  DE AVENTURA  COMO  RAFTING A PARTIR  DE LOS  8 AÑOS  Y  CAMINATA  POR LA  SELVA.
-										</li>
-										<li>
-											ENTRE  Y SALGA  POR  EL  AEROPUERTO  DE PALENQUE Ó POR  EL  AEROPUERTO  DE VILLA HERMOSA 
-										</li>
-									</ul>
-									<p>
-										
-										
-									</p>
-									
-									<div class="diasPaquete">
-										<ul>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>4</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>4</p>
-														<p>DÍAS *</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>5</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>5</p>
-														<p>DÍAS *</p>
-													</div>
-												</a>
-											</li>
-										</ul>
-										<p style="font-size: 13px; font-weight: bold;">* Paquetes que incluyen Rafting</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2 col-sm-2">
-								<div class="price_list">
-									<div><sup>$</sup>89*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="single_hotel.html" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End col-md-4 -->
-					</div>
-					<div class="paquetePrivado col-md-12">
-						<div class="imageContainer">
-							<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-								<div class="tour_container">
-									<div class="ribbon_3 popular"><span>PAQUETE</span></div>
-									<div class="img_container">
-										<a href="/paquetesPrivadosPorDia">
-											<img src="{{asset('img/CHFTcslimage/palenque-piramides.jpg')}}" width="800" height="533" class="img-responsive" alt="image">
-										</a>
-									</div>
-									<div class="tour_title">
-										<h3><strong>Palenque </strong></h3>
-
-									</div>
-								</div>
-								<!-- End box tour -->
-							</div>
-						</div>
-						<div class="paqueteDescription">
-							<div class="col-lg-6 col-md-6 col-sm-6">
-								<div class="tour_list_desc">
-									
-									
-									<h3><strong>CLÁSICO (SAN CRISTOBAL Y PALENQUE)</strong> </h3>
-									<p>COMBINE LOS PUEBLOS MAGICOS  CON   LA  PARTE  SELVATICA Y ARQUEOLÓGICA. RUTA: SAN CRISTOBAL  -  OCOSINGO  -  PALENQUE   ENTRANDO  POR  EL AEROPUERTO  DE TUXTLA Y SALIENDO  POR  EL  AEROPUERTO  DE VILLA HERMOSA. </p>
-									
-									<div class="diasPaquete">
-										<ul>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>4</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>5</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>6</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>7</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2 col-sm-2">
-								<div class="price_list">
-									<div><sup>$</sup>89*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="single_hotel.html" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="paquetePrivado col-md-12">
-						<!-- End col-md-4 -->
-						<div class="imageContainer">
-							<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-								<div class="tour_container">
-									<div class="ribbon_3 popular"><span>PAQUETE</span></div>
-									<div class="img_container">
-										<a href="/paquetesPrivadosPorDia">
-											<img src="{{asset('img/CHFTcslimage/lagunas-montebello.png')}}" width="800" height="533" class="img-responsive" alt="image">
-										</a>
-									</div>
-									<div class="tour_title">
-										<h3><strong>Lagunas de montebello </strong></h3>
-
-									</div>
-								</div>
-								<!-- End box tour -->
-							</div>
-						</div>
-						<div class="paqueteDescription">
-							<div class="col-lg-6 col-md-6 col-sm-6">
-								<div class="tour_list_desc">
-									
-									
-									<h3><strong>CHIAPAS TOTAL </strong> </h3>
-									<p>LO MAS SOLICITADO  POR  PAREJAS, AMIGOS Ó TODA LA FAMILIA. </p>
-									<p>NUESTRO PAQUETE ESTRELLA CON NATURALEZA, CULTURA Y AVENTURA, CON HOTELES BOUTIQUE Ó  4 ESTRELLAS, EX HACIENDAS, CABAÑAS Y   HOTELES MODERNOS, RICOS DESAYUNOS, VARIAS CASCADAS PARA   NADAR,  DIFERENTES SITIOS  EN LA SELVA  PARA   EL AVISTAMIENTO  DE FAUNA (MONOS ARAÑA, MONOS SARAGUATOS, COCODRILOS, GARZAS, OCOFAISANES, PAVITAS,  CORMORANES, GUACAMAYAS, TUCANES), PASEO EN  LANCHA  POR VARIOS RÍOS (GRIJALVA, LACANTUN, TZENDALES  Ó USUMACINTA) VISITA A CENTROS ECOTURISTICOS  Y  TOURS  GUIADOS  EN  2 Ó 3  ZONAS ARQUEOLOGICAS, CON MUCHA  INFORMACIÓN  CULTURAL Y GRAN  VARIEDAD DE ARTESANIAS. LLEGADA  AEROPUERTO  DE  TUXTLA , SALIDA  AEROPUERTO DE VILLA HERMOSA.</p>
-									
-									<div class="diasPaquete">
-										<ul>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>7</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>8</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-											<li>
-												<a href="/paquetesPrivadosPorDia">
-													<div class="paqueteItem">
-														
-														<p>9</p>
-														<p>DÍAS</p>
-													</div>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2 col-sm-2">
-								<div class="price_list">
-									<div><sup>$</sup>89*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="single_hotel.html" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End col-md-4 -->
-
-					
+				@endforeach	
 					<!-- End col-md-4 -->
 
 					

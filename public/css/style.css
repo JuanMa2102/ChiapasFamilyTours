@@ -2958,6 +2958,14 @@ ul.list_order li span {
 	border: 1px solid #fff;
 }
 
+.img_container.hoteles {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #fff;
+	width: 354px;
+    height: 206px;
+}
+
 .tour_container .tour_title {
 	padding: 15px;
 	position: relative;

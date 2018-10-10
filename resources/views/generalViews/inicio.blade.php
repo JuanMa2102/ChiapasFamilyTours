@@ -169,13 +169,12 @@
 									<div class="tour_container">
 										<div class="ribbon_3 popular"><span>PAQUETE</span></div>
 										<div class="img_container">
-											<a href="/paquetesPrivados">
-												<img src="{{asset($item->imagen)}}" class="img-responsive" alt="san-cristobal-iglesia">
+											<a href="/paquetesPrivadosPorDia">
+												<img src="{{asset($item->imagen)}}" class="img-responsive" alt="image">
 											</a>
 										</div>
 										<div class="tour_title">
-											<!-- <h3><strong>{{ $item->nombre }}</strong></h3> -->
-
+											<h3><strong>{{$item -> titulo_imagen}}</strong></h3>
 										</div>
 									</div>
 									<!-- End box tour -->
@@ -186,19 +185,18 @@
 									<div class="tour_list_desc">
 
 
-										<h3><strong>{{ $item->nombre }}</strong> </h3>
+										<h3><strong>{{ $item -> nombre }}</strong> </h3>
 										<p>{{ $item->descripcion }}</p>
-
 										<div class="diasPaquete">
 											<p class="paqueteTitle">PAQUETES</p>
 											<ul>
 											@foreach($dias as $itemDias)
 											@if($itemDias->id_paquete == $item->id_paquete)
 												<li>
-													<a href="privpack-section-anydays.html">
+													<a href="/paquetesPrivadosPorDia">
 														<div class="paqueteItem">
 															<!--  -->
-															<p>{{$itemDias->cantidad}}</p>
+															<p>{{$itemDias -> cantidad}}</p>
 															<p>DÍAS{{$itemDias->descripcion}}</p>
 														</div>
 													</a>
@@ -211,7 +209,7 @@
 								</div>
 								<div class="col-lg-2 col-md-2 col-sm-2">
 									<div class="price_list">
-										<div><sup>$</sup>1800*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
+										<div><sup>$</sup>{{$item -> precio}}*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
 										<!-- <p><a href="single_hotel.html" class="btn_1">Details</a>
 										</p> -->
 									</div>
@@ -219,7 +217,9 @@
 							</div>
 						</div>
 
-					@endforeach
+					</div>
+					<!-- End col-md-4 -->
+				@endforeach	
 
 					
 				</div>
@@ -231,14 +231,15 @@
 						<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
 					</div>
 
-					<div class="row">
 
+					<div class="row">
+						@foreach($hotelesBoutique as $item)
 						<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
 							<div class="hotel_container">
 								<div class="ribbon_3 popular"><span>Popular</span></div>
 								<div class="img_container">
 									<a href="single_hotel.html">
-										<img src="{{asset('img/hotel_1.jpg')}}" width="800" height="533" class="img-responsive" alt="single-hotel">
+										<img src="{{asset($item->imagen)}}" width="800" height="533" class="img-responsive" alt="single-hotel">
 										<div class="score"><span>7.5</span>Good</div>
 										<div class="short_info hotel">
 											From/Per night<span class="price"><sup>$</sup>59</span>
@@ -246,7 +247,7 @@
 									</a>
 								</div>
 								<div class="hotel_title">
-									<h3><strong>HOTEL BO</strong> </h3>
+									<h3><strong>{{$item->nombre}}</strong> </h3>
 									<div class="rating">
 										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 									</div>
@@ -260,64 +261,10 @@
 							<!-- End box -->
 						</div>
 						<!-- End col-md-4 -->
-
-						<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-							<div class="hotel_container">
-								<div class="ribbon_3 popular"><span>Popular</span></div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="{{asset('img/hotel_2.jpg')}}" width="800" height="533" class="img-responsive" alt="image">
-										<div class="score"><span>9.0</span>Superb</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>HOTEL BOUTIQUE CASA DEL ALMA</strong> </h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-4 -->
-
-						<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-							<div class="hotel_container">
-								<div class="ribbon_3"><span>Top rated</span></div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="{{asset('img/hotel_3.jpg')}}" width="800" height="533" class="img-responsive" alt="image">
-										<div class="score"><span>9.5</span>Superb</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>39</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>HOTEL BOUTIQUE PARADOR SAN JUAN DE DIOS</strong> </h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-4 -->
-
+					@endforeach
 					</div>
+
+
 				</div>
 				<div class="fourStarsHoteles">
 					<div class="main_title">
@@ -326,13 +273,13 @@
 					</div>
 
 					<div class="row">
-
+						@foreach($hotelesCuatroEstrella as $item)
 						<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
 							<div class="hotel_container">
 								<div class="ribbon_3 popular"><span>Popular</span></div>
 								<div class="img_container">
 									<a href="single_hotel.html">
-										<img src="{{asset('img/hotel_1.jpg')}}" width="800" height="533" class="img-responsive" alt="image">
+										<img src="{{asset($item->imagen)}}" width="800" height="533" class="img-responsive" alt="image">
 										<div class="score"><span>7.5</span>Good</div>
 										<div class="short_info hotel">
 											From/Per night<span class="price"><sup>$</sup>59</span>
@@ -340,7 +287,7 @@
 									</a>
 								</div>
 								<div class="hotel_title">
-									<h3><strong>HOTEL BO</strong> </h3>
+									<h3><strong>{{$item->nombre}}</strong> </h3>
 									<div class="rating">
 										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 									</div>
@@ -354,68 +301,11 @@
 							<!-- End box -->
 						</div>
 						<!-- End col-md-4 -->
-
-						<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-							<div class="hotel_container">
-								<div class="ribbon_3 popular"><span>Popular</span></div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="{{asset('img/hotel_2.jpg')}}" width="800" height="533" class="img-responsive" alt="image">
-										<div class="score"><span>9.0</span>Superb</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>HOTEL BOUTIQUE CASA DEL ALMA</strong> </h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-4 -->
-
-						<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-							<div class="hotel_container">
-								<div class="ribbon_3"><span>Top rated</span></div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="{{asset('img/hotel_3.jpg')}}" width="800" height="533" class="img-responsive" alt="image">
-										<div class="score"><span>9.5</span>Superb</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>39</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>HOTEL BOUTIQUE PARADOR SAN JUAN DE DIOS</strong> </h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-4 -->
-
+						@endforeach
 					</div>
-				</div>
-				<!-- End row -->
+					<!-- End row -->
 				<p class="text-center nopadding">
-					<a href="all_hotels_map_listing.html" class="btn_1 medium"><i class="icon-eye-7"></i>Ver todos los hoteles</a>
+					<a href="/hotelesRestaurantes" class="btn_1 medium"><i class="icon-eye-7"></i>Ver todos los hoteles</a>
 				</p>
 			</div>
 			<div class="container-fluid">
@@ -668,71 +558,41 @@
 
 						</div>
 						<!--End row -->
-
+						@foreach($reserva as $item)
 						<hr>
 						<div class="row">
 							<div class="col-md-8 col-sm-6 hidden-xs">
-								<img src="{{asset('img/laptop.png')}}" alt="chiapas-family-tours-laptopimage" class="img-responsive laptop">
+								<img src="{{asset($item->imagen)}}" alt="chiapas-family-tours-laptopimage" class="img-responsive laptop">
 							</div>
 							<div class="col-md-4 col-sm-6">
-								<h3><span>Explore Chiapas</span> con amigos y familiares</h3>
+								<h3>{{$item->infoSecundario}}</h3>
 								<p>
-									<h3>¿Cómo reservar?</h3>
+									<h3>{{$item->titulo}}</h3>
 								</p>
+								
 								<div class="panel-group getStartedInstructions" id="accordion">
+									@foreach($reservaDetalle as $itemDetalle)
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#pasoUno"><span>1</span> Seleccione su paquete<i class="indicator icon-plus pull-right"></i></a>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{$itemDetalle->id_reservadetalle}}"><span>1</span> {{$itemDetalle->titulo}}<i class="indicator icon-plus pull-right"></i></a>
 											</h4>
 										</div>
-										<div id="pasoUno" class="panel-collapse collapse">
+										<div id="{{$itemDetalle->id_reservadetalle}}" class="panel-collapse collapse">
 											<div class="panel-body">
 												<ul class="chiapasList">
-													<li><a href="/descAtractivo">EN LA PAGINA DE ITINERARIOS A LA DERECHA EN EL  BANNER  QUE  SUBE  Y  BAJA SELECCIONE SU ( S )  PAQUETE ( S )QUE LE GUSTARIA QUE LE  ENVIEMOS EL COSTO  “ DESPUES DE 2 HABITACIONES “, DISMINUYE  EL  COSTO POR PERSONA. </a></li>
+													<li><a href="/descAtractivo">{{$itemDetalle->descripcion}}</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#pasoDos"><span>2</span> Envíe su E-mail <i class="indicator icon-plus pull-right"></i></a>
-											</h4>
-										</div>
-										<div id="pasoDos" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="chiapasList">
-													<li><a href="/descAtractivo">UNA VEZ  SELECCIONADO  SU   PAQUETE NESESITAMOS NOS  INDIQUE EN COMENTARIOS: CUANTOS ADULTOS  Y  CUANTOS MENORES  DE 10  AÑOS CONFORMAN SU  GRUPO ASI NOSOTROS LE  ENVIAMOS  EL COSTO  MAS  REDUCIDO  POR PERSONA EN  HABITACIONES  DOBLES, TRIPLES   CUADRUPLES  E INDIVIDUALES. 
-														( EL COSTO DE LAS ACTIVIDADES DE AVENTURA  FAVOR DE CHECAR EN ACTIVIDADES DE AVENTURA  ) 
-														UNA VEZ QUE SABE CUAL PAQUETE LES GUSTA Y CUANTAS HABITACIONES NECESITA , FAVOR DE  VERIFICAR POR SU PARTE LA DISPONIBILIDAD DE SUS BOLETOS DE AVION. YA QUE EN BASE  A ESTO  DESAROLLAMOS EL ITINERARIO FINAL  Y  SE  LO ENVIAMOS, PARA SU APROBACION.
-													</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#pasoTres"><span>3</span> ¡Cómprelo!<i class="indicator icon-plus pull-right"></i></a>
-											</h4>
-										</div>
-										<div id="pasoTres" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="chiapasList">
-													<li><a href="/descAtractivo">YA  QUE  CONOCE UD. LOS  DETALLES  Y TENEMOS  SU APROBACION LE  ENVIAMOS NUESTRO NUMERO  DE  CUENTA.
-														PARA UN PRIMER DEPOSITO.
-													</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
+									@endforeach
 								</div>
-
+							   
 							</div>
 						</div>
 
-						
+						@endforeach
 						<!-- End row -->
 
 					</div>
