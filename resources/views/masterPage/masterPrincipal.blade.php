@@ -214,7 +214,7 @@
 
                             </li>
                             <li class="submenu">
-                                <a href="/translados" class="show-submenu">Translados</i></a>
+                                <a href="/traslados" class="show-submenu">Traslados</i></a>
 
                             </li>
 

@@ -1,7 +1,7 @@
 @extends ('masterPage.masterPrincipal') 
 
 @section ('content')
-<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/CHFTcslimage/canion-sumidero.jpg')}}" data-natural-width="1400" data-natural-height="470">
+<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/CHfTcslimage/canion-sumidero.jpg')}}" data-natural-width="1400" data-natural-height="470">
     <div class="parallax-content-2">
      <div class="container">
         <div class="row">
@@ -38,7 +38,7 @@
               </a>
             </li>
             <li>
-              <a href="privpack-section-anydays.html">
+              <a href="#">
                 <div class="paqueteItem">
                   <!--  -->
                   <p>3</p>
@@ -283,7 +283,7 @@
       <div class="row">
         <div class="col-md-12">
          <p class="hidden-sm hidden-xs">
-          <a class="btnComparacion" target="_blank" href="comparacionPrecios.html">VER LISTA DE COMPARACIÓN DE PRECIOS</a>
+          <a class="btnComparacion" target="_blank" href="/comparacionPrecios">VER LISTA DE COMPARACIÓN DE PRECIOS</a>
         </p>
       </div>
     </div>

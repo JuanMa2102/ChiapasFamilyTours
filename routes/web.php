@@ -22,5 +22,5 @@ Route::resource('/descAtractivo','descAtractivoController');
 Route::resource('/comparacionPrecios','comparacionPreciosController');
 Route::resource('/actividadesDeAventura','actividadesDeAventuraController');
 Route::resource('/seccionDescripcion','seccionDescripcionController');
-Route::resource('/translados','transladosController');
+Route::resource('/traslados','trasladosController');
 Route::resource('/paquetesPrivadosPorDia','paquetesPrivadosPorDiaController');
