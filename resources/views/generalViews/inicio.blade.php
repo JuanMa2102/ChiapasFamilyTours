@@ -174,7 +174,7 @@
 											</a>
 										</div>
 										<div class="tour_title">
-											<!-- <h3><strong>{{ $item->nombre }}</strong></h3> -->
+											<h3><strong>{{ $item->nombre }}</strong></h3> 
 
 										</div>
 									</div>
