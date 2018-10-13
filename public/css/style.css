@@ -5158,6 +5158,13 @@ div.datedropper.primary .pick-btn {
 	color: #000 !important;
 	border-radius: 5px !important;
 }
+
+select[name="diasCotizacion"] option{
+	display: none;
+}
+select[name="diasCotizacion"] option.active{
+	display: block;
+}
 /* End btn add paquetes cotización */
 /* End added classes */
 /*FELIPE'S ADDED CLASES*/
@@ -5306,3 +5313,40 @@ div.datedropper.primary .pick-btn {
 }
 
 /* End actividadesAventuraPage 
+
+/* Validación Solicitudes */
+
+.formularioArrendatario span {
+    position: relative;
+}
+
+.inputValido input,
+.inputValido textarea {
+    border-color: #38e71f !important;
+    box-shadow: 0px 0px 10px 0px #38e71f !important;
+}
+
+.inputValido span:after {
+    position: absolute;
+    color: #38e71f;
+    z-index: 100;
+    font-size: 180%;
+    top: 15%;
+}
+
+.inputInvalido input,
+.inputInvalido textarea {
+    border-color: #e9311d !important;
+    box-shadow: 0px 0px 10px 0px #e9311d !important;
+}
+
+.inputInvalido span:after {
+    position: absolute;
+    color: #e9311d;
+    z-index: 100;
+    font-size: 180%;
+    top: 15%;
+}
+
+
+/*End classes*/

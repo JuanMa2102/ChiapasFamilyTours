@@ -25,52 +25,61 @@
 					<div class="step">
 
 						<div id="message-contact"></div>
-						<form method="post" action="{{asset('assets/contact.php')}}" id="contactform">
-							<div class="row">
+						{!! Form::open(array('url' => 'contactos','autocomplete'=>'off','method'=>'POST', 'onsubmit'=>'return validarsend();')) !!} 
+						{{Form::token()}}
+								<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<label>First Name</label>
-										<input type="text" class="form-control" id="name_contact" name="name_contact" placeholder="Enter Name">
+									<div class="form-group nombreGroup">
+										<label>Nombre: </label>
+										<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre aquí.">
+										<span id="nombreOK" style="color:red" class="help-block"></span>
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<label>Last Name</label>
-										<input type="text" class="form-control" id="lastname_contact" name="lastname_contact" placeholder="Enter Last Name">
+									<div class="form-group apellidoGroup">
+										<label>Apellido: </label>
+										<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingese su apellido aquí.">
 									</div>
 								</div>
 							</div>
 							<!-- End row -->
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<label>Email</label>
-										<input type="email" id="email_contact" name="email_contact" class="form-control" placeholder="Enter Email">
+									<div class="form-group correoGroup">
+										<label>Correo electrónico: </label>
+										<input type="email" id="email" name="email" class="form-control" placeholder="ejemplo@dominio.com">
+                                         <span id="emailOK" style="color:red" class="help-block"></span>
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<div class="form-group">
-										<label>Phone</label>
-										<input type="text" id="phone_contact" name="phone_contact" class="form-control" placeholder="Enter Phone number">
+									<div class="form-group telefonoGroup" >
+											<label>Teléfono: </label>
+											<input type="text" id="telefono" name="telefono" class="form-control" placeholder="Ingrese su teléfono aquí.">
+											<span id="telefonoOK" style="color:red" class="help-block"></span>
+										
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<div class="form-group">
-										<label>Message</label>
-										<textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="Write your message" style="height:200px;"></textarea>
+									<div class="form-group mensajeGroup">
+										<label>Mensaje: </label>
+										<textarea rows="5" id="mensaje" name="mensaje" class="form-control" placeholder="Escriba su mensaje aquí." style="height:200px;"></textarea>
 									</div>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-6">
-									<label>Human verification</label>
-									<input type="text" id="verify_contact" class=" form-control add_bottom_30" placeholder="Are you human? 3 + 1 =">
-									<input type="submit" value="Submit" class="btn_1" id="submit-contact">
+								<div class="col-md-6 ">
+									<div class="form-group verificacionGroup">
+										<label>Verificación: </label>
+										<input type="text" id="verificacion" name="verificacion" class=" form-control add_bottom_30" placeholder="¡ Pruebe que es humano ! 3 + 1  =¿ ? ">
+									</div>
 								</div>
 							</div>
-						</form>
+								<input type="submit" value="Enviar" class="btn_1" id="submit-contact">
+						
+                                {!! Form::close() !!}
+
 					</div>
 				</div>
 				<!-- End col-md-8 -->
@@ -133,7 +142,7 @@
 
 @endsection
 @push("contactScripts")
-<script src="{{asset('assets/validate.js')}}"></script>
+	<script src="{{asset('assets/validarcontacto.js')}}"></script>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
                                    
                                    

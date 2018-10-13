@@ -297,95 +297,94 @@
 <!--End  single_tour_desc-->
 
 <aside class="col-md-5" id="sidebar">
+  {!! Form::open(array('url' => 'paquetesPrivadosPorDia','autocomplete'=>'off','method'=>'POST', 'onsubmit'=>'return validarsend();')) !!} 
+  {{Form::token()}}
   <div class="theiaStickySidebar barraCotizacion">
    <div class="box_style_1 expose">
     <h3 class="inner">- ENVIAR COTIZACIÓN -</h3>
     <p>Introduzca los siguientes datos</p>
-    <div class="infoCotizacion">
-      <p>De preferencia, reserve sus boletos antes de cotizar, ya que en base a la fecha de salida de su boleto, se le hará su itinerario. Si necesita más información vea la sección de preguntas más frecuentes <a target="_blank" href="faq.html">aquí</a>. O póngase en <a target="_blank" href="contacto.html">contacto</a> con nosotros.</p>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label><i class="icon-user"></i>Nombre</label>
-          <input type="text">
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="form-group">
-          <label><i class="icon-user"></i>Apellido</label>
-          <input type="text">
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="form-group">
-          <label><i class="icon-email"></i>E-mail</label>
-          <input type="email">
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="form-group">
-          <label><i class="icon-phone"></i>Teléfono</label>
-          <input type="text">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
 
+    <div class="infoCotizacion">
+      <p>De preferencia, reserve sus boletos antes de cotizar, ya que en base a la fecha de salida de su boleto, se le hará su itinerario. Si necesita más información vea la sección de preguntas más frecuentes <a target="_blank" href="\preguntasFrecuentes">aquí</a>. O póngase en <a target="_blank" href="\contactos">contacto</a> con nosotros.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group nombreGroup">
+          <label><i class="icon-user"></i>Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre aquí.">
+          </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group apellidoGroup">
+          <label><i class="icon-user"></i>Apellido</label>
+          <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese su apellido aquí." >
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group correoGroup">
+          <label><i class="icon-email"></i>E-mail</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@dominio.com">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group telefonoGroup">
+          <label><i class="icon-phone"></i>Teléfono</label>
+          <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese su teléfono aquí.">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group adultosGroup">
           <label>Adultos</label>
-          <input class="form-control" type="number" min="1" name="numeroAdultos">
+          <input class="form-control" min="1" type="number" name="numeroAdultos" id="numeroAdultos" >
         </div>
       </div>
       <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group menoresGroup">
           <label>Menores de 10 años</label>
-          <input class="form-control" type="number" min="1" name="numeroMenores">
+          <input class="form-control" class="form-control" type="number" min="0" name="numeroMenores" id="numeroMenores">
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group llegadaGroup">
           <label><i class="icon-calendar-7"></i> Fecha de llegada</label>
-          <input class="date-pick form-control" data-date-format="M d, D" type="text">
+          <input class="date-pick form-control" class="form-control" data-date-format="yyyy-m-d" type="text" id="llegada" name="llegada" >
         </div>
       </div>
       <div class="col-sm-6">
-        <div class="form-group">
+        <div class="form-group salidaGroup">
           <label><i class="icon-calendar-7"></i> Fecha de salida</label>
-          <input class="date-pick form-control" data-date-format="M d, D" type="text">
+          <input class="date-pick form-control" class="form-control" data-date-format="yyyy-m-d" type="text" id="salida" name="salida" >
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-5">
-        <div class="form-group">
-          <div class="input-group">
+        <div class="form-group paqueteGroup">
             <label><i class="icon-lightbulb-1"></i> Paquete</label>
-            <select class="form-control" name="paqueteCotizacion">
-              <option value="0">Seleccione...</option>
-              <option value="1">San Cristobal y alrededores</option>
-              <option value="2">Palenque y alrededores</option>
-              <option value="3">Clásico (San Cristobal y Palenque)</option>
-              <option value="4">Chiapas Total</option>
+            <select class="form-control" id="paqueteCotizacion" name="paqueteCotizacion" >
+              <option name="seleccione" value="0">Seleccione...</option>
+              @foreach($paquetes as $item)
+              <option name="paquete" id="{{ $item->id_paquete }}" value="{{$item->id_paquete}}">{{$item->nombre}}</option>
+              @endforeach
             </select>
-          </div>
         </div>
       </div>
       <div class="col-sm-5">
-        <div class="form-group">
-          <div class="input-group">
+        <div class="form-group diasGroup">
+          <div class="input-group ">
             <label><i class="icon-clock-2"></i> Días</label>
-            <select class="form-control" name="diasCotizacion">
-              <option value="0">Seleccione...</option>
-              <option value="1">2 Días</option>
-              <option value="2">3 Días</option>
-              <option value="3">4 Días</option>
-              <option value="4">5 Días</option>
+            <select class="form-control" name="diasCotizacion" id= "diasCotizacion">
+              <option name="seleccione" value="0">Seleccione...</option>
+              @foreach($dias as $itemDias)
+              <option cosmico="{{$itemDias->id_paquete}}" value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
+              @endforeach
             </select>
           </div>
+          <small>*Con rafting</small>
         </div>
       </div>
       <div class="col-sm-2">
@@ -399,13 +398,15 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group tipoGroup">
           <div class="input-group">
             <label>Seleccione tipo de hotel</label>
-            <select name="hotelType" class="form-control">
-              <option value="0">Hotel Boutique</option>
-              <option value="0">Hotel 4 Estrellas</option>
-            </select>
+            <select name="tipoHotel" class="form-control" id="tipoHotel">
+              <option name = "seleccione" value="0">Seleccione...</option>
+              @foreach($tipoHotel as $item)
+              <option value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
+              @endforeach
+              </select>
           </div>
           <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
         </div>
@@ -413,18 +414,20 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <textarea placeholder="Sea más específico con nosotros en esta parte"></textarea>
+        <div class="form-group mensajeGroup">
+          <textarea placeholder="Sea más específico con nosotros en esta parte" class="form-control" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí."></textarea>
+        </div>
       </div>
     </div>
     <br>
 
-    <a class="btn_full" href="cart_hotel.html">Enviar cotización</a>
+    <input type="submit" value="Enviar cotización" class="btn_full" id="submit-contact">
 
   </div>
   <!--/box_style_1 -->
 </div>
 <!--/sticky -->
-
+{!! Form::close() !!}
 </aside>
 </div>
 <!--End row -->
@@ -471,7 +474,15 @@
     thumbnailArrows: true,
     autoplay: false
   });
+  $(document).on('change', '#paqueteCotizacion', function(e) {
+    console.log(this.options[e.target.selectedIndex].value);
+    var idPaquete = this.options[e.target.selectedIndex].value;
+    $("select[name='diasCotizacion'] option").removeClass('active');
+    $("select[name='diasCotizacion'] option[cosmico='"+idPaquete+"']").addClass('active');
+});
  });
+
+  
 </script>
 
 <!-- Date and time pickers -->
@@ -486,7 +497,7 @@
 </script>
 
 <!--Review modal validation -->
-<script src="{{asset('assets/validate.js')}}"></script>
+  <script src="{{asset('assets/validarcotizacion.js')}}"></script>
 
 <!-- Map -->
 <script src="{{asset('js/infobox.js')}}"></script>
