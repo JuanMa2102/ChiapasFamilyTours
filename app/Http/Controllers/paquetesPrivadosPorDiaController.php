@@ -37,6 +37,10 @@ class PaquetesPrivadosPorDiaController extends Controller
         $mensaje = $request->get('mensaje');
         $tipoHotel = $request->get('tipoHotel');
         $usuario=1;
+
+        $paqute = $request->get('paqueteCotizacion');
+        $dias = $request->get('diasCotizacion');
+        
         
         $sql_contacto = "call spCSL_setCotizacion
         (
@@ -53,15 +57,30 @@ class PaquetesPrivadosPorDiaController extends Controller
             '".$usuario."'
         )";
         
-        $datos_contacto = DB::select($sql_contacto,array(1,11));
+        $datos_contacto =  DB::select($sql_contacto, array(1,10));
+        $id = (int)$datos_contacto[0]->id;
 
-        if($datos_contacto != null )
+        foreach ($datos_contacto as $key){
+            $sql_cotiazacionDetalle = "call spCSL_setCotizacionDetalle
+            (
+            '".$id."',
+            '".$paqute."',
+            '".$dias."',
+            '".$usuario."'
+            )";
+        }
+
+        
+        $datos_cotizacionDetalle = DB::select($sql_cotiazacionDetalle,array(1,5));
+
+        
+        if($datos_contacto != null)
         {
-            return Redirect::to('/contactos');
+            return Redirect::to('/paquetesPrivadosPorDia');
         }
         else
         {
-            return Redirect::to('/inicio')->with("error","Ha ocurrido un error al enviar su formulario. Inténtelo más tarde.");
+            return Redirect::to('/contactos')->with("error","Ha ocurrido un error al enviar su formulario. Inténtelo más tarde.");
         }
     }
 

@@ -1,4 +1,4 @@
-var bn, bt, be, bm, bv, na, nm, bd, bp;
+var bn , ba, bt, be, bm , na , nm , bd , bp , bh , bs, bl;
 
 function validar() {
 
@@ -15,6 +15,8 @@ function validar() {
             $(".nombreGroup").removeClass("inputInvalido");
             bn = true;
         } else {
+            $(".nombreGroup").addClass("inputInvalido");
+            $(".nombreGroup").removeClass("inputValido");
             bn = false;
         }
     });
@@ -37,19 +39,20 @@ function validar() {
         } else {
             $(".nombreGroup").addClass("inputValido");
             $(".nombreGroup").removeClass("inputInvalido");
-            bn = true;
+            bn= true;
 
         }
     });
+
 
 
  /**Validacion apellido */
     document.getElementById('apellido').addEventListener('input', function() {
         campo = event.target;
 
-        nombreRegex = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ. ´'.]+$/i;
+        apellidoRegex = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ. ´'.]+$/i;
 
-        if (nombreRegex.test(campo.value) && campo.value.length < 49) {
+        if (apellidoRegex.test(campo.value) && campo.value.length < 49) {
             $(".apellidoGroup").addClass("inputValido");
             $(".apellidoGroup").removeClass("inputInvalido");
             ba = true;
@@ -131,14 +134,14 @@ function validar() {
             $(".telefonoGroup").addClass("inputInvalido");
             setTimeout(function() {
                 $(".telefonoGroup").removeClass("inputInvalido");
-                bn = false;
+                bt = false;
             }, 1000);
 
             return false;
         } else {
             $(".telefonoGroup").addClass("inputValido");
             $(".telefonoGroup").removeClass("inputInvalido");
-            bn = true;
+            bt = true;
 
         }
     });
@@ -160,7 +163,6 @@ function validar() {
             be = false;
         }
     });
-
     /**Validacion numero de adultos */
     document.getElementById('numeroAdultos').addEventListener('input', function() {
         campo = event.target;
@@ -266,12 +268,12 @@ function validar() {
         mensajeRegex = /[-a-zA-Z0-9@:%._\+~#=]/i;
 
         if (mensajeRegex.test(campo.value) && campo.value != 0) {
-            $(".menoresGroup").addClass("inputValido");
-            $(".menoresGroup").removeClass("inputInvalido");
+            $(".diasGroup").addClass("inputValido");
+            $(".diasGroup").removeClass("inputInvalido");
             bd = true;
         } else {
-            $(".menoresGroup").removeClass("inputValido");
-            $(".menoresGroup").addClass("inputInvalido");
+            $(".diasGroup").removeClass("inputValido");
+            $(".diasGroup").addClass("inputInvalido");
             bd = false;
         }
     });
@@ -283,26 +285,79 @@ function validar() {
         mensajeRegex = /[-a-zA-Z0-9@:%._\+~#=]/i;
 
         if (mensajeRegex.test(campo.value) && campo.value != 0) {
-            $(".menoresGroup").addClass("inputValido");
-            $(".menoresGroup").removeClass("inputInvalido");
-            bd = true;
+            $(".tipoGroup").addClass("inputValido");
+            $(".tipoGroup").removeClass("inputInvalido");
+            bh = true;
         } else {
-            $(".menoresGroup").removeClass("inputValido");
-            $(".menoresGroup").addClass("inputInvalido");
-            bd = false;
+            $(".tipoGroup").removeClass("inputValido");
+            $(".tipoGroup").addClass("inputInvalido");
+            bh = false;
         }
     });
-}
 
+    document.getElementById('llegada').onchange = function() {
+        campo = event.target;
+        
+        var llegada = document.getElementById('llegada').value.split('-');
+        var salida = document.getElementById('salida').value.split('-');
+
+        var rightNow = new Date();
+        var fecLLegada = new Date(llegada[0],llegada[1]-1,llegada[2]);
+        var fecSalida = new Date(salida[0],salida[1]-1,salida[2]);
+
+        rightNow.setHours(0,0,0,0);
+        fecLLegada.setHours(0,0,0,0);
+
+        if (fecLLegada >= rightNow) {
+            $(".llegadaGroup").addClass("inputValido");
+            $(".llegadaGroup").removeClass("inputInvalido");
+                if(fecSalida>fecLLegada)
+                {
+                    $(".salidaGroup").addClass("inputValido");
+                    $(".salidaGroup").removeClass("inputInvalido");
+                    bs = true;
+                }else {
+                    $(".salidaGroup").removeClass("inputValido");
+                    $(".salidaGroup").addClass("inputInvalido");
+                    bs = false;
+                }
+                bl = true
+        } else {
+            $(".llegadaGroup").removeClass("inputValido");
+            $(".llegadaGroup").addClass("inputInvalido");
+            bl = false;
+        }
+    };
+
+    document.getElementById('salida').onchange = function() {
+        campo = event.target;
+
+        var llegada = document.getElementById('llegada').value.split('-');
+        var salida = document.getElementById('salida').value.split('-');
+        var fecLLegada = new Date(llegada[0],llegada[1]-1,llegada[2]);
+        var fecSalida = new Date(salida[0],salida[1]-1,salida[2]);
+        
+        if (fecSalida > fecLLegada) {
+            $(".salidaGroup").addClass("inputValido");
+            $(".salidaGroup").removeClass("inputInvalido");
+            bs = true;
+        } else {
+            $(".salidaGroup").removeClass("inputValido");
+            $(".salidaGroup").addClass("inputInvalido");
+            bs = false;
+        }
+        
+    };
+
+}
 
 validar();
 
 /*****************************************/
 function validarsend() {
-    if (bn === true && ba === true && bt === true && be === true && bm === true && bv === true && nm === true && na === true) {
+    if (bn === true && ba === true && bt === true && be === true && bm === true && nm === true && na === true && bp === true && bd === true && bh===true && bs===true && bl===true){
         return true;
-
-    } else {
+    }else {
        alert("La informacion no es valida");
         return false;
     }

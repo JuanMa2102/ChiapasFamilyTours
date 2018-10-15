@@ -1,4 +1,4 @@
-var bn, bt, be, bm, bv;
+var bn, ba, bt, be, bm, bv;
 
 function validar() {
 
@@ -15,6 +15,8 @@ function validar() {
             $(".nombreGroup").removeClass("inputInvalido");
             bn = true;
         } else {
+            $(".nombreGroup").addClass("inputInvalido");
+            $(".nombreGroup").removeClass("inputValido");
             bn = false;
         }
     });
@@ -37,19 +39,20 @@ function validar() {
         } else {
             $(".nombreGroup").addClass("inputValido");
             $(".nombreGroup").removeClass("inputInvalido");
-            bn = true;
+            bn= true;
 
         }
     });
+
 
 
  /**Validacion apellido */
     document.getElementById('apellido').addEventListener('input', function() {
         campo = event.target;
 
-        nombreRegex = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ. ´'.]+$/i;
+        apellidoRegex = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ. ´'.]+$/i;
 
-        if (nombreRegex.test(campo.value) && campo.value.length < 49) {
+        if (apellidoRegex.test(campo.value) && campo.value.length < 49) {
             $(".apellidoGroup").addClass("inputValido");
             $(".apellidoGroup").removeClass("inputInvalido");
             ba = true;
@@ -131,14 +134,14 @@ function validar() {
             $(".telefonoGroup").addClass("inputInvalido");
             setTimeout(function() {
                 $(".telefonoGroup").removeClass("inputInvalido");
-                bn = false;
+                bt = false;
             }, 1000);
 
             return false;
         } else {
             $(".telefonoGroup").addClass("inputValido");
             $(".telefonoGroup").removeClass("inputInvalido");
-            bn = true;
+            bt = true;
 
         }
     });
@@ -190,14 +193,14 @@ function validar() {
             $(".verificacionGroup").addClass("inputInvalido");
             setTimeout(function() {
                 $(".verificacionGroup").removeClass("inputInvalido");
-                bn = false;
+                bv = false;
             }, 1000);
 
             return false;
         } else {
             $(".verificacionGroup").addClass("inputValido");
             $(".verificacionGroup").removeClass("inputInvalido");
-            bn = true;
+            bv = true;
 
         }
     });

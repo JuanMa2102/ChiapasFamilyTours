@@ -5321,6 +5321,7 @@ select[name="diasCotizacion"] option.active{
 }
 
 .inputValido input,
+.inputValido select,
 .inputValido textarea {
     border-color: #38e71f !important;
     box-shadow: 0px 0px 10px 0px #38e71f !important;
@@ -5335,6 +5336,7 @@ select[name="diasCotizacion"] option.active{
 }
 
 .inputInvalido input,
+.inputInvalido select,
 .inputInvalido textarea {
     border-color: #e9311d !important;
     box-shadow: 0px 0px 10px 0px #e9311d !important;

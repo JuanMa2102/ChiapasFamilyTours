@@ -366,7 +366,7 @@
         <div class="form-group paqueteGroup">
             <label><i class="icon-lightbulb-1"></i> Paquete</label>
             <select class="form-control" id="paqueteCotizacion" name="paqueteCotizacion" >
-              <option name="seleccione" value="0">Seleccione...</option>
+              <option name="seleccione" value= 0 >Seleccione...</option>
               @foreach($paquetes as $item)
               <option name="paquete" id="{{ $item->id_paquete }}" value="{{$item->id_paquete}}">{{$item->nombre}}</option>
               @endforeach
@@ -378,7 +378,7 @@
           <div class="input-group ">
             <label><i class="icon-clock-2"></i> Días</label>
             <select class="form-control" name="diasCotizacion" id= "diasCotizacion">
-              <option name="seleccione" value="0">Seleccione...</option>
+              <option name="seleccione" value= 0 >Seleccione...</option>
               @foreach($dias as $itemDias)
               <option cosmico="{{$itemDias->id_paquete}}" value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
               @endforeach
@@ -402,7 +402,7 @@
           <div class="input-group">
             <label>Seleccione tipo de hotel</label>
             <select name="tipoHotel" class="form-control" id="tipoHotel">
-              <option name = "seleccione" value="0">Seleccione...</option>
+              <option name = "seleccione" value=0 >Seleccione...</option>
               @foreach($tipoHotel as $item)
               <option value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
               @endforeach
@@ -418,10 +418,11 @@
           <textarea placeholder="Sea más específico con nosotros en esta parte" class="form-control" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí."></textarea>
         </div>
       </div>
+      
     </div>
     <br>
 
-    <input type="submit" value="Enviar cotización" class="btn_full" id="submit-contact">
+    <input type="submit" value="Enviar cotización" class="btn_full" id="submit-cotizacion">
 
   </div>
   <!--/box_style_1 -->
@@ -479,8 +480,9 @@
     var idPaquete = this.options[e.target.selectedIndex].value;
     $("select[name='diasCotizacion'] option").removeClass('active');
     $("select[name='diasCotizacion'] option[cosmico='"+idPaquete+"']").addClass('active');
-});
+
  });
+});
 
   
 </script>

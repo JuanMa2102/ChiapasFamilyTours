@@ -32,7 +32,7 @@
 									<div class="form-group nombreGroup">
 										<label>Nombre: </label>
 										<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre aquí.">
-										<span id="nombreOK" style="color:red" class="help-block"></span>
+										
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-6">
