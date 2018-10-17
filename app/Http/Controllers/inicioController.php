@@ -9,6 +9,9 @@ class inicioController extends Controller
 {
     //
     function index(){
+        $slider = DB::table('tbl_slider')
+        ->where('activo','=',1)
+        ->get();
         $dias = DB::table('tbl_dias')
         ->where('activo','=',1)
         ->get();
@@ -31,7 +34,8 @@ class inicioController extends Controller
         $reservaDetalle = DB::table('tbl_reservadetalle')
         ->where('activo','=',1)
         ->get();
-        return view("generalViews.inicio",["paquetes"=>$paquetes,
+        return view("generalViews.inicio",["slider"=>$slider,
+                                           "paquetes"=>$paquetes,
                                            "dias"=>$dias,
                                            "hotelesBoutique"=>$hotelesBoutique,
                                            "hotelesCuatroEstrella"=>$hotelesCuatroEstrella,
