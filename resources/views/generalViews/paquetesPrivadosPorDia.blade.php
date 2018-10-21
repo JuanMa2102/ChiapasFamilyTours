@@ -215,6 +215,13 @@
   </p>
   <!-- End row  -->
 </div>
+
+<div class="row">
+        <div class="col-md-12">
+         <p class="hidden-sm hidden-xs">
+          <a class="btnComparacion" target="_blank" href="/comparacionPrecios">ITINERARIO DETALLADO CON SUGERENCIAS</a>
+        </p>
+      </div>
 </div>
 <hr>
 <div class="row itinerarioPart">
@@ -280,12 +287,7 @@
           </ul>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-         <p class="hidden-sm hidden-xs">
-          <a class="btnComparacion" target="_blank" href="/comparacionPrecios">VER LISTA DE COMPARACIÓN DE PRECIOS</a>
-        </p>
-      </div>
+      
     </div>
     <!-- End row  -->
   </div>
@@ -406,6 +408,21 @@
               @foreach($tipoHotel as $item)
               <option value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
               @endforeach
+              </select>
+          </div>
+          <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group tipoGroup">
+          <div class="input-group">
+            <label>Seleccione Hotel</label>
+            <select name="tipoHotel" class="form-control" id="tipoHotel">
+              <option name = "seleccione" value="0" >Seleccione...</option>
+              <option value="1">Hotel Boutique Bo</option>
+             
               </select>
           </div>
           <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
