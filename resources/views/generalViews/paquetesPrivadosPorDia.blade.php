@@ -1,17 +1,24 @@
 @extends ('masterPage.masterPrincipal') 
 
 @section ('content')
-<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/CHfTcslimage/canion-sumidero.jpg')}}" data-natural-width="1400" data-natural-height="470">
+
+<?php $diasCantidad = 2 ?>
+
+@foreach($paquetes as $itemPaquete)
+  @if($itemPaquete->id_paquete == $id)
+<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset($itemPaquete->imagen)}}" data-natural-width="1400" data-natural-height="470">
     <div class="parallax-content-2">
      <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-8">
-            <h1>SAN CRISTOBAL Y SUS ALREDEDORES</h1>
+            <h1>{{$itemPaquete->nombre}}</h1>
           </div>
         </div>
       </div>
     </div>
 </section>
+  @endif
+@endforeach
 <!-- End section -->
 
 <main>
@@ -27,139 +34,53 @@
     <div class="col-md-7" id="single_tour_desc">
       <div class="containerDiasPaquete">
         <div class="diasPaquete">
-          <ul>
+          
+          <ul >
+            @foreach($diasPaquete as $item)
             <li>
-              <a href="#">
-                <div class="paqueteItem" style="background-color: #46D34D">
-                  <!--  -->
-                  <p>2</p>
-                  <p>DÍAS</p>
+              <a href="{{ route('paquetes-detalle',[$id,$item->id_dias])}}" >
+                <div class="paqueteItem " style="{{$item->id_dias==$id_dia ? 'background-color: #46D34D' : ' ' }}">
+                  <?php if($item->id_dias==$id_dia ) $diasCantidad = $item->cantidad ?>
+                  <p>{{$item->cantidad}}</p>
+                  <p>DÍAS{{$item->descripcion}}</p>
                 </div>
               </a>
             </li>
-            <li>
-              <a href="#">
-                <div class="paqueteItem">
-                  <!--  -->
-                  <p>3</p>
-                  <p>DÍAS</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="privpack-section-anydays.html">
-                <div class="paqueteItem">
-                  <!--  -->
-                  <p>4</p>
-                  <p>DÍAS</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="privpack-section-anydays.html">
-                <div class="paqueteItem">
-                  <!--  -->
-                  <p>5</p>
-                  <p>DÍAS</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="privpack-section-anydays.html">
-                <div class="paqueteItem">
-                  <!--  -->
-                  <p>6</p>
-                  <p>DÍAS</p>
-                </div>
-              </a>
-            </li>
+            @endforeach 
           </ul>
+
+
         </div>
       </div>
       <!-- Map button for tablets/mobiles -->
 
-      <div id="Img_carousel" class="slider-pro">
-        <div class="sp-slides">
-
-         <div class="sp-slide">
-          <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/1_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/1_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/1_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/1_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/1_large.jpg')}}">
-        </div>
-        <div class="sp-slide">
-          <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/2_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/2_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/2_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/2_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/2_large.jpg')}}">
-          <h3 class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="40" data-show-transition="left">
-          Lorem ipsum dolor sit amet </h3>
-          <p class="sp-layer sp-white sp-padding" data-horizontal="40" data-vertical="100" data-show-transition="left" data-show-delay="200">
-           consectetur adipisicing elit
-         </p>
-         <p class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="160" data-width="350" data-show-transition="left" data-show-delay="400">
-           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-         </p>
-       </div>
-
+  <div id="Img_carousel" class="slider-pro">
+    <div class="sp-slides">
+      @foreach($galeria as $key => $item)
        <div class="sp-slide">
-        <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/3_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/3_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/3_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/3_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/3_large.jpg')}}">
-        <p class="sp-layer sp-white sp-padding" data-position="centerCenter" data-vertical="-50" data-show-transition="right" data-show-delay="500">
-         Lorem ipsum dolor sit amet
-       </p>
-       <p class="sp-layer sp-black sp-padding" data-position="centerCenter" data-vertical="50" data-show-transition="left" data-show-delay="700">
-         consectetur adipisicing elit
-       </p>
-     </div>
-
-     <div class="sp-slide">
-      <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/4_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/4_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/4_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/4_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/4_large.jpg')}}">
-      <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-vertical="0" data-width="100%" data-show-transition="up">
-       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-     </p>
-   </div>
-
-   <div class="sp-slide">
-    <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/5_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/5_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/5_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/5_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/5_large.jpg')}}">
-    <p class="sp-layer sp-white sp-padding" data-vertical="5%" data-horizontal="5%" data-width="90%" data-show-transition="down" data-show-delay="400">
-     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-   </p>
- </div>
-
- <div class="sp-slide">
-  <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/6_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/6_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/6_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/6_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/6_large.jpg')}}">
-  <p class="sp-layer sp-white sp-padding" data-horizontal="10" data-vertical="10" data-width="300">
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
- </p>
-</div>
-
-<div class="sp-slide">
-  <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/7_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/7_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/7_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/7_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/7_large.jpg')}}">
-  <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-horizontal="5%" data-vertical="5%" data-width="90%" data-show-transition="up" data-show-delay="400">
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
- </p>
-</div>
-
-<div class="sp-slide">
-  <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/8_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/8_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/8_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/8_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/8_large.jpg')}}">
-  <p class="sp-layer sp-black sp-padding" data-horizontal="50" data-vertical="50" data-show-transition="down" data-show-delay="500">
-   Lorem ipsum dolor sit amet
- </p>
- <p class="sp-layer sp-white sp-padding" data-horizontal="50" data-vertical="100" data-show-transition="up" data-show-delay="500">
-   consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
- </p>
-</div>
-
-<div class="sp-slide">
-  <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/9_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/9_small.jpg')}}" data-medium="{{asset('img/slider_single_tour/9_medium.jpg')}}" data-large="{{asset('img/slider_single_tour/9_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/9_large.jpg')}}">
-</div>
-</div>
-<div class="sp-thumbnails">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/1_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/2_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/3_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/4_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/5_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/6_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/7_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/8_medium.jpg')}}">
- <img alt="Image" class="sp-thumbnail" src="{{asset('img/slider_single_tour/9_medium.jpg')}}">
-</div>
-</div>
+        <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/1_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/5_small.jpg')}}" data-medium="{{asset($item->imagen)}}" data-large="{{asset('img/slider_single_tour/1_large.jpg')}}" data-retina="{{asset('img/slider_single_tour/1_large.jpg')}}">
+          @if($key >= 1)
+            @if($key%2 == 0)
+                <p class="sp-layer sp-white sp-padding" data-vertical="5%" data-horizontal="5%" data-width="90%" data-show-transition="down" data-show-delay="400">
+                {{$item->descripcion}}
+                </p>
+            @else
+              <p class="sp-layer sp-white sp-padding" data-horizontal="10" data-vertical="10" data-width="300">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            @endif
+          @endif
+        </div>
+       @endforeach
+    </div>
+        
+        <div class="sp-thumbnails">
+          @foreach($galeria as $item)
+         <img alt="Image" class="sp-thumbnail" src="{{asset($item->imagen)}}">
+         @endforeach
+        </div>
+         
+  </div>
 
 <hr>
 <div class="row">
@@ -204,17 +125,18 @@
   <div class="col-md-3">
    <h3>Itinerario</h3>
  </div>
+
  <div class="col-md-9">
-   <h4>Día 1</h4>
-   <p>
-    RECEPCION  EN   EL  AEROPUERTO  “ ANGEL ALBINO CORZO     TRASLADO  AL MALECON  Y  VISITA  DEL CAÑON DEL SUMIDERO  POR  RIO  MAS  VISITA  DEL PUEBLO MAGICO DE   CHIAPA DE CORZO  MAS  TRASLADO AL PUEBLO MAGICO DE   SAN CRISTOBAL DE LAS CASAS   SU VUELO DEBE LLEGAR A TUXTLA  ANTES  DE LAS  14:00 HORAS LLEGANDO  A  SAN CRISTOBAL  BREVE RECORRIDO   POR   EL CENTRO  DE LA  CIUDAD PARA UBICAR  LOS MEJORES   RESTAURANTE, CAFETERIAS  Y  TIENDAS  DE LA CIUDAD.TRASLADO  A  SU  HOTEL  REGISTRO,NOCHE LIBRE.
-  </p>
-  <h4>Día 2</h4>
-  <p>
-    9:00 AM  CITY TOUR  DE SAN  CRISTOBAL CONOCIENDO LA IGLESIA  DE SANTO  DOMINGO  , LA  PLAZA DE ARTESANIAS   Y  LA  CATEDRAL, TRASLADO  Y  VISITA DE   LAS COMUNIDADES INDIGENAS DE  ( SAN JUAN CHAMULA Y  ZINACANTAN  )  REGRESAMOS  A       “SAN CRISTOBAL DE LAS CASAS”.   TIEMPO DE SUS ALIMENTOS  Y  A  LA HORA  INDICADA , TRASLADO AL AEROPUERTO. SU VUELO DEBE SALIR  DE  TUXTLA  DESPUES   DE LAS  19:00 HORAS
-  </p>
-  <!-- End row  -->
+   @foreach($itinerario as $key => $item)
+      @if($key < $diasCantidad)
+        <h4>Día {{$item->dia}}</h4>
+        <p> {{$diasCantidad}}
+            {{$item->descripcion}}
+        </p>
+      @endif
+   @endforeach
 </div>
+
 </div>
 <hr>
 <div class="row itinerarioPart">
@@ -264,19 +186,28 @@
 
       <div class="row">
         <div class="col-md-6 col-sm-6">
-          <ul class="list_ok">
-            <li>Traslados Aeropuerto, hotel, aeropuerto</li>
-            <li>Los Traslados   y  Los Tours son  Privados(2 días)</li>
-            <li>Hospedaje  1  noche  en San Cristobal, hotel boutique  ó  hotel 4  estrellas.</li>
-            <li>Alimentos (desayunos americanos ó buffet) </li>
-            <li>Lancha compartida y brazalete  en el cañón del sumidero (suplemento lancha privada)</li>
+          <ul class="list_ok"> 
+           <?php $i = 0; ?>
+                          @foreach($diasDetalle as $itemDetalle)
+                              @if($i++==4)
+                                <?php break; ?>
+                              @endif
+                              <li>
+                                {{$itemDetalle->inclusion}}
+                              </li>
+                          @endforeach
           </ul>
         </div>
         <div class="col-md-6 col-sm-6">
           <ul class="list_ok">
-            <li>Entrada a la comunidad indigena de Zinacantan</li>
-            <li>Entrada a la comunidad indigena de San Juan Chamula</li>
-            <li>Seguro del viajero</li>
+            <?php $i = 0; ?>
+                          @foreach($diasDetalle as $itemDetalle)
+                              @if($i++>=4)
+                                <li>
+                                {{$itemDetalle->inclusion}}
+                              </li>
+                              @endif
+                          @endforeach
           </ul>
         </div>
       </div>
