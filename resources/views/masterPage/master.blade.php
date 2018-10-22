@@ -71,7 +71,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Actividades de aventura</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Ver actividades de aventura</a></li>
+                            <li><a href="/administrador/actividadAventura"><span class="fa fa-image"></span> Ver actividades de aventura</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">

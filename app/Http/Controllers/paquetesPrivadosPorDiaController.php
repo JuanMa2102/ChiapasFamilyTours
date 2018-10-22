@@ -9,7 +9,7 @@ use DB;
 class PaquetesPrivadosPorDiaController extends Controller
 {
     //
-    function index(){
+    public function index(){
     	$dias = DB::table('tbl_dias')
         ->where('activo','=',1)
         ->get();
@@ -19,9 +19,13 @@ class PaquetesPrivadosPorDiaController extends Controller
         $tipoHotel = DB::table('tbl_tipohotel')
         ->where('activo','=',1)
         ->get();
+
+        $diasPaquete = 1;
         return view("generalViews.paquetesPrivadosPorDia",["paquetes"=>$paquetes,
                                             "dias"=>$dias,
-                                            "tipoHotel"=>$tipoHotel]);
+                                            "tipoHotel"=>$tipoHotel,
+                                            "diasPaquete"=>$diasPaquete,
+                                            "id"=>1]);
     }
 
     public function store(Request $request)
@@ -84,5 +88,47 @@ class PaquetesPrivadosPorDiaController extends Controller
         }
     }
 
+     public function show($id, $id_dia) 
+    {
+        $dias = DB::table('tbl_dias')
+        ->where('activo','=',1)
+        ->get();
+        $paquetes = DB::table('tbl_paquete')
+        ->where('activo','=',1)
+        ->get();
+        $tipoHotel = DB::table('tbl_tipohotel')
+        ->where('activo','=',1)
+        ->get();
 
+        $diasPaquete = DB::table("tbl_dias")
+        ->where('id_paquete','=',$id)
+        ->where('activo','=',1)
+        ->get();
+
+        $galeria = DB::table("tbl_galeria")
+        ->where('id_paquete','=',$id)
+        ->where('activo','=',1)
+        ->get();
+
+        $itinerario = DB::table("tbl_itinerario")
+        ->where('id_dias','=',$id_dia)
+        ->where('activo','=',1)
+        ->get();
+
+        $diasDetalle = DB::table("tbl_diasdetalle")
+        ->where('id_dias','=',$id_dia)
+        ->where('activo','=',1)
+        ->get();
+
+
+        return view("generalViews.paquetesPrivadosPorDia",["paquetes"=>$paquetes,
+                                            "dias"=>$dias,
+                                            "tipoHotel"=>$tipoHotel,
+                                            "diasPaquete"=>$diasPaquete,
+                                            "id"=>$id,
+                                            "id_dia"=>$id_dia,
+                                            "galeria"=>$galeria,
+                                            "itinerario"=>$itinerario,
+                                            "diasDetalle"=>$diasDetalle]);
+    }
 }
