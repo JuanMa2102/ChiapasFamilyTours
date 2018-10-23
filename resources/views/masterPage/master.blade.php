@@ -289,7 +289,6 @@
         <!-- END THIS PAGE PLUGINS-->        
 
         <!-- START TEMPLATE -->
-        
         @stack('createTrasladosScript')
         
         <script type="text/javascript" src="{{asset('js/pluginsJ.js')}}"></script>
