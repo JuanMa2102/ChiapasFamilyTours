@@ -51,7 +51,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Información General</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Información de la empresa</a></li>
+                            <li><a href="/administrador/infoEmpresa"><span class="fa fa-image"></span> Información de la empresa</a></li>
                             <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Presentaciones de inicio</a></li>
                             <li><a href="pages-gallery.html"><span class="fa fa-image"></span> ¿Cómo reservar?</a></li>
                         </ul>
@@ -249,7 +249,11 @@
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="btn btn-success btn-lg">Si</a>
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
                     </div>
@@ -287,14 +291,14 @@
         <script type="text/javascript" src="{{asset('js/plugins/moment.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/plugins/daterangepicker/daterangepicker.js')}}"></script>
         <!-- END THIS PAGE PLUGINS-->        
-
+        
         <!-- START TEMPLATE -->
         
         
         <script type="text/javascript" src="{{asset('js/pluginsJ.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>
-        
         <script type="text/javascript" src="{{asset('js/demo_dashboard.js')}}"></script>
+
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->         
     </body>

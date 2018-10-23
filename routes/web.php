@@ -24,7 +24,7 @@ Route::resource('/actividadesDeAventura','actividadesDeAventuraController');
 Route::resource('/seccionDescripcion','seccionDescripcionController');
 Route::resource('/traslados','trasladosController');
 Route::resource('/paquetesPrivadosPorDia','paquetesPrivadosPorDiaController');
-
+Route::resource('/nosotros','nosotrosController');
 
 
 
@@ -40,3 +40,5 @@ Route::get('administrador', function() { //ruta login
 //Route::post('administrador/logout','Auth\LoginController@logout')->name('logout');
 Route::post('administrador/login', 'Auth\LoginController@index')->name('administrador-login'); //ruta para iniciar sesion post
 Route::get('administrador/home','HomeController@index')->name('administrador-home'); //ruta para ir al home admin
+
+Route::resource('administrador/infoEmpresa','AdminInfoEmpresaController');
