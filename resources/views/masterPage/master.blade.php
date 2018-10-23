@@ -89,7 +89,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Traslados</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Ver traslados</a></li>
+                            <li><a href="/administrador/adminTraslados"><span class="fa fa-image"></span> Ver traslados</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
@@ -293,7 +293,7 @@
         <!-- END THIS PAGE PLUGINS-->        
         
         <!-- START TEMPLATE -->
-        
+        @stack('createTrasladosScript')
         
         <script type="text/javascript" src="{{asset('js/pluginsJ.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>

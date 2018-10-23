@@ -55,7 +55,7 @@
 													@foreach($ActividadAventuraDetalle as $itemDetalle)
 													
 														@if($item->id_actividadAventura == $itemDetalle->id_actividadAventura)
-															@if($i++==4)
+															@if($i++==3)
 																<?php break; ?>
 															@endif
 															<li>
