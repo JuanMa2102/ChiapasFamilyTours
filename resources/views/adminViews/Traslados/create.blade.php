@@ -1,89 +1,92 @@
-@extends('masterPage.master')
+@extends ('masterPage.master') @section ('content')
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
 
-@section('content')
-                 <!-- PAGE CONTENT WRAPPER -->
-                 <div class="page-content-wrap">                
-                 
-                     <div class="row">
-                         <div class="col-md-12">
- 
-                             <!-- START DEFAULT DATATABLE -->
-                             <div class="panel panel-default">
-                                 <div class="panel-heading">                                
-                                     <h3 class="panel-title">TRASLADOS</h3>
-                                     <div class="row">
-                                         <a href=""><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nuevo traslado</button>
-                                     </div> 
-                                                                
-                                 </div>
-                                  
-                                 <div class="panel-body">
-                                     <table class="table datatable">
-                                         <thead>
-                                             <tr>
-                                                 <th>Imagen</th>
-                                                 <th>Título</th>
-                                                 <th>Detalles</th>
-                                                 <th>Acciones</th>
-                                             </tr>
-                                         </thead>
-                                         <tbody>
-                                         <tr>
-                                            <td><img src="" alt=""></td>
-                                            <td>Titulo traslado</td>
-                                            <td>
-                                                <table class="tableTraslados">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Personas</th>
-                                                            <th>Precio</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>3 a 4 Personas</td>
-                                                        <td>$1100</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td class="actionsContainer">
-                                            <ul>
-                                                <button class="btn btn-info"><i class="fa fa-edit"></i></button>
-                                                <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </ul>
-                                            
-                                            </td>
-                                         </tr>
-                                         
-                                         </tbody>
-                                     </table>
-                                 </div>
-                             </div>
-                             <!-- END DEFAULT DATATABLE -->
- 
-                         </div>
-                     </div>                                
-                     
-                 </div>
-                 <!-- PAGE CONTENT WRAPPER -->                                
-                  
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- START DEFAULT DATATABLE -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">INFORMACIÓN GENERAL</h3>
+                    <a href="{{URL::action('AdminInfoEmpresaController@edit',$informacion->id_empresa)}}"><button class="btn btn-info pull-right"><i class="fa fa-edit"></i> Editar información</button></a>
+                </div>
+                <div class="panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
+                                        <label for="nombreEmpresa">Nombre de la Empresa</label>
+                                        <input name="nombreEmpresa" value="{{$informacion->nombre}}" type="text" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
+                                        <label for="telefono">Teléfono Empresa</label>
+                                        <input name="telefono" value="{{$informacion->telefono}}" type="text" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
+                                        <label for="direccionEmpresa">Dirección de la empresa</label>
+                                        <input name="direccionEmpresa" value="{{ $informacion->direccion }}" type="text" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
+                                        <label for="correo">Correo electrónico</label>
+                                        <input name="correo" type="text" value="{{ $informacion->email }}" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
+                                        <label for="mision">Misión</label>
+                                        <textarea class="form-control" name="mision" id="mision" cols="30" readonly rows="5">
+                                            {{ $informacion->mision }}
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
+                                        <label for="vision">Visión</label>
+                                        <textarea class="form-control" name="vision" id="vision" cols="30" readonly rows="5">
+                                            {{ $informacion->vision }}
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
+                                        <label for="valores">Valores</label>
+                                        <textarea class="form-control" name="valores" id="valores" cols="30" readonly rows="5">
+                                            {{ $informacion->valor }}
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12 divLG">
+                                    <label for="logo">Logo de la empresa</label>
+                                    <figure>
+                                        <img src="{{ $informacion->logo }}" alt="logo">
+                                    </figure>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <label for="video">Vídeo principal</label>
+                                    <iframe width="90%" height="315" src="{{ $informacion->video }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END DEFAULT DATATABLE -->
+
+
+
+        </div>
+    </div>
+
+</div>
+<!-- PAGE CONTENT WRAPPER -->
 @endsection
-
-<!-- THIS PAGE PLUGINS -->
-
-        
-        
-
-@push('createTrasladosScript')
-        
-<script type='text/javascript' src="{{asset('js/plugins/icheck/icheck.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js')}}"></script>
-        
-        <script type="text/javascript" src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>  
-        <!-- END THIS PAGE PLUGINS -->
-<!-- START TEMPLATE -->
-             
-        <!-- END TEMPLATE -->      
-
-@endpush
