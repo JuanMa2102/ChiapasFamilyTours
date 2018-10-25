@@ -71,7 +71,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Actividades de aventura</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Ver actividades de aventura</a></li>
+                            <li><a href="/administrador/adminActividadAventura"><span class="fa fa-image"></span> Ver actividades de aventura</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
@@ -295,6 +295,7 @@
         <!-- START TEMPLATE -->
         @stack('createTrasladosScript')
         
+        @stack('insertar')
         <script type="text/javascript" src="{{asset('js/pluginsJ.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/demo_dashboard.js')}}"></script>

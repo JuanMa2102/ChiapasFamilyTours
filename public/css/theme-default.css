@@ -8991,8 +8991,11 @@ textarea {
 }
 
 
-
 /* Divs col-md-12 con margin de 1% 0% */
+
+button[class="btn btn-default kv-fileinput-upload"] {
+    display: none;
+}
 
 .divLG {
     margin: 1% 0%;
@@ -9004,63 +9007,66 @@ textarea {
 
 /* End Added classes */
 
-.x-navigation-minimized .xn-logo{
-display:none;
+.x-navigation-minimized .xn-logo {
+    display: none;
 }
-
 
 
 /* Added Classes */
 
-.tableTraslados{
-  width: 100%;
+.tableTraslados {
+    width: 100%;
 }
 
 .tableTraslados th,
-.tableTraslados tbody td{
-  vertical-align: middle;
-}
-.tableTraslados thead th{
-  color: #038868;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  width: 50%;
-}
-.tableTraslados tbody,
-.tableTraslados tbody td{
-  border: 1px solid #ccc;
-  padding: 1%;
-}
-.tableTraslados tbody td{
-  margin: 0% 1%;
-}
-.actionsContainer{
-  position: relative;
-}
-.actionsContainer ul{
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: fit-content;
-  padding: 0;
-  display: block;
-  margin: auto;
-}
-.actionsContainer ul > *{
-  display: inline-block;
-  vertical-align: middle;
-  
-  
+.tableTraslados tbody td {
+    vertical-align: middle;
 }
 
-.newBtn{
-  margin: 0% 1%;
-  width: 150px;
+.tableTraslados thead th {
+    color: #038868;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    width: 50%;
 }
+
+.tableTraslados tbody,
+.tableTraslados tbody td {
+    border: 1px solid #ccc;
+    padding: 1%;
+}
+
+.tableTraslados tbody td {
+    margin: 0% 1%;
+}
+
+.actionsContainer {
+    position: relative;
+}
+
+.actionsContainer ul {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    padding: 0;
+    display: block;
+    margin: auto;
+}
+
+.actionsContainer ul>* {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.newBtn {
+    margin: 0% 1%;
+    width: 150px;
+}
+
 
 .titleTable{
     width: 270px;
 }
 /* End Added Classes */
-
