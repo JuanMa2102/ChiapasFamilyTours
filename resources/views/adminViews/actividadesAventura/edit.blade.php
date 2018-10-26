@@ -24,39 +24,31 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Tags</label>
-                                        <div class="col-md-6 col-xs-12">                                         @foreach($informacionDetalle as $item)                                                 
-                                            <input type="text" class="tagsinput" value="{{$item->inclusion}}" />
-                                        @endforeach
-                                            <span class="help-block">Default textarea field</span>
+                                @foreach($informacionDetalle as $item)
+                                <div class='form-group'>
+                                <label class='col-md-3 col-xs-12 control-label'>Inclusiones</label>
+                                <div class='col-md-4 col-xs-12'>
+                                    <div class='input-group'>
+                                        <span class='input-group-addon'>
+                                            <span class='fa fa-pencil'></span>
+                                        </span>
+                                         
+                                        <input type='text' class='form-control' name='inlclusion[]' value="{{$item->inclusion}}" /></div></div>
+                                       
+                                        <div class='col-md-2'>
+                                            <button type='button' class='removeProduct'><i class='fa fa-times'></i></button>
                                         </div>
-                                    </div>
+                                </div>    
+                                 @endforeach
 
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Teléfono de la empresa</label>
-                                    <div class="col-md-6 col-xs-12">                                            
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input value="" name="telefono" type="text" class="form-control"/>
-                                        </div>            
-                                                                     
+                                 <div class="InlcusionesContainer">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="addInclusiones"><i class="fa fa-plus-circle"></i>Añadir Inclusiones</button>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Logo de la empresa</label>
-                                    <div class="col-md-6 col-xs-12"> 
-                                        <input type="file" class="fileinput btn-primary" name="logo" id="logo" title="Browse file"/>
-                                        @if(!empty($informacion->imagen))
-                                            <img src="{{asset($informacion->imagen)}}" height="200" width="280">
-                                        @else
-                                                No Tiene Imagen
-                                        @endif
-                                    </div>
-                                </div>
-                                
-                                
 
                             </div>
                             <div class="panel-footer">
@@ -73,6 +65,9 @@
             <!-- END PAGE CONTENT WRAPPER --> 
 @endsection
 @push('insertar')
+
+<script type="text/javascript" src="{{ asset('js/addElementsToForm.js') }}"></script>
+
 <script type='text/javascript' src='{{asset("js/plugins/icheck/icheck.min.js")}}'></script>
 <script type="text/javascript" src="{{asset('js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap-datepicker.js')}}"></script>

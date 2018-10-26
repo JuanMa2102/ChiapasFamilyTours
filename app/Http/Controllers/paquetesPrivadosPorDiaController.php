@@ -42,12 +42,12 @@ class PaquetesPrivadosPorDiaController extends Controller
         $tipoHotel = $request->get('tipoHotel');
         $usuario=1;
 
-        $paqute = $request->get('paqueteCotizacion');
-        $dias = $request->get('diasCotizacion');
-        
+        $paqute= $request->get('paqueteID');
+        $dias = $request->get('diaID');
         
         $sql_contacto = "call spCSL_setCotizacion
         (
+            
             '".$nombre."',
             '".$apellido."',
             '".$email."',
@@ -64,27 +64,24 @@ class PaquetesPrivadosPorDiaController extends Controller
         $datos_contacto =  DB::select($sql_contacto, array(1,10));
         $id = (int)$datos_contacto[0]->id;
 
-        foreach ($datos_contacto as $key){
+        for($i = 0; $i < count($paqute); $i++){
             $sql_cotiazacionDetalle = "call spCSL_setCotizacionDetalle
             (
             '".$id."',
-            '".$paqute."',
-            '".$dias."',
+            '".$paqute[$i]."',
+            '".$dias[$i]."',
             '".$usuario."'
             )";
+            $datos_cotizacionDetalle = DB::select($sql_cotiazacionDetalle,array(1,5));
         }
-
-        
-        $datos_cotizacionDetalle = DB::select($sql_cotiazacionDetalle,array(1,5));
-
         
         if($datos_contacto != null)
         {
-            return Redirect::to('/paquetesPrivadosPorDia');
+            return Redirect::to('/paquetesPrivados');
         }
         else
         {
-            return Redirect::to('/contactos')->with("error","Ha ocurrido un error al enviar su formulario. Inténtelo más tarde.");
+            return Redirect::to('/paquetesPrivados')->with("error","Ha ocurrido un error al enviar su formulario. Inténtelo más tarde.");
         }
     }
 
@@ -106,12 +103,13 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->get();
 
         $galeria = DB::table("tbl_galeria")
-        ->where('id_paquete','=',$id)
+        ->where('id_dia','=',$id_dia)
+        ->where('tipo','=',0) // 0 sera de tipo galeria Días
         ->where('activo','=',1)
         ->get();
 
         $itinerario = DB::table("tbl_itinerario")
-        ->where('id_dias','=',$id_dia)
+        ->where('id_paquete','=',$id)
         ->where('activo','=',1)
         ->get();
 

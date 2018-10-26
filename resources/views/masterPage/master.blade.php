@@ -294,7 +294,7 @@
         
         <!-- START TEMPLATE -->
         @stack('createTrasladosScript')
-        
+        @stack('createAventuraScript')
         @stack('insertar')
         <script type="text/javascript" src="{{asset('js/pluginsJ.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>
