@@ -106,7 +106,7 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->get();
 
         $galeria = DB::table("tbl_galeria")
-        ->where('id_paquete','=',$id)
+        ->where('id_dia','=',$id)
         ->where('activo','=',1)
         ->get();
 

@@ -55,7 +55,7 @@
                                             </td>
                                             <td class="actionsContainer">
                                             <ul>
-                                                <a href=""><button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
+                                                <a href="'/administrador/adminTraslados/edit'"><button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
                                                 <a href=""><button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
                                             </ul>
                                             
