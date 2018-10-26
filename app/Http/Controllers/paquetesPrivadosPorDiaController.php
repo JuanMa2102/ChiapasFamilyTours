@@ -103,6 +103,7 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->get();
 
         $galeria = DB::table("tbl_galeria")
+
         ->where('id_dia','=',$id_dia)
         ->where('tipo','=',0) // 0 sera de tipo galeria Días
         ->where('activo','=',1)
