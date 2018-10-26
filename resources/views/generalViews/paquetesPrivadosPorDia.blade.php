@@ -119,11 +119,14 @@
                     </div>
 
                     <div class="col-md-9">
-                        @foreach($itinerario as $key => $item) @if($key
-                        < $diasCantidad) <h4>Día {{$item->dia}}</h4>
-                            <p> {{$diasCantidad}} {{$item->descripcion}}
-                            </p>
-                            @endif @endforeach
+                        @foreach($itinerario as $key => $item) 
+                            @if($key == $diasCantidad) 
+                                @break;
+                            @else
+                                <h4>Día {{$item->dia}}</h4>
+                                <p>{{$item->descripcion}}</p>
+                            @endif 
+                        @endforeach
                     </div>
 
 
@@ -200,7 +203,9 @@
                                         <li>
                                             {{$itemDetalle->inclusion}}
                                         </li>
-                                        @endif @endforeach
+                                        @endif 
+
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -299,7 +304,7 @@
                                         <select class="form-control" name="diasCotizacion" id="diasCotizacion">
               <option name="seleccione" value= "0" >Seleccione...</option>
               @foreach($dias as $itemDias)
-              <option cosmico="{{$itemDias->id_paquete}}" nomDia="{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}" value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
+              <option cosmico="{{$itemDias->id_paquete}}" nomDia="{{$itemDias->cantidad}} Días{{$itemDias->descripcion}} " value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
               @endforeach
             </select>
                                     </div>
@@ -318,7 +323,7 @@
                         <div class="row">
                             <h5>Paquetes añadidos</h5>
                             <!-- usamos Input con id oculta para mandarla al store -->
-                            <div class="paquetesAddedContainer">
+                            <div class="paquetesAddedContainer"> 
                                 
                             </div>
                         </div>

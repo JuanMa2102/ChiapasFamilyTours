@@ -24,6 +24,7 @@ class adminActividadAventuraController extends Controller
     public function create()
     {
         //
+        
         return view('adminViews.actividadesAventura.create');
     }
 
@@ -37,7 +38,7 @@ class adminActividadAventuraController extends Controller
         ->where('id_actividadAventura','=',$id) 
         ->get();
         return view('adminViews.actividadesAventura.edit',['informacion'=>$informacion,
-                                                            'informacionDetalle'=>$informacionDetalle]);
+                                                           'informacionDetalle'=>$informacionDetalle]);
     }
 
     public function destroy($id)

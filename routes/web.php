@@ -46,4 +46,7 @@ Route::get('administrador/home','HomeController@index')->name('administrador-hom
 Route::resource('administrador/infoEmpresa','AdminInfoEmpresaController');
 Route::resource('administrador/adminTraslados','AdminTrasladosController');
 Route::resource('administrador/adminActividadAventura','adminActividadAventuraController');
+Route::resource('administrador/galeria','GaleriaController');
+Route::get('administrador/galeria/producto/{id}','GaleriaController@galeria');
+
 

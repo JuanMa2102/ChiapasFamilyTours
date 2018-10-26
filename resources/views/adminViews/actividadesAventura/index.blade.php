@@ -63,14 +63,22 @@
                                             </td>
                                             <td class="actionsContainer">
                                             <ul>
+                                                <a href="{{ url('administrador/galeria/producto', $item->id_actividadAventura) }}">
+                                                    <button class="btn btn-success">
+                                                        <i class="glyphicon glyphicon-picture"></i>
+                                                    </button>
+                                                </a>
+                                                
                                                 <a href="{{URL::action('adminActividadAventuraController@edit',$item->id_actividadAventura)}}">
-                                                    <button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
-                                                <a href="" data-target="#message-box-danger-{{$item->id_actividadAventura}}" data-toggle="modal">
+                                                    <button class="btn btn-info"><i class="fa fa-edit"></i></button>
+                                                </a>
+
+                                                <a href="" data-target="#message-box-danger-{{$item->id_actividadAventura}}">
                                                     <button class="btn btn-danger" >
                                                         <i class="fa fa-trash-o"></i>
                                                     </button>
                                                 </a>
-                                                
+
                                             </ul>
                                             
                                             </td>
