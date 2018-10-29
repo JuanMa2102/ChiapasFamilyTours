@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <!-- Form para hacer un update, usamos el método patch para que se vaya directo al controlador en su método update, que recibe una variable de tipo Request y la id -->
             <!-- Hagan todos los formularios de esta manera, para los de create vean en el proyecto de torres batiz cómo hacemos el formulario en el caso del create. -->
-            {!!Form::open(array('method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'adminActividadAventuraController@create'))!!} {{Form::token()}}
+            {!!Form::open(array('method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'adminActividadAventuraController@store'))!!} {{Form::token()}}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><strong>Nuava Actividad de aventura</strong></h3>
@@ -22,8 +22,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class='form-group'><label class='col-md-3 col-xs-12 control-label'>Imagenes</label><div class='col-md-4 col-xs-12'><input type='file' name='galeria[]' class='file' accept='image/*' data-preview-file-type='any' multiple /></div><div class='col-md-2'><button type='button' class='removeProduct'><i class='fa fa-times'></i></button></div></div>
 
                     <div class="InlcusionesContainer">
 

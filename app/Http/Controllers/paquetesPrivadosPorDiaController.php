@@ -20,12 +20,9 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->where('activo','=',1)
         ->get();
 
-        $diasPaquete = 1;
         return view("generalViews.paquetesPrivadosPorDia",["paquetes"=>$paquetes,
                                             "dias"=>$dias,
-                                            "tipoHotel"=>$tipoHotel,
-                                            "diasPaquete"=>$diasPaquete,
-                                            "id"=>1]);
+                                            "tipoHotel"=>$tipoHotel]);
     }
 
     public function store(Request $request)
