@@ -13,7 +13,7 @@
                                  <div class="panel-heading">                                
                                      <h3 class="panel-title">TRASLADOS</h3>                                     
                                      <div class="row">
-                                         <a href=""><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nuevo traslado</button></a>
+                                         <a href="{{URL::action('AdminTrasladosController@create')}}"><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nuevo Traslado</button></a>
                                      </div>                                                                 
                                  </div>                                   
                                  <div class="panel-body">                                     
@@ -55,7 +55,7 @@
                                             </td>
                                             <td class="actionsContainer">
                                             <ul>
-                                                <a href="'/administrador/adminTraslados/edit'"><button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
+                                                <a href="{{URL::action('AdminTrasladosController@edit',$item->id_traslados)}}"><button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
                                                 <a href=""><button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
                                             </ul>
                                             

@@ -6,7 +6,10 @@
         <div class="col-md-12">
             <!-- Form para hacer un update, usamos el método patch para que se vaya directo al controlador en su método update, que recibe una variable de tipo Request y la id -->
             <!-- Hagan todos los formularios de esta manera, para los de create vean en el proyecto de torres batiz cómo hacemos el formulario en el caso del create. -->
-            {!!Form::model($informacion,array('method'=>'PATCH','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>['AdminInfoEmpresaController@update',$informacion->id_empresa]))!!} {{Form::token()}}
+            {!!Form::model($traslados,array(
+                'method'=>'PATCH','class'=>'form-horizontal','enctype'=>'multipart/form-data',
+                'action'=>['AdminTrasladosController@update',$traslados->id_traslados,
+                $trasladosdetalle->id_trasladoDetalle]))!!} {{Form::token()}}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><strong>Editar Traslados</strong></h3>

@@ -24,7 +24,7 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control" name="nomtraslado" value=""/>
+                                                <input type="text" class="form-control" name="nomstraslado" value=""/>
                                             </div>                                            
                                             <span class="help-block"></span>
                                             
