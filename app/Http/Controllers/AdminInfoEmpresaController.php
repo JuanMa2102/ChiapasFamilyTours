@@ -60,7 +60,7 @@ class AdminInfoEmpresaController extends Controller
                 return Redirect::to('administrador/infoEmpresa');
             }
             else{
-                $imagenAnterior = DB::table('tbl_general')
+                $imagenAnterior = DB::table('tbl_general') 
                 ->select('logo')
                 ->where('id_empresa','=',1)
                 ->first();

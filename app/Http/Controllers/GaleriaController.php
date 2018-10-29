@@ -1,27 +1,16 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Post;
+Use DB;
 
 class GaleriaController extends Controller
 {
-    
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function galeria($id)
     {
@@ -35,12 +24,12 @@ class GaleriaController extends Controller
     {
         
         if(!\Session::has('idparameter')){
-            return Redirect::to('administrador/productos')->withErrors(['erroregistro'=> 'Error']);
+            return Redirect::to('administrador/home')->withErrors(['erroregistro'=> 'Error']);
         }
         $id=\Session::get('idparameter');
         $datos = DB::table('tbl_galeria')
         ->where('id_dia','=',$id)
-        ->where('tipo','=',0)
+        ->where('tipo','=',1)
         ->where('activo','=',1)
         ->get();
 
@@ -57,7 +46,7 @@ class GaleriaController extends Controller
      */
     public function create()
     {
-        return view('content.galeria.create');
+        return view('adminViews.galeria.create');
     }
 
     /**
@@ -68,25 +57,25 @@ class GaleriaController extends Controller
      */
     public function store(Request $request)
     {
-        $credentials=$this->validate(request(),[
-            'file'=>'required|mimes:jpg,jpeg,png|max:1000'
-        ]);
-        
         if(!\Session::has('idparameter')){
-            return Redirect::to('administrador/productos')->withErrors(['erroregistro'=> 'Error']);
+            return Redirect::to('administrador/galeria')->withErrors(['erroregistro'=> 'Error']);
         }
         
         
-        if($request->file('file')){
-            $path= Storage::disk('public')->put('imageupload/galeria', $request->file('file'));
+        if($request->file('img')){
+            $path= Storage::disk('local')->put('uploads/galeria', $request->file('img'));
             $imagen=asset($path);
+            
+            $descripcion = $request->get('descripcion');
+
             $opcion=1;
             $usuario=Auth::user()->id;
             $id=\Session::get('idparameter');
-            $sql_sol = "call sp_CRUD_Imagenes
+            $sql_sol = "call spCSL_CRUD_galeria
             (
                 '".$opcion."',
                 '".$imagen."',
+                '".$descripcion."',
                 '".$usuario."',
                 '".$id."'
             )";
@@ -122,6 +111,12 @@ class GaleriaController extends Controller
     public function edit($id)
     {
         //
+         $informacion = DB::table('tbl_galeria')
+        ->where('activo','=',1)
+        ->where('tipo','=',1)
+        ->where('id_galeria','=',$id)
+        ->first();
+        return view('adminViews.galeria.edit',['informacion'=>$informacion]);
     }
 
     /**
@@ -134,6 +129,56 @@ class GaleriaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if($request->all()){
+            $descripcion = $request->get('descripcion');
+            $usuario=Auth::user()->id;
+
+            if($request->file('img') == null){
+                $opcion = 3;
+                $sql = "call spCSL_CRUD_galeria
+                (
+                    '".$opcion."',
+                    'no importa',
+                    '".$descripcion."',
+                    '".$usuario."',
+                    '".$id."'
+                )";
+                $datos = DB::select($sql,array(1,10));
+                if($datos==null){
+                    return Redirect::to('administrador/galeria')->withErrors(['erroregistro'=> 'Error']);
+                }
+                return Redirect::to('administrador/galeria');
+            }
+            else{
+                $imagenAnterior = DB::table('tbl_galeria') 
+                ->select('imagen')
+                ->where('id_galeria','=',$id)
+                ->first();
+                $getImageAnterior = $imagenAnterior->imagen;
+                $cadena=substr($getImageAnterior, 22,strlen ($getImageAnterior));   
+                if(Storage::disk('local')->exists($cadena)){
+                    $dele= Storage::disk('local')->delete($cadena);
+                }
+                $path= Storage::disk('local')->put('uploads/galeria', $request->file('img'));
+                $imagen = asset($path);
+                $opcion = 4;
+                $sql = "call spCSL_CRUD_galeria
+                (
+                    '".$opcion."',
+                    '".$imagen."',
+                    '".$descripcion."',
+                    '".$usuario."',
+                    '".$id."'
+                )";
+                $datos = DB::select($sql,array(1,10));
+                if($datos==null){
+                    return Redirect::to('administrador/galeria')->withErrors(['erroregistro'=> 'Error']);
+                }
+                return Redirect::to('administrador/galeria');
+            }
+
+
+        }
     }
 
     /**
@@ -147,11 +192,13 @@ class GaleriaController extends Controller
         $opcion=2;
         $usuario=Auth::user()->id;
         $imagen="no importa";
+        $descripcion="no importa";
         $idimagen=$id;
-        $sql_sol = "call sp_CRUD_Imagenes
+        $sql_sol = "call spCSL_CRUD_galeria
             (
                 '".$opcion."',
                 '".$imagen."',
+                '".$descripcion."',
                 '".$usuario."',
                 '".$idimagen."'
             )";
@@ -161,9 +208,9 @@ class GaleriaController extends Controller
         if($datos==null){
             return Redirect::to('administrador/galeria')->withErrors(['erroregistro'=> 'Error']);
         }
-        $cadena=substr($datos[0]->imagen, 22,strlen ($datos[0]->imagen));   
-        if(Storage::disk('public')->exists($cadena)){
-            $dele= Storage::disk('public')->delete($cadena);
+        $cadena=substr($datos[0]->imagen, 22 ,strlen ($datos[0]->imagen));   
+        if(Storage::disk('local')->exists($cadena)){
+            $dele= Storage::disk('local')->delete($cadena);
         }
         return Redirect::to('administrador/galeria');
     

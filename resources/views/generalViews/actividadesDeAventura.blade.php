@@ -55,7 +55,7 @@
 													@foreach($ActividadAventuraDetalle as $itemDetalle)
 													
 														@if($item->id_actividadAventura == $itemDetalle->id_actividadAventura)
-															@if($i++==3)
+															@if($i++==5)
 																<?php break; ?>
 															@endif
 															<li>
@@ -73,7 +73,7 @@
 													@foreach($ActividadAventuraDetalle as $itemDetalle)
 													
 														@if($item->id_actividadAventura == $itemDetalle->id_actividadAventura)
-															@if($i++>=4)
+															@if($i++>=5)
 																<li>
 																{{$itemDetalle->inclusion}}
 															</li>
