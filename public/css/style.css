@@ -5913,5 +5913,13 @@ select[name="diasCotizacion"] option.active {
     top: 15%;
 }
 
+.imageItinerario {
+    height: 300px;
+}
+
+.topCustom {
+    padding-top: 10%;
+}
+
 
 /*End classes*/

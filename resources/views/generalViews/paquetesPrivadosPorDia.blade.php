@@ -119,21 +119,13 @@
                     </div>
 
                     <div class="col-md-9">
-                        @foreach($itinerario as $key => $item) 
-                            @if($key == $diasCantidad) 
-                                @break;
-                            @else
-                                <h4>Día {{$item->dia}}</h4>
-                                <p>{{$item->descripcion}}</p>
-                            @endif 
-                        @endforeach
-                    </div>
+
 
 
                     <div class="row">
                         <div class="col-md-12">
                             <p class="hidden-sm hidden-xs">
-                                <a class="btnComparacion" target="_blank" href="/comparacionPrecios">ITINERARIO DETALLADO CON SUGERENCIAS</a>
+                                <a class="btnComparacion" target="_blank" href="{{ URL::action('itinerarioDetalladoController@show',$id_dia) }}">ITINERARIO DETALLADO CON SUGERENCIAS</a>
                             </p>
                         </div>
 
@@ -224,7 +216,7 @@
                 {!! Form::open(array('url' => 'paquetesPrivadosPorDia','autocomplete'=>'off','method'=>'POST', 'onsubmit'=>'return validarsend();')) !!} {{Form::token()}}
                 <div class="theiaStickySidebar barraCotizacion">
                     <div class="box_style_1 expose">
-                        <h3 class="inner">- ENVIAR COTIZACIÓN -</h3>
+                        <h3 class="inner">- ENVIAR SOLICITUD -</h3>
                         <p>Introduzca los siguientes datos</p>
 
                         <div class="infoCotizacion">
@@ -247,13 +239,13 @@
                             <div class="col-md-12">
                                 <div class="form-group correoGroup">
                                     <label><i class="icon-email"></i>E-mail</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@dominio.com">
+                                    <input type="email" class="form-control" id="email"  name="email" placeholder="ejemplo@dominio.com">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group telefonoGroup">
                                     <label><i class="icon-phone"></i>Teléfono</label>
-                                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese su teléfono aquí.">
+                                    <input type="text" class="form-control" id="telefono" value="{{old('telefono')}}" name="telefono" placeholder="Ingrese su teléfono aquí.">
                                 </div>
                             </div>
                         </div>
@@ -261,13 +253,13 @@
                             <div class="col-md-6">
                                 <div class="form-group adultosGroup">
                                     <label>Adultos</label>
-                                    <input class="form-control" min="1" type="number" name="numeroAdultos" id="numeroAdultos">
+                                    <input class="form-control" min="1" type="number" value="{{old('numeroAdultos')}}" name="numeroAdultos" id="numeroAdultos">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group menoresGroup">
                                     <label>Menores de 10 años</label>
-                                    <input class="form-control" class="form-control" type="number" min="0" name="numeroMenores" id="numeroMenores">
+                                    <input class="form-control" class="form-control" value="{{old('numeroMenores')}}" type="number" min="0" name="numeroMenores" id="numeroMenores">
                                 </div>
                             </div>
                         </div>
@@ -275,13 +267,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group llegadaGroup">
                                     <label><i class="icon-calendar-7"></i> Fecha de llegada</label>
-                                    <input class="date-pick form-control" class="form-control" data-date-format="yyyy-m-d" type="text" id="llegada" name="llegada">
+                                    <input class="date-pick form-control" class="form-control" value="{{old('llegada')}}" data-date-format="yyyy-m-d" type="text" id="llegada" name="llegada">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group salidaGroup">
                                     <label><i class="icon-calendar-7"></i> Fecha de salida</label>
-                                    <input class="date-pick form-control" class="form-control" data-date-format="yyyy-m-d" type="text" id="salida" name="salida">
+                                    <input class="date-pick form-control" value="{{old('salida')}}" class="form-control" data-date-format="yyyy-m-d" type="text" id="salida" name="salida">
                                 </div>
                             </div>
                         </div>
@@ -321,7 +313,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <h5>Paquetes añadidos</h5>
+                            <h5></h5>
                             <!-- usamos Input con id oculta para mandarla al store -->
                             <div class="paquetesAddedContainer"> 
                                 
@@ -333,7 +325,7 @@
                             <div class="col-md-12">
                                 <div class="form-group tipoGroup">
                                     <div class="input-group">
-                                        <label>Seleccione tipo de hotel</label>
+                                        <label>Seleccione categoría de hotel</label>
                                         <select name="tipoHotel" class="form-control" id="tipoHotel">
               <option name = "seleccione" value="0" >Seleccione...</option>
               @foreach($tipoHotel as $item)
@@ -370,7 +362,7 @@
                         </div>
                         <br>
 
-                        <input type="submit" value="Enviar cotización" class="btn_full" id="submit-cotizacion">
+                        <input type="submit" value="Enviar solicitud" class="btn_full" id="submit-cotizacion">
 
                     </div>
                     <!--/box_style_1 -->

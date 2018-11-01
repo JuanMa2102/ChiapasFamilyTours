@@ -1,5 +1,5 @@
-<div class="message-box message-box-danger animated fadeIn" id="message-box-danger-{{$item->id_paquete}}">
-{{Form::Open(array('action'=>array('AdminPaquetesController@destroy',$item->id_paquete),'method'=>'delete'))}}
+<div class="message-box message-box-danger animated fadeIn" id="message-box-danger-{{$item->id_slider}}">
+{{Form::Open(array('action'=>array('AdminSliderController@destroy',$item->id_slider),'method'=>'delete'))}}
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-times"></span> Eliminar Registro</div>

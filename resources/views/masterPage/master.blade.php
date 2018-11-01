@@ -52,14 +52,14 @@
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Información General</span></a>
                         <ul>
                             <li><a href="/administrador/infoEmpresa"><span class="fa fa-image"></span> Información de la empresa</a></li>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Presentaciones de inicio</a></li>
+                            <li><a href="/administrador/slider"><span class="fa fa-image"></span> Presentaciones de inicio</a></li>
                             <li><a href="pages-gallery.html"><span class="fa fa-image"></span> ¿Cómo reservar?</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Paquetes</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Ver paquetes</a></li>
+                            <li><a href="/administrador/paquetes"><span class="fa fa-image"></span> Ver paquetes</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
@@ -294,6 +294,7 @@
         
         <!-- START TEMPLATE -->
         @stack('createTrasladosScript')
+        @stack('infoEmpresa')
         @stack('createAventuraScript')
         @stack('insertar')
         <script type="text/javascript" src="{{asset('js/pluginsJ.js')}}"></script>

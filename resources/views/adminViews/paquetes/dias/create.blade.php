@@ -6,22 +6,22 @@
         <div class="col-md-12">
             <!-- Form para hacer un update, usamos el método patch para que se vaya directo al controlador en su método update, que recibe una variable de tipo Request y la id -->
             <!-- Hagan todos los formularios de esta manera, para los de create vean en el proyecto de torres batiz cómo hacemos el formulario en el caso del create. -->
-            {!!Form::open(array('method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'AdminPaquetesController@store'))!!} 
+            {!!Form::open(array('method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'AdminDiasController@store'))!!} 
             {{Form::token()}}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Crear nuevo paquete</strong></h3>
+                    <h3 class="panel-title"><strong>Crear nuevo día</strong></h3>
                 </div>
                 <div class="panel-body">
                     
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Nombre</label>
+                        <label class="col-md-3 col-xs-12 control-label">Cantidad</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input name="nombrePaquete" type="text" class="form-control" value="{{old('nombrePaquete')}}" />
+                                <input name="cantidad" type="text" class="form-control" value="{{old('cantidad')}}" />
                             </div>
-                            {!! $errors->first('nombrePaquete','<span class="help-block">Es necesario introducir un título</span>')!!}
+                            {!! $errors->first('cantidad','<span class="help-block">Es necesario introducir una cantidad</span>')!!}
                         </div>
                     </div>
 
@@ -30,47 +30,35 @@
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input name="descPaquete" type="text" class="form-control" value="{{old('descPaquete')}}"/>
+                                <input name="descDia" type="text" class="form-control" value="{{old('descDia')}}"/>
                             </div>
-                            {!! $errors->first('descPaquete','<span class="help-block">Es necesario introducir una descripción</span>')!!}
+                            {!! $errors->first('descDia','<span class="help-block">Es necesario introducir una descripción</span>')!!}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Precio de paquete</label>
+                        <label class="col-md-3 col-xs-12 control-label">Itinerario corto</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input name="precio" type="text" class="form-control" value="{{old('precio')}}"/>
+                                <textarea class="form-control" name="itCorto" id="itCorto" cols="30" rows="5">{{old('itCorto')}}</textarea>
                             </div>
-                            {!! $errors->first('precio','<span class="help-block">Es necesario introducir un precio</span>')!!}
+                            {!! $errors->first('itCorto','<span class="help-block">Es necesario introducir un itinerario</span>')!!}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Imagen de paquete</label>
-                        <div class="col-md-6 col-xs-12">
-                            <input type="file" name="imgPaquete" class="file" accept="image/*" data-preview-file-type="any" />
-                            {!! $errors->first('imgPaquete','<span class="help-block">Es necesario introducir una imagen</span>')!!}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Título de imagen</label>
+                        <label class="col-md-3 col-xs-12 control-label">Inclusiones del día</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input name="titleImg" type="text" class="form-control" value="{{old('titleImg')}}"/>
+                                <textarea class="form-control" name="inclusiones" id="inclusiones" cols="30" rows="5">{{old('inclusiones')}}</textarea>
                             </div>
-                            {!! $errors->first('titleImg','<span class="help-block">Es necesario introducir un título de imagen</span>')!!}
+                            {!! $errors->first('inclusiones','<span class="help-block">Es necesario introducir inclusiones</span>')!!}
                         </div>
                     </div>
-
-                    
 
                 </div>
                 <div class="panel-footer">
-                    <a href="{{URL::action('AdminPaquetesController@index')}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
+                    <a href="{{URL::action('AdminDiasController@show',$diaActual)}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
                     <button class="btn btn-primary pull-right">Guardar</button>
                 </div>
             </div>
