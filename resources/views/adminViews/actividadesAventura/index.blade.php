@@ -21,7 +21,6 @@
                                      <table class="table datatable">
                                          <thead>
                                              <tr>
-                                                 <th>Imagen</th>
                                                  <th>Título</th>
                                                  <th>Detalles</th>
                                                  <th>Acciones</th>
@@ -30,14 +29,6 @@
                                          <tbody>
                                          @foreach($ActividadAventura as $item)   
                                          <tr>
-                                            <td>
-                                                @if(!empty($item->imagen))
-                                                <img src="{{asset($item->imagen)}}" height="150" width="200">
-                                                @else
-                                                No Tiene Imagen
-                                                @endif
-
-                                            </td>
                                             <td>{{$item->titulo}}</td>
                                             <td>
                                                 <table >
@@ -63,14 +54,22 @@
                                             </td>
                                             <td class="actionsContainer">
                                             <ul>
+                                                <a href="{{ url('administrador/galeria/producto', $item->id_actividadAventura) }}">
+                                                    <button class="btn btn-success">
+                                                        <i class="glyphicon glyphicon-picture"></i>
+                                                    </button>
+                                                </a>
+                                                
                                                 <a href="{{URL::action('adminActividadAventuraController@edit',$item->id_actividadAventura)}}">
-                                                    <button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
+                                                    <button class="btn btn-info"><i class="fa fa-edit"></i></button>
+                                                </a>
+
                                                 <a href="" data-target="#message-box-danger-{{$item->id_actividadAventura}}" data-toggle="modal">
                                                     <button class="btn btn-danger" >
                                                         <i class="fa fa-trash-o"></i>
                                                     </button>
                                                 </a>
-                                                
+
                                             </ul>
                                             
                                             </td>

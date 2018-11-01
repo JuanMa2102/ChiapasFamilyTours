@@ -9354,5 +9354,10 @@ textarea {
     margin: 0% 2%;
 }
 
-
 /* End general attributes */
+
+.titleTable{
+    width: 270px;
+}
+/* End Added Classes */
+

@@ -1,89 +1,67 @@
 @extends('masterPage.master')
 
 @section('content')
-                 <!-- PAGE CONTENT WRAPPER -->
-                 <div class="page-content-wrap">                
-                 
-                     <div class="row">
-                         <div class="col-md-12">
- 
-                             <!-- START DEFAULT DATATABLE -->
-                             <div class="panel panel-default">
-                                 <div class="panel-heading">                                
-                                     <h3 class="panel-title">TRASLADOS</h3>
-                                     <div class="row">
-                                         <a href=""><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nuevo traslado</button>
-                                     </div> 
-                                                                
-                                 </div>
-                                  
-                                 <div class="panel-body">
-                                     <table class="table datatable">
-                                         <thead>
-                                             <tr>
-                                                 <th>Imagen</th>
-                                                 <th>Título</th>
-                                                 <th>Detalles</th>
-                                                 <th>Acciones</th>
-                                             </tr>
-                                         </thead>
-                                         <tbody>
-                                         <tr>
-                                            <td><img src="" alt=""></td>
-                                            <td>Titulo traslado</td>
-                                            <td>
-                                                <table class="tableTraslados">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Personas</th>
-                                                            <th>Precio</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>3 a 4 Personas</td>
-                                                        <td>$1100</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td class="actionsContainer">
-                                            <ul>
-                                                <button class="btn btn-info"><i class="fa fa-edit"></i></button>
-                                                <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </ul>
+{!!Form::open(array('url'=>'administrador/adminTraslados','method'=>'POST','autocomplete'=>'off','files' => 'true'))!!} 
+                <div class="form-horizontal">
+                <div class="panel panel-default">
+                                                               
+                                <div class="panel-body">                                                                                                        
+                                   
+                                <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Imagen</label>
+                                        <div class="col-md-6 col-xs-12">                               
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <input type="file"  name="file" id="file"  class="file" accept="image/*" data-preview-file-type="any"/>
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>                                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Nombre del Traslado</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <input type="text" class="form-control" name="nomstraslado" value=""/>
+                                            </div>                                            
+                                            <span class="help-block"></span>
                                             
-                                            </td>
-                                         </tr>
-                                         
-                                         </tbody>
-                                     </table>
-                                 </div>
-                             </div>
-                             <!-- END DEFAULT DATATABLE -->
- 
-                         </div>
-                     </div>                                
-                     
+                                        </div>
+                                    </div>  
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Personas</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <input type="text" class="form-control" name="personas" value=""/>
+                                            </div>                                            
+                                            <span class="help-block"></span>
+                                            
+                                        </div>
+                                    </div>  
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Precio</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <input type="text" class="form-control" name="precio" value=""/>
+                                            </div>                                            
+                                            <span class="help-block"></span>
+                                            
+                                        </div>
+                                    </div>  
+
+
+                                </div>
+                                <div class="panel-footer">                                  
+                                    <button class="btn btn-primary pull-right" type="submit">Guardar</button>
+                                </div>
                  </div>
-                 <!-- PAGE CONTENT WRAPPER -->                                
-                  
+                </div>
+{!!Form::close()!!}	
+
 @endsection
-
-<!-- THIS PAGE PLUGINS -->
-
-        
-        
-
-@push('createTrasladosScript')
-        
-<script type='text/javascript' src="{{asset('js/plugins/icheck/icheck.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js')}}"></script>
-        
-        <script type="text/javascript" src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>  
-        <!-- END THIS PAGE PLUGINS -->
-<!-- START TEMPLATE -->
-             
-        <!-- END TEMPLATE -->      
-
-@endpush

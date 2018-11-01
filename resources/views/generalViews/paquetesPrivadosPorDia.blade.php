@@ -119,8 +119,7 @@
                     </div>
 
                     <div class="col-md-9">
-                        
-                    </div>
+
 
 
                     <div class="row">
@@ -196,7 +195,9 @@
                                         <li>
                                             {{$itemDetalle->inclusion}}
                                         </li>
-                                        @endif @endforeach
+                                        @endif 
+
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -295,7 +296,7 @@
                                         <select class="form-control" name="diasCotizacion" id="diasCotizacion">
               <option name="seleccione" value= "0" >Seleccione...</option>
               @foreach($dias as $itemDias)
-              <option cosmico="{{$itemDias->id_paquete}}" nomDia="{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}" value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
+              <option cosmico="{{$itemDias->id_paquete}}" nomDia="{{$itemDias->cantidad}} Días{{$itemDias->descripcion}} " value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
               @endforeach
             </select>
                                     </div>
@@ -314,7 +315,7 @@
                         <div class="row">
                             <h5></h5>
                             <!-- usamos Input con id oculta para mandarla al store -->
-                            <div class="paquetesAddedContainer">
+                            <div class="paquetesAddedContainer"> 
                                 
                             </div>
                         </div>

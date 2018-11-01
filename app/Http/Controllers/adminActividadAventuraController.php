@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Post;
 Use DB;
 
 class adminActividadAventuraController extends Controller
@@ -24,6 +28,7 @@ class adminActividadAventuraController extends Controller
     public function create()
     {
         //
+        
         return view('adminViews.actividadesAventura.create');
     }
 
@@ -37,18 +42,20 @@ class adminActividadAventuraController extends Controller
         ->where('id_actividadAventura','=',$id) 
         ->get();
         return view('adminViews.actividadesAventura.edit',['informacion'=>$informacion,
-                                                            'informacionDetalle'=>$informacionDetalle]);
+                                                           'informacionDetalle'=>$informacionDetalle]);
     }
 
     public function destroy($id)
     {
-        $usuario = 1;
+        $usuario = Auth::user()->id;
         $opcion = 3;
+        $titulo=" ";
         $sql = "call spCSL_CRUD_actividadAventura
         (
             '".$opcion."',
             '".$id."',
-            '".$usuario."'
+            '".$usuario."',
+            '".$titulo."'
         )";
         
         $datos =  DB::select($sql, array(1,10));
@@ -58,4 +65,106 @@ class adminActividadAventuraController extends Controller
         }
         return Redirect::to('administrador/adminActividadAventura');
     }
+
+    public function store(Request $request)
+    {
+        $titulo=$request->get('nombreAventura');
+        $id=0;
+        $usuario=Auth::user()->id;
+        $opcion=1;
+
+        $inlclusion= $request->get('inlclusion');
+       
+        $sql_sol = "call spCSL_CRUD_actividadAventura
+        (
+            '".$opcion."',
+            '".$id."',
+            '".$usuario."',
+            '".$titulo."'
+        )";
+        
+        $datos =  DB::select($sql_sol, array(1,10));
+        $id = (int)$datos[0]->id;
+
+        for($i = 0; $i < count($inlclusion); $i++){
+            $sql_solDetalle = "call spCSL_CRUD_actividadAventuraDetalle
+            (
+            '".$opcion."',
+            '".$id."',
+            '".$inlclusion[$i]."',
+            '".$usuario."'
+            )";
+            $datos_Detalle = DB::select($sql_solDetalle,array(1,5));
+        }
+        
+        if($datos != null)
+        {
+            return Redirect::to('administrador/adminActividadAventura');
+        }
+        else
+        {
+            return Redirect::to('administrador/adminActividadAventura')->with("error","Ha ocurrido un error al enviar su formulario. Inténtelo más tarde.");
+        }
+    }
+
+     public function update(Request $request, $id){
+            $titulo = $request->get('nombreActividad');
+            $inlclusion = $request->get('inlclusion');
+            $usuario=Auth::user()->id;
+            $opcion = 2;
+
+                $sql = "call spCSL_CRUD_actividadAventura
+                (
+                    '".$opcion."',
+                    '".$id."',
+                    '".$usuario."',
+                    '".$titulo."'
+                )";            
+
+            $datos = DB::select($sql,array(1,10));
+
+            if($request->get('inlclusion') == null){
+            $opcionCat = 2;
+            $sql_sol = "call spCSL_CRUD_actividadAventuraDetalle
+            (
+            '".$opcionCat."',
+            '".$id."',
+            '1',
+            '".$usuario."'
+            )";
+
+            $datos = DB::select($sql_sol,array(1,10));
+
+            }
+            else{
+                
+                $opcionCat1 = 3;
+                $sql_sol = "call spCSL_CRUD_actividadAventuraDetalle
+                (
+                    '".$opcionCat1."',
+                    '".$id."',
+                    '1',
+                    '".$usuario."'
+                )";
+                $datos = DB::select($sql_sol,array(1,10));
+                
+                $opcionCat = 4;
+                for($i = 0; $i < count($inlclusion); $i++){
+                    $sql_sol = "call spCSL_CRUD_actividadAventuraDetalle
+                (
+                    '".$opcionCat."',
+                    '".$id."',
+                    '".$inlclusion[$i]."',
+                    '".$usuario."'
+                )";
+                $datos = DB::select($sql_sol,array(1,10));
+                }
+            }
+
+                if($datos==null){
+                    return Redirect::to('administrador/adminActividadAventura')->withErrors(['erroregistro'=> 'Error']);
+                }
+                return Redirect::to('administrador/adminActividadAventura');
+        }
+    
 }

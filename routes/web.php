@@ -55,7 +55,7 @@ Route::get('administrador/paquetes/dias/crearDia/{diaActual}',[
     'as' => 'crearDia',
     'uses' => 'AdminDiasController@createDia'
 ]);
-
+//borrar galeria
 Route::get('administrador/paquetes/dias/itinerarios/{paquete}/{dia}',[
     'as' => 'verItinerario',
     'uses' => 'AdminItinerariosController@verItinerario'

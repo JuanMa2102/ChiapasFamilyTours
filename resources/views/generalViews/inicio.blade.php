@@ -78,7 +78,7 @@
 											@foreach($dias as $itemDias)
 											@if($itemDias->id_paquete == $item->id_paquete)
 												<li>
-													<a href="/paquetesPrivadosPorDia">
+													<a href="{{ route('paquetes-detalle',[$item->id_paquete,$itemDias->id_dias])}}">
 														<div class="paqueteItem">
 															<!--  -->
 															<p>{{$itemDias -> cantidad}}</p>
