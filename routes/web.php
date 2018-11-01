@@ -19,7 +19,7 @@ Route::resource('/preguntasFrecuentes','preguntasFrecuentesController');
 Route::resource('/hotelesRestaurantes','hotelesRestaurantesController');
 Route::resource('/error404','error404Controller');
 Route::resource('/descAtractivo','descAtractivoController');
-Route::resource('/comparacionPrecios','comparacionPreciosController');
+Route::resource('/itinerarioDetallado','itinerarioDetalladoController');
 Route::resource('/actividadesDeAventura','actividadesDeAventuraController');
 Route::resource('/seccionDescripcion','seccionDescripcionController');
 Route::resource('/traslados','trasladosController');
@@ -46,4 +46,31 @@ Route::get('administrador/home','HomeController@index')->name('administrador-hom
 Route::resource('administrador/infoEmpresa','AdminInfoEmpresaController');
 Route::resource('administrador/adminTraslados','AdminTrasladosController');
 Route::resource('administrador/adminActividadAventura','adminActividadAventuraController');
+Route::resource('administrador/slider', 'AdminSliderController');
+Route::resource('administrador/paquetes', 'AdminPaquetesController');
+Route::resource('administrador/paquetes/dias','AdminDiasController');
+Route::resource('administrador/paquetes/dias/galeria','AdminGaleriaController');
+Route::resource('administrador/paquetes/dias/itinerarios', 'AdminItinerariosController');
+Route::get('administrador/paquetes/dias/crearDia/{diaActual}',[
+    'as' => 'crearDia',
+    'uses' => 'AdminDiasController@createDia'
+]);
 
+Route::get('administrador/paquetes/dias/itinerarios/{paquete}/{dia}',[
+    'as' => 'verItinerario',
+    'uses' => 'AdminItinerariosController@verItinerario'
+]);
+
+Route::get('administrador/paquetes/dias/itinerario/edit-corto/{dia}',[
+    'as' => 'editarCorto',
+    'uses' => 'AdminItinerariosController@editarCorto'
+]);
+
+Route::get('administrador/paquetes/dias/itinerario/edit-largo/{dia}',[
+    'as' => 'editarLargo',
+    'uses' => 'AdminItinerariosController@editarLargo'
+]);
+Route::get('administrador/paquetes/dias/itinerario/add-section/{dia}',[
+    'as' => 'addSection',
+    'uses' => 'AdminItinerariosController@addSection'
+]);

@@ -110,10 +110,7 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->where('activo','=',1)
         ->get();
 
-        $itinerario = DB::table("tbl_itinerario")
-        ->where('id_dias','=',$id_dia)
-        ->where('activo','=',1)
-        ->get();
+        
 
         $diasDetalle = DB::table("tbl_diasdetalle")
         ->where('id_dias','=',$id_dia)
@@ -128,7 +125,7 @@ class PaquetesPrivadosPorDiaController extends Controller
                                             "id"=>$id,
                                             "id_dia"=>$id_dia,
                                             "galeria"=>$galeria,
-                                            "itinerario"=>$itinerario,
+                                            
                                             "diasDetalle"=>$diasDetalle]);
     }
 }

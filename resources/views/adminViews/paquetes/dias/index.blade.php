@@ -10,49 +10,46 @@
                         <!-- START DEFAULT DATATABLE -->
                         <div class="panel panel-default">
                             <div class="panel-heading">                                
-                                <h3 class="panel-title">PAQUETES PRIVADOS</h3>
-                                <a href="{{URL::action('AdminPaquetesController@create')}}"><button class="btn btn-primary pull-right"><i class="fa fa-plus-circle"></i> Nuevo paquete</button></a>                             
+                                <h3 class="panel-title">DÍAS DE PAQUETE - {{$paquete->nombre}}</h3>
+                                <a href="{{ route('crearDia',$paqueteActual) }}"><button class="btn btn-primary pull-right"><i class="fa fa-plus-circle"></i> Nuevo Día</button></a>                             
                             </div>
                             <div class="panel-body">
                                 <table class="table datatable longTable">
                                     <thead>
                                         <tr>
-                                            <th>Imagen</th>
-                                            <th>Título de imagen</th>
-                                            <th>Nombre de paquete</th>
+                                            <th>Número de días</th>
                                             <th>Descripción</th>
-                                            <th>Precio</th>
-                                            <th>Días de paquete</th>
+                                            <th>Detalles</th>
+                                            <th>Inclusiones</th>
+                                            <th>Galería</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         
-                                    @foreach($paquetes as $item)
+                                    @foreach($dias as $item)
                                         <tr>
-                                            <td class="tdShort"><img src="{{ $item->imagen }}" alt="img_{{$item->titulo_imagen}}"></td>
-                                            <td>{{ $item->titulo_imagen }}</td>
-                                            <td>{{ $item->nombre }}</td>
-                                            <td style="width: 500px">{{ $item->descripcion }}</td>
-                                            <td style="width: 100px;">{{ $item->precio }}</td>
-                                            <td>
-                                                <a href="{{URL::action('AdminDiasController@show',$item->id_paquete)}}"><button class="btn btn-success">Ver días</button></a>
-                                            </td>
+                                            <td>{{ $item->cantidad }}</td>
+                                            <td>{{ $item->descripcion }}</td>
+                                            <td><a href="{{ route('verItinerario',[$item->id_dias,$paqueteActual]) }}"><button class="btn btn-primary">Ver detalles</button></a></td>
+                                            <td style="width: 500px">{{ $item->inclusiones }}</td>
+                                            <td style="width: 100px;"><a href="{{URL::action('AdminGaleriaController@show',$item->id_dias)}}"><button class="btn btn-primary">Ver galería</button></a></td>
                                             <td>
                                             <ul>
-                                                        <a href="{{URL::action('AdminPaquetesController@edit',$item->id_paquete)}}">
+                                                        <a href="{{URL::action('AdminDiasController@edit',$item->id_dias)}}">
                                                         <button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
-                                                        <a href="" data-target="#message-box-danger-{{$item->id_paquete}}" data-toggle="modal">
+                                                        <a href="" data-target="#message-box-danger-{{$item->id_dias}}" data-toggle="modal">
                                                         <button class="btn btn-danger" >
                                                             <i class="fa fa-trash-o"></i>
                                                         </button>
                                                         </ul>
                                             </td>
-                                            @include('adminViews.paquetes.delete')
+                                            @include('adminViews.paquetes.dias.delete')
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <a href="{{URL::action('AdminPaquetesController@index')}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
                             </div>
                         </div>
                         <!-- END DEFAULT DATATABLE -->

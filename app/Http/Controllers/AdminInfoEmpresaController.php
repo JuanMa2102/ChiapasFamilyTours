@@ -12,6 +12,10 @@ use App\Http\Controllers\Post;
 
 class AdminInfoEmpresaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $informacion = DB::table('tbl_general')
         ->where('activo','=',1)
