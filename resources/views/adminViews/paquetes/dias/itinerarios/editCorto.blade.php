@@ -13,7 +13,8 @@
                     <h3 class="panel-title"><strong>Editando itinerario corto de día {{$info->cantidad}}</strong></h3>
                 </div>
                 <div class="panel-body">
-                <input type="hidden" value="corto">
+                <input name="tipoItinerario" type="hidden" value="corto">
+                <input name="idPaqueteActual" name="idPaqueteActual" type="hidden" value="{{$info->id_paquete}}">
 
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Itinerario corto</label>
