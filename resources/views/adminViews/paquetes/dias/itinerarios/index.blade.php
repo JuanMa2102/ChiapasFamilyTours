@@ -27,15 +27,11 @@
                 </div>
                 @if($infoLarga->isEmpty())
                 <p style="text-align: center;">No se ha asignado itinerario largo</p>
-                @endif
-                @foreach($infoLarga as $item)
+                @endif @foreach($infoLarga as $item)
                 <div class="itinerarioLargoContainer">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="imageItinerario">
-                                <figure>
-                                    <img src="{{$item->imagen != null  ? $item->imagen : ''}}" alt="imagen_{{$item->imagen != null ? $item->imagen : 'No se ha asignado imagen'}}">
-                                </figure>
+                            <div class="imageItinerario" style="background-image: url({{$item->imagen}})">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -45,23 +41,26 @@
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="texto">
                                 <p>
-                                {{$item->texto2 != null ? $item->texto2 : 'No se ha asignado texto'}}
+                                    {{$item->texto2 != null ? $item->texto2 : 'No se ha asignado texto'}}
                                 </p>
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
-                @endforeach
                 <div class="itinerarioLargoActions">
-                <a href="{{route('editarLargo',$diaActual)}}"><button style="display: block; margin: auto;" class="btn btn-primary">Editar Itinerario Largo</button></a>
-                <a href="{{route('addSection',$diaActual)}}"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Añadir nueva sección</button></a>
+                    <a href="{{route('editarLargo',$item->id_itinerario)}}"><button class="btn btn-primary"><i class="fa fa-edit"></i> Editar esta sección</button></a>
+                    <a href="" data-target="#message-box-danger-{{$item->id_itinerario}}" data-toggle="modal"><button class="btn btn-danger deleteSection"><i class="fa fa-trash-o"></i> Eliminar esta sección</button></a> 
                 </div>
                 
+                @include('adminViews.paquetes.dias.itinerarios.deleteSection')
+                @endforeach
+                <br>
+                    <a href="{{route('addSection',$diaActual)}}" style="display: block; margin-top: 1%; margin: auto;"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Añadir nueva sección</button></a>
                 
                 <a href="{{URL::action('AdminDiasController@show',$paqueteActual)}}"><button type="button" style="margin: 2%;" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
 

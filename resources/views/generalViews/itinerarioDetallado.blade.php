@@ -3,31 +3,30 @@
 
 <main>
     <div class="container margin_60 topCustom">
-        <div class="sectionItinerario">
+        @foreach($itinerario as $item)
+        <div class="itinerarioLargoContainer">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="imageItinerario">
-                        <figure>
-                            <img src="" alt="">
-                        </figure>
-                    </div>
+                <div class="imageItinerario" style="background-image: url({{$item->imagen}})">
+                            </div>
                 </div>
                 <div class="col-md-6">
                     <div class="texto">
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil asperiores cum expedita tenetur minus impedit fuga quasi sint quam, adipisci nobis eius ipsum sunt voluptas sed deleniti. Ratione, labore! Amet?
+                            {{$item->texto1}}
                         </p>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="texto">
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa impedit eum labore suscipit reiciendis ex sunt quisquam nemo vero accusantium hic deleniti debitis, repellendus temporibus dolorem, inventore recusandae. Debitis, nulla!
+                            {{$item->texto2}}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </main>
 

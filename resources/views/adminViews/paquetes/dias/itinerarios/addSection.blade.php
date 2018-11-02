@@ -13,7 +13,8 @@
                     <h3 class="panel-title"><strong>Agregando sección de itinerario largo a día {{$info->cantidad}}</strong></h3>
                 </div>
                 <div class="panel-body">
-                <input type="hidden" value="largo">
+                <input name="idDiaItinerario" name="idDiaItinerario" type="hidden" value="{{$info->id_dias}}">
+                <input name="idPaqueteActual" name="idPaqueteActual" type="hidden" value="{{$info->id_paquete}}">
 
                     <div class="seccionItinerario">
                         <div class="form-group">
@@ -21,6 +22,7 @@
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <textarea class="form-control" name="textolateral" id="textolateral" cols="30" rows="15">{{old('textolateral')}}</textarea>
+                                    {!! $errors->first('textolateral','<span class="help-block">Es necesario introducir un texto lateral</span>')!!}
                                 </div>
                             </div>
                         </div>
@@ -30,6 +32,7 @@
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <textarea class="form-control" name="textopie" id="textopie" cols="30" rows="15">{{old('textopie')}}</textarea>
+                                    {!! $errors->first('textopie','<span class="help-block">Es necesario introducir un texto de pié</span>')!!}
                                 </div>
                             </div>
                         </div>
@@ -38,6 +41,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Imagen de sección</label>
                             <div class="col-md-6 col-xs-12">
                                 <input type="file" name="imagenSeccion" class="file" accept="image/*" data-preview-file-type="any" />
+                                {!! $errors->first('imagenSeccion','<span class="help-block">Es necesario introducir una imagen</span>')!!}
                             </div>
                         </div>
                     </div>                  

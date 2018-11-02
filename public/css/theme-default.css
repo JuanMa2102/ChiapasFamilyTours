@@ -9333,6 +9333,16 @@ textarea {
     margin-top: 5%;
 }
 
+.itinerarioLargoContainer .row {
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.itinerarioLargoContainer p {
+    padding: 1%;
+    white-space: pre-line;
+}
+
 .itinerarioLargoContainer button {
     display: block;
     margin: 2% auto;
@@ -9340,12 +9350,17 @@ textarea {
 
 .imageItinerario {
     height: 300px;
+    width: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .itinerarioLargoActions {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1% 0%;
 }
 
 .itinerarioLargoActions>* {
@@ -9354,10 +9369,17 @@ textarea {
     margin: 0% 2%;
 }
 
+.deleteSection {
+    display: block;
+    margin: 1% auto;
+}
+
+
 /* End general attributes */
 
-.titleTable{
+.titleTable {
     width: 270px;
 }
-/* End Added Classes */
 
+
+/* End Added Classes */
