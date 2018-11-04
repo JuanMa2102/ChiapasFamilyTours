@@ -21,6 +21,7 @@
                                      <table class="table datatable">
                                          <thead>
                                              <tr>
+                                                 <th>Imagen</th>
                                                  <th>Título</th>
                                                  <th>Detalles</th>
                                                  <th>Acciones</th>
@@ -29,6 +30,12 @@
                                          <tbody>
                                          @foreach($ActividadAventura as $item)   
                                          <tr>
+
+                                            <td class="tdShort">
+                                                <img src="{{asset($item->imagen)}}" alt="">
+                                                
+                                            </td>
+
                                             <td>{{$item->titulo}}</td>
                                             <td>
                                                 <table >
@@ -37,7 +44,7 @@
                                                         <tr>
                                                             <th>Inclusiones</th>
                                                         </tr>
-
+ 
                                                     </thead>
                                                     <tbody>
                                                     @foreach($ActividadAventuraDetalle as $itemDetalle)
@@ -53,13 +60,7 @@
                                                 </table>
                                             </td>
                                             <td class="actionsContainer">
-                                            <ul>
-                                                <a href="{{ url('administrador/galeria/producto', $item->id_actividadAventura) }}">
-                                                    <button class="btn btn-success">
-                                                        <i class="glyphicon glyphicon-picture"></i>
-                                                    </button>
-                                                </a>
-                                                
+                                            <ul>                                                
                                                 <a href="{{URL::action('adminActividadAventuraController@edit',$item->id_actividadAventura)}}">
                                                     <button class="btn btn-info"><i class="fa fa-edit"></i></button>
                                                 </a>

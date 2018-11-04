@@ -23,6 +23,13 @@
                         </div>
                     </div>
 
+                    <div class='form-group'>
+                        <label class='col-md-3 col-xs-12 control-label'>Imagen</label>
+                        <div class='col-md-6 col-xs-12'>
+                            <input type='file' name='img' class='file' accept='image/*' data-preview-file-type='any' multiple /> 
+                        </div>
+                    </div>
+
                     <div class="InlcusionesContainer">
 
                     </div>
