@@ -35,13 +35,60 @@ class AdminDiasController extends Controller
         return view('adminViews.paquetes.dias.create',['diaActual'=>$id]);
     }
     public function edit($id){
-        dd("Editando " . $id);
+        $info = DB::table('tbl_dias')
+        ->where('activo','=',1)
+        ->where('id_dias','=',$id)
+        ->first();
+        return view("adminViews.paquetes.dias.edit",["info"=>$info]);
     }
     public function store(Request $request){
-        dd("Store");
+        // dd($request->all());
+        $paqueteActual = $request->get('paqueteActual');
+        $opcion = 1;
+        $numDias = $request->get('numDias');
+        $descripcion = $request->get('descDia');
+        $inclusiones = $request->get('inclusiones');
+        $usuario=Auth::user()->id;
+        
+        $sql = "call spCSL_CRUD_dias (
+            '".$opcion."',
+            '".$numDias."',
+            '".$descripcion."',
+            '".$inclusiones."',
+            '".$usuario."',
+            '1',
+            '".$paqueteActual."'
+        )";
+        $datos = DB::select($sql,array(1,10));
+        if($datos==null){
+            // return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
+            return redirect()->back()->withErrors(['erroregistro'=> 'Error'])->withInput();
+        }
+        return Redirect::to('administrador/paquetes/dias/'.$paqueteActual);
     }
     public function update(Request $request, $id){
-        dd("Update " . $id);
+        $paqueteActual = $request->get('paqueteActual');
+        $opcion = 2;
+        $numDias = $request->get('numDias');
+        $descripcion = $request->get('descDia');
+        $inclusiones = $request->get('inclusiones');
+        $usuario=Auth::user()->id;
+
+        $sql = "call spCSL_CRUD_dias(
+            '".$opcion."',
+            '".$numDias."',
+            '".$descripcion."',
+            '".$inclusiones."',
+            '".$usuario."',
+            '".$id."',
+            '1'
+        )";
+        $datos = DB::select($sql,array(1,10));
+        if($datos==null){
+            // return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
+            return redirect()->back()->withErrors(['erroregistro'=> 'Error'])->withInput();
+        }
+        return Redirect::to('administrador/paquetes/dias/'.$paqueteActual);
     }
     public function destroy($id){
         dd("Destroy " . $id);

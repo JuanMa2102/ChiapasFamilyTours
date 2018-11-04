@@ -32,13 +32,13 @@
                         <ul>
                             @foreach($diasPaquete as $item)
                             <li>
-                                <a href="{{ route('paquetes-detalle',[$id,$item->id_dias])}}">
-                <div class="paqueteItem " style="{{$item->id_dias==$id_dia ? 'background-color: #46D34D' : ' ' }}">
-                  <?php if($item->id_dias==$id_dia ) $diasCantidad = $item->cantidad ?>
-                  <p>{{$item->cantidad}}</p>
-                  <p>DÍAS{{$item->descripcion}}</p>
-                </div>
-              </a>
+                                <a href="{{ route('paquetes-detalle',[$id,$item->id_dias])}}">  
+                                    <div class="paqueteItem " style="{{$item->id_dias == $id_dia ? 'background-color: #46D34D' : ''}}">
+                                        <?php if($item->id_dias==$id_dia ) $diasCantidad = $item->cantidad ?>
+                                        <p>{{$item->cantidad}}</p>
+                                        <p>DÍAS{{$item->descripcion}}</p>
+                                    </div>
+                                </a>
                             </li>
                             @endforeach
                         </ul>
@@ -119,99 +119,93 @@
                     </div>
 
                     <div class="col-md-9">
+                        <p>{{$itinerarioCorto->itinerariocorto}}</p>
 
-
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="hidden-sm hidden-xs">
-                                <a class="btnComparacion" target="_blank" href="{{ URL::action('itinerarioDetalladoController@show',$id_dia) }}">ITINERARIO DETALLADO CON SUGERENCIAS</a>
-                            </p>
-                        </div>
-
-                    </div>
-                    <hr>
-                    <div class="row itinerarioPart">
-                        <div class="col-md-3">
-                            <h3>Costo</h3>
-                        </div>
-                        <div class="col-md-9 infoPaqueteCosto">
-                            <!-- BTN HOTEL -->
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Hotel</th>
-                                        <th>Habitación Doble</th>
-                                        <th>Habitación Triple</th>
-                                        <th>Habitación Cuádruple APROVECHE</th>
-                                        <th>Habitación Individual
-                                            <th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Boutique</td>
-                                        <td>$3000</td>
-                                        <td>$2000</td>
-                                        <td>$1800</td>
-                                        <td>$2500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4 Estrellas</td>
-                                        <td>$3000</td>
-                                        <td>$2000</td>
-                                        <td>$1800</td>
-                                        <td>$2500</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                            <!-- END BTN HOTEL -->
-                            <!-- End row  -->
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row itinerarioPart">
-                        <div class="col-md-3">
-                            <h3>Incluye</h3>
-                        </div>
-                        <div class="col-md-9">
-
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_ok">
-                                        <?php $i = 0; ?> @foreach($diasDetalle as $itemDetalle) @if($i++==4)
-                                        <!-- Se quitó el error por el momento -->
-                                        @endif
-                                        <li>
-                                            {{$itemDetalle->inclusion}}
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_ok">
-                                        <?php $i = 0; ?> @foreach($diasDetalle as $itemDetalle) @if($i++>=4)
-                                        <li>
-                                            {{$itemDetalle->inclusion}}
-                                        </li>
-                                        @endif 
-
-                                        @endforeach
-                                    </ul>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="hidden-sm hidden-xs">
+                                    <a class="btnComparacion" target="_blank" href="{{ URL::action('itinerarioDetalladoController@show',$id_dia) }}">ITINERARIO DETALLADO CON SUGERENCIAS</a>
+                                </p>
                             </div>
-
                         </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row itinerarioPart">
+                    <div class="col-md-3">
+                        <h3>Costo</h3>
+                    </div>
+                    <div class="col-md-9 infoPaqueteCosto">
+                        <!-- BTN HOTEL -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Hotel</th>
+                                    <th>Habitación Doble</th>
+                                    <th>Habitación Triple</th>
+                                    <th>Habitación Cuádruple APROVECHE</th>
+                                    <th>Habitación Individual
+                                        <th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Boutique</td>
+                                    <td>$3000</td>
+                                    <td>$2000</td>
+                                    <td>$1800</td>
+                                    <td>$2500</td>
+                                </tr>
+                                <tr>
+                                    <td>4 Estrellas</td>
+                                    <td>$3000</td>
+                                    <td>$2000</td>
+                                    <td>$1800</td>
+                                    <td>$2500</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- END BTN HOTEL -->
                         <!-- End row  -->
                     </div>
                 </div>
                 <hr>
+                <div class="row itinerarioPart">
+                    <div class="col-md-3">
+                        <h3>Incluye</h3>
+                    </div>
+                    <div class="col-md-9">
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <ul class="list_ok">
+                                    <?php $i = 0; ?> @foreach($diasDetalle as $itemDetalle) @if($i++==4)
+                                    <!-- Se quitó el error por el momento -->
+                                    @endif
+                                    <li>
+                                        {{$itemDetalle->inclusion}}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <ul class="list_ok">
+                                    <?php $i = 0; ?> @foreach($diasDetalle as $itemDetalle) @if($i++>=4)
+                                    <li>
+                                        {{$itemDetalle->inclusion}}
+                                    </li>
+                                    @endif @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End row  -->
+                </div>
 
                 <hr>
             </div>
-            <!--End  single_tour_desc-->
-
             <aside class="col-md-5" id="sidebar">
                 {!! Form::open(array('url' => 'paquetesPrivadosPorDia','autocomplete'=>'off','method'=>'POST', 'onsubmit'=>'return validarsend();')) !!} {{Form::token()}}
                 <div class="theiaStickySidebar barraCotizacion">
@@ -239,7 +233,7 @@
                             <div class="col-md-12">
                                 <div class="form-group correoGroup">
                                     <label><i class="icon-email"></i>E-mail</label>
-                                    <input type="email" class="form-control" id="email"  name="email" placeholder="ejemplo@dominio.com">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@dominio.com">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -282,11 +276,11 @@
                                 <div class="form-group paqueteGroup">
                                     <label><i class="icon-lightbulb-1"></i> Paquete</label>
                                     <select class="form-control" id="paqueteCotizacion" name="paqueteCotizacion">
-              <option name="seleccione" value="0" >Seleccione...</option>
-              @foreach($paquetes as $item)
-              <option name="paquete" id="{{ $item->id_paquete }}" nomPack="{{ $item->nombre }}" value="{{$item->id_paquete}}">{{$item->nombre}}</option>
-              @endforeach
-            </select>
+                                                    <option name="seleccione" value="0" >Seleccione...</option>
+                                                    @foreach($paquetes as $item)
+                                                    <option name="paquete" id="{{ $item->id_paquete }}" nomPack="{{ $item->nombre }}" value="{{$item->id_paquete}}">{{$item->nombre}}</option>
+                                                    @endforeach
+                                                </select>
                                 </div>
                             </div>
                             <div class="col-sm-5">
@@ -294,11 +288,11 @@
                                     <div class="input-group ">
                                         <label><i class="icon-clock-2"></i> Días</label>
                                         <select class="form-control" name="diasCotizacion" id="diasCotizacion">
-              <option name="seleccione" value= "0" >Seleccione...</option>
-              @foreach($dias as $itemDias)
-              <option cosmico="{{$itemDias->id_paquete}}" nomDia="{{$itemDias->cantidad}} Días{{$itemDias->descripcion}} " value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
-              @endforeach
-            </select>
+                                                        <option name="seleccione" value= "0" >Seleccione...</option>
+                                                        @foreach($dias as $itemDias)
+                                                        <option cosmico="{{$itemDias->id_paquete}}" nomDia="{{$itemDias->cantidad}} Días{{$itemDias->descripcion}} " value="{{$itemDias->id_dias}}">{{$itemDias->cantidad}} Días{{$itemDias->descripcion}}</option>
+                                                        @endforeach
+                                                    </select>
                                     </div>
                                     <small>*Con rafting</small>
                                 </div>
@@ -315,8 +309,8 @@
                         <div class="row">
                             <h5></h5>
                             <!-- usamos Input con id oculta para mandarla al store -->
-                            <div class="paquetesAddedContainer"> 
-                                
+                            <div class="paquetesAddedContainer">
+
                             </div>
                         </div>
 
@@ -327,11 +321,11 @@
                                     <div class="input-group">
                                         <label>Seleccione categoría de hotel</label>
                                         <select name="tipoHotel" class="form-control" id="tipoHotel">
-              <option name = "seleccione" value="0" >Seleccione...</option>
-              @foreach($tipoHotel as $item)
-              <option value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
-              @endforeach
-              </select>
+                                                        <option name = "seleccione" value="0" >Seleccione...</option>
+                                                        @foreach($tipoHotel as $item)
+                                                        <option value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
+                                                        @endforeach
+                                                    </select>
                                     </div>
                                     <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
                                 </div>
@@ -343,10 +337,9 @@
                                     <div class="input-group">
                                         <label>Seleccione Hotel</label>
                                         <select name="tipoHotel" class="form-control" id="tipoHotel">
-              <option name = "seleccione" value="0" >Seleccione...</option>
-              <option value="1">Hotel Boutique Bo</option>
-             
-              </select>
+                                                        <option name = "seleccione" value="0" >Seleccione...</option>
+                                                        <option value="1">Hotel Boutique Bo</option>    
+                                                    </select>
                                     </div>
                                     <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
                                 </div>
@@ -370,8 +363,11 @@
                 <!--/sticky -->
                 {!! Form::close() !!}
             </aside>
+            <!--End  single_tour_desc-->
         </div>
-        <!--End row -->
+
+    </div>
+    <!--End row -->
     </div>
     <!--End container -->
 
@@ -416,7 +412,7 @@
         $(document).on('change', '#paqueteCotizacion', function(e) {
             // console.log(this.options[e.target.selectedIndex].value);
             var idPaquete = this.options[e.target.selectedIndex].value;
-            $("select[name='diasCotizacion'] option[name='seleccione']").prop("selected",true);
+            $("select[name='diasCotizacion'] option[name='seleccione']").prop("selected", true);
             $("select[name='diasCotizacion'] option").removeClass('active');
             $("select[name='diasCotizacion'] option[cosmico='" + idPaquete + "']").addClass('active');
 

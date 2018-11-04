@@ -34,7 +34,7 @@ class GaleriaController extends Controller
         ->get();
 
         if($datos==null){
-            return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
+            return back()->withErrors(['erroregistro'=> 'Error']);
         }
         return view('adminViews.galeria.index',['datos'=>$datos]);
     }
