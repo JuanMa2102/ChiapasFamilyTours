@@ -49,7 +49,7 @@ Route::resource('administrador/adminActividadAventura','adminActividadAventuraCo
 Route::resource('administrador/slider', 'AdminSliderController');
 Route::resource('administrador/paquetes', 'AdminPaquetesController');
 Route::resource('administrador/paquetes/dias','AdminDiasController');
-Route::resource('administrador/paquetes/dias/galeria','AdminGaleriaController');
+Route::resource('administrador/galeria','AdminGaleriaController');
 Route::resource('administrador/paquetes/dias/itinerarios', 'AdminItinerariosController');
 Route::get('administrador/paquetes/dias/crearDia/{diaActual}',[
     'as' => 'crearDia',

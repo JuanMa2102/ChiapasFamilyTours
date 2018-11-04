@@ -29,8 +29,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Descripción</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input name="descPaquete" type="text" class="form-control" value="{{old('descPaquete')}}"/>
+                                <textarea name="descPaquete" class="form-control" id="descPaquete" cols="30" rows="15">{{old('descPaquete')}}</textarea>
                             </div>
                             {!! $errors->first('descPaquete','<span class="help-block">Es necesario introducir una descripción</span>')!!}
                         </div>
