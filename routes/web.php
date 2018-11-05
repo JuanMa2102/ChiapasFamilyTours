@@ -51,6 +51,10 @@ Route::resource('administrador/paquetes', 'AdminPaquetesController');
 Route::resource('administrador/paquetes/dias','AdminDiasController');
 Route::resource('administrador/paquetes/dias/galeria','AdminGaleriaController');
 Route::resource('administrador/paquetes/dias/itinerarios', 'AdminItinerariosController');
+
+Route::resource('administrador/preguntasFrecuentes/PreguntaDetalle', 'AdminPreguntasFrecuentesDetalleController');
+Route::resource('administrador/preguntasFrecuentes', 'AdminPreguntasFrecuentesController');
+
 Route::get('administrador/paquetes/dias/crearDia/{diaActual}',[
     'as' => 'crearDia',
     'uses' => 'AdminDiasController@createDia'
@@ -74,3 +78,12 @@ Route::get('administrador/paquetes/dias/itinerario/add-section/{dia}',[
     'as' => 'addSection',
     'uses' => 'AdminItinerariosController@addSection'
 ]);
+
+//PreguntasFrecuentes
+Route::get('administrador/preguntasFrecuentes/PreguntaDetalle/add-section/{id}',[
+    'as' => 'addPreguntaDetalle',
+    'uses' => 'AdminPreguntasFrecuentesDetalleController@addSection'
+]);
+
+Route::get('administrador/PreguntaDetalle/{id}','AdminPreguntasFrecuentesDetalleController@Detalle'); 
+

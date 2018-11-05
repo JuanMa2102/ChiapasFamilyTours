@@ -13,6 +13,11 @@ Use DB;
 class adminActividadAventuraController extends Controller 
 {
      //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function index(){
 
     	$ActividadAventura = DB::table('tbl_actividadaventura')
@@ -69,6 +74,10 @@ class adminActividadAventuraController extends Controller
 
     public function store(Request $request)
     {
+        $credentials=$this->validate(request(),[
+            'nombreAventura' => 'required|string|max:5000'
+        ]);
+
         $titulo=$request->get('nombreAventura');
         $id=0;
         $usuario=Auth::user()->id;
@@ -93,14 +102,16 @@ class adminActividadAventuraController extends Controller
             $id = (int)$datos[0]->id;
 
             for($i = 0; $i < count($inlclusion); $i++){
-                $sql_solDetalle = "call spCSL_CRUD_actividadAventuraDetalle
-                (
-                '".$opcion."',
-                '".$id."',
-                '".$inlclusion[$i]."',
-                '".$usuario."'
-                )";
-                $datos_Detalle = DB::select($sql_solDetalle,array(1,5));
+                if($inlclusion[$i] != null){
+                    $sql_solDetalle = "call spCSL_CRUD_actividadAventuraDetalle
+                    (
+                    '".$opcion."',
+                    '".$id."',
+                    '".$inlclusion[$i]."',
+                    '".$usuario."'
+                    )";
+                    $datos_Detalle = DB::select($sql_solDetalle,array(1,5));
+                }
             }
             
             if($datos != null)
@@ -118,6 +129,7 @@ class adminActividadAventuraController extends Controller
     }
 
      public function update(Request $request, $id){
+
             $titulo = $request->get('nombreActividad');
             $inlclusion = $request->get('inlclusion');
             $usuario=Auth::user()->id;
@@ -191,21 +203,24 @@ class adminActividadAventuraController extends Controller
                 
                 $opcionCat = 4;
                 for($i = 0; $i < count($inlclusion); $i++){
+                    if($inlclusion[$i] != null){
                     $sql_sol = "call spCSL_CRUD_actividadAventuraDetalle
-                (
-                    '".$opcionCat."',
-                    '".$id."',
-                    '".$inlclusion[$i]."',
-                    '".$usuario."'
-                )";
-                $datos = DB::select($sql_sol,array(1,10));
+                        (
+                        '".$opcionCat."',
+                        '".$id."',
+                        '".$inlclusion[$i]."',
+                        '".$usuario."'
+                        )";
+                        $datos = DB::select($sql_sol,array(1,10));
+                    }
                 }
             }
 
                 if($datos==null){
                     return Redirect::to('administrador/adminActividadAventura')->withErrors(['erroregistro'=> 'Error']);
-                }
+                }else{
                 return Redirect::to('administrador/adminActividadAventura');
+                }
         }
     
 }

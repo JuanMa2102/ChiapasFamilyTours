@@ -56,7 +56,7 @@
                                                     </tr>
                                                     @endif
                                                         @endforeach
-                                                    </tbody>
+                                                    </tbody> 
                                                 </table>
                                             </td>
                                             <td class="actionsContainer">

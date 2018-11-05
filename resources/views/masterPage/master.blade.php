@@ -83,7 +83,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Preguntas frecuentes</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Ver preguntas frecuentes</a></li>
+                            <li><a href="/administrador/preguntasFrecuentes"><span class="fa fa-image"></span> Ver preguntas frecuentes</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">

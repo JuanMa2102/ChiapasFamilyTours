@@ -19,7 +19,9 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                             <input value="{{ $informacion->titulo }}" name="nombreActividad" type="text" class="form-control"/>
-                                        </div>                                          
+                                        </div>
+                                        
+                            {!! $errors->first('nombreAventura','<span class="help-block">Es necesario introducir una nombre</span>')!!}                                          
                                     </div>
                                 </div>
 
