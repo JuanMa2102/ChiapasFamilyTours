@@ -63,7 +63,7 @@
                              <!-- END DEFAULT DATATABLE -->
                                         </div>
                                                 <div class="panel-footer">
-                                                    <a href="{{URL::action('adminActividadAventuraController@index')}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
+                                                    <a href="{{URL::action('AdminDiasController@show',$paquete->id_paquete)}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
                                                 </div>
                                             </div>
                          </div>

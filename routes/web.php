@@ -49,7 +49,7 @@ Route::resource('administrador/adminActividadAventura','adminActividadAventuraCo
 Route::resource('administrador/slider', 'AdminSliderController');
 Route::resource('administrador/paquetes', 'AdminPaquetesController');
 Route::resource('administrador/paquetes/dias','AdminDiasController');
-Route::resource('administrador/galeria','AdminGaleriaController');
+Route::resource('administrador/galeria','GaleriaController');
 Route::resource('administrador/paquetes/dias/itinerarios', 'AdminItinerariosController');
 
 Route::resource('administrador/preguntasFrecuentes/PreguntaDetalle', 'AdminPreguntasFrecuentesDetalleController');
@@ -86,4 +86,7 @@ Route::get('administrador/preguntasFrecuentes/PreguntaDetalle/add-section/{id}',
 ]);
 
 Route::get('administrador/PreguntaDetalle/{id}','AdminPreguntasFrecuentesDetalleController@Detalle'); 
+
+//Galeria 
+Route::get('administrador/galeriaDias/{id}','GaleriaController@galeria'); 
 
