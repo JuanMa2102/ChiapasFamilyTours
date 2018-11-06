@@ -12,7 +12,7 @@
                                  <div class="panel-heading">                                
                                      <h3 class="panel-title">GALERIA</h3>
                                      <div class="row">
-                                         <a href="{{URL::action('GaleriaController@create')}}"><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nueva Imagen</button></a>
+                                         <a href="{{URL::action('AdminGaleriaController@create')}}"><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nueva Imagen</button></a>
                                      </div> 
                                                                 
                                  </div>
@@ -29,7 +29,7 @@
                                          <tbody>
                                          @foreach($datos as $item) 
                                          <tr>
-                                            <td>
+                                            <td class="tdShort">
                                                 <img src="{{asset($item->imagen)}}" height="150" width="200">
                                                 
 
@@ -39,7 +39,7 @@
                                             <td class="actionsContainer">
                                             <ul>
 
-                                                <a href="{{URL::action('GaleriaController@edit',$item->id_galeria)}}">
+                                                <a href="{{URL::action('AdminGaleriaController@edit',$item->id_galeria)}}">
                                                     <button class="btn btn-info"><i class="fa fa-edit"></i></button>
                                                 </a>
                                                 
@@ -63,7 +63,7 @@
                              <!-- END DEFAULT DATATABLE -->
                                         </div>
                                                 <div class="panel-footer">
-                                                    <a href="{{URL::action('AdminDiasController@show',$paquete->id_paquete)}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
+                                                    <a href="{{URL::action('AdminDiasController@show',$paqueteActual)}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
                                                 </div>
                                             </div>
                          </div>

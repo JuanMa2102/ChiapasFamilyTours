@@ -1,5 +1,5 @@
 <div class="message-box message-box-danger animated fadeIn" id="message-box-danger-{{$item->id_galeria}}">
-{{Form::Open(array('action'=>array('GaleriaController@destroy',$item->id_galeria),'method'=>'delete'))}}
+{{Form::Open(array('action'=>array('AdminGaleriaController@destroy',$item->id_galeria),'method'=>'delete'))}}
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-times"></span> Eliminar Registro</div>
