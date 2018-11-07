@@ -231,9 +231,9 @@
     </header>
     <!-- End Header -->
 
-	================= CONTENT SECTION ================ 
+	<!-- ================= CONTENT SECTION ================  -->
 	@yield('content')
-	================= END CONTENT SECTION ============
+	<!-- ================= END CONTENT SECTION ============ -->
 
     <footer style="z-index: -1 !important;" id="pattern_3" class="revealed">
         <div class="container">

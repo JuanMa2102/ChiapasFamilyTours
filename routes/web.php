@@ -90,3 +90,6 @@ Route::get('administrador/PreguntaDetalle/{id}','AdminPreguntasFrecuentesDetalle
 //Galeria 
 Route::get('administrador/galeriaDias/{id}','GaleriaController@galeria'); 
 
+
+Route::resource('administrador/hoteles','AdminHotelesController');
+

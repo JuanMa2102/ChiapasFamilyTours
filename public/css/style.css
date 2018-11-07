@@ -2646,6 +2646,7 @@ a.btn_collapse {
     margin: 0;
     font-size: 16px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .hotel_container .score span {
@@ -2798,9 +2799,10 @@ ul.list_icons li i {
 }
 
 .map-right {
-    height: 100%;
-    min-height: 100%;
-    padding: 0px;
+    height: 80%;
+    /* min-height: 100%; */
+    /* padding: 71% 0%; */
+    margin-top: 8%;
 }
 
 .content-left {
@@ -5954,6 +5956,30 @@ select[name="diasCotizacion"] option.active {
 .actividadContainer img {
     width: 100%;
     border-radius: 5px;
+}
+
+.hotelActions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hotelActions>* {
+    margin: 1% 5%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.hotelActions button {
+    background-color: #41AA54;
+    border: none;
+    color: #fff;
+    padding: 1% 3%;
+}
+
+.visitarPaginaHotel a {
+    color: #41aa54;
+    font-weight: bold;
 }
 
 

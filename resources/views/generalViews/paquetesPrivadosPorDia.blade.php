@@ -33,7 +33,7 @@
                             @foreach($diasPaquete as $item)
                             <li>
                                 <a href="{{ route('paquetes-detalle',[$id,$item->id_dias])}}">  
-                                    <div class="paqueteItem " style="{{$item->id_dias == $id_dia ? 'background-color: #46D34D' : ''}}">
+                                    <div class="paqueteItem" style="{{ $item->id_dias == $id_dia ? 'background-color: #46D34D' : '' }}">
                                         <?php if($item->id_dias==$id_dia ) $diasCantidad = $item->cantidad ?>
                                         <p>{{$item->cantidad}}</p>
                                         <p>DÍAS{{$item->descripcion}}</p>
@@ -211,12 +211,14 @@
                 <div class="theiaStickySidebar barraCotizacion">
                     <div class="box_style_1 expose">
                         <h3 class="inner">- ENVIAR SOLICITUD -</h3>
-                        <p>Introduzca los siguientes datos</p>
-
-                        <div class="infoCotizacion">
-                            <p>De preferencia, reserve sus boletos antes de cotizar, ya que en base a la fecha de salida de su boleto, se le hará su itinerario. Si necesita más información vea la sección de preguntas más frecuentes <a target="_blank" href="\preguntasFrecuentes">aquí</a>.
-                                O póngase en <a target="_blank" href="\contactos">contacto</a> con nosotros.</p>
+                        <div class="llamar">
+                            <span style="margin: auto; display: block; text-align: center; font-size: 450%;"><i class="icon_set_1_icon-57"></i></span>
+                            <p style="display: block; margin: auto; font-size: 150%; text-align: center; margin-top: 1%;">Llámenos al 9611060320</p>
+                            <p style="display: block; margin: auto; font-size: 200%; text-align: center; margin-top: 1%;">O</p>
                         </div>
+                        <p style="display: block; margin: auto; font-size: 120%; text-align: center; margin-top: 1%;">Introduzca los siguientes datos</p>
+
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group nombreGroup">
@@ -376,6 +378,9 @@
 
 </main>
 @endsection @push('paquetesPrivadosPorDiaScript')
+<script src="{{ asset('js/addPaquetes.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/paquetes_por_dia.js') }}">
+</script>
 <!-- CSS -->
 <link href="{{asset('css/slider-pro.min.css')}}" rel="stylesheet">
 <link href="{{asset('css/date_time_picker.css')}}" rel="stylesheet">
@@ -395,6 +400,15 @@
 <script src="{{asset('js/jquery.sliderPro.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function($) {
+        
+        $(document).on('change', '#paqueteCotizacion', function(e) {
+            console.log(this.options[e.target.selectedIndex].value);
+            var idPaquete = this.options[e.target.selectedIndex].value;
+            $("select[name='diasCotizacion'] option[name='seleccione']").prop("selected", true);
+            $("select[name='diasCotizacion'] option").removeClass('active');
+            $("select[name='diasCotizacion'] option[cosmico='" + idPaquete + "']").addClass('active');
+
+        });
         $('#Img_carousel').sliderPro({
             width: 960,
             height: 500,
@@ -408,14 +422,6 @@
             largeSize: 3000,
             thumbnailArrows: true,
             autoplay: false
-        });
-        $(document).on('change', '#paqueteCotizacion', function(e) {
-            // console.log(this.options[e.target.selectedIndex].value);
-            var idPaquete = this.options[e.target.selectedIndex].value;
-            $("select[name='diasCotizacion'] option[name='seleccione']").prop("selected", true);
-            $("select[name='diasCotizacion'] option").removeClass('active');
-            $("select[name='diasCotizacion'] option[cosmico='" + idPaquete + "']").addClass('active');
-
         });
     });
 </script>
@@ -446,6 +452,7 @@
     });
 </script>
 
-<script src="{{ asset('js/addPaquetes.js') }}"></script>
+
 <!-- JS CSL -->
+
 @endpush

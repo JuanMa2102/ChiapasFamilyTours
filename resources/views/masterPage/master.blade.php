@@ -75,9 +75,9 @@
                         </ul>
                     </li>
                     <li class="xn-openable">
-                        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Hoteles y Restaurantes</span></a>
+                        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Hoteles</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Ver hoteles y restaurantes</a></li>
+                            <li><a href="/administrador/hoteles"><span class="fa fa-image"></span> Ver hoteles</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
