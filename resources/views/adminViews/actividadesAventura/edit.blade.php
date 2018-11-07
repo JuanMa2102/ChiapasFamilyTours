@@ -19,7 +19,16 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                             <input value="{{ $informacion->titulo }}" name="nombreActividad" type="text" class="form-control"/>
-                                        </div>                                          
+                                        </div>
+                                        
+                            {!! $errors->first('nombreAventura','<span class="help-block">Es necesario introducir una nombre</span>')!!}                                          
+                                    </div>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label class='col-md-3 col-xs-12 control-label'>Imagen</label>
+                                    <div class='col-md-6 col-xs-12'>
+                                        <input type='file' name='img' class='file' accept='image/*' data-preview-file-type='any' multiple /> 
                                     </div>
                                 </div>
 

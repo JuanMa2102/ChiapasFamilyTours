@@ -11,6 +11,10 @@ Use DB;
 
 class GaleriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function galeria($id)
     {
@@ -24,19 +28,25 @@ class GaleriaController extends Controller
     {
         
         if(!\Session::has('idparameter')){
-            return Redirect::to('administrador/home')->withErrors(['erroregistro'=> 'Error']);
+            return Redirect::to('administrador/paquetes')->withErrors(['erroregistro'=> 'Error']);
         }
         $id=\Session::get('idparameter');
+
         $datos = DB::table('tbl_galeria')
         ->where('id_dia','=',$id)
-        ->where('tipo','=',1)
         ->where('activo','=',1)
         ->get();
 
+        $paquete = DB::table('tbl_dias')
+        ->where('id_dias','=',$id)
+        ->where('activo','=',1)
+        ->first();
+
         if($datos==null){
-            return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
+            return back()->withErrors(['erroregistro'=> 'Error']);
         }
-        return view('adminViews.galeria.index',['datos'=>$datos]);
+        return view('adminViews.galeria.index',['datos'=>$datos,
+                                                'paquete'=>$paquete]);
     }
 
     /**
@@ -57,10 +67,17 @@ class GaleriaController extends Controller
      */
     public function store(Request $request)
     {
+
+        $credentials=$this->validate(request(),[
+            'descripcion' => 'required|string|max:5000',
+            'img'=>'required|mimes:jpg,jpeg,png|max:5000'
+            ]);
+
         if(!\Session::has('idparameter')){
-            return Redirect::to('administrador/galeria')->withErrors(['erroregistro'=> 'Error']);
+            return Redirect::to('administrador/paquetes')->withErrors(['erroregistro'=> 'Error']);
         }
         
+        $id=\Session::get('idparameter');
         
         if($request->file('img')){
             $path= Storage::disk('local')->put('uploads/galeria', $request->file('img'));
@@ -70,7 +87,6 @@ class GaleriaController extends Controller
 
             $opcion=1;
             $usuario=Auth::user()->id;
-            $id=\Session::get('idparameter');
             $sql_sol = "call spCSL_CRUD_galeria
             (
                 '".$opcion."',
@@ -113,7 +129,6 @@ class GaleriaController extends Controller
         //
          $informacion = DB::table('tbl_galeria')
         ->where('activo','=',1)
-        ->where('tipo','=',1)
         ->where('id_galeria','=',$id)
         ->first();
         return view('adminViews.galeria.edit',['informacion'=>$informacion]);

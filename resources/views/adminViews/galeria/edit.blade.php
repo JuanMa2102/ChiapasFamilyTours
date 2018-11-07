@@ -13,27 +13,14 @@
                     <h3 class="panel-title"><strong>Editar Imagen</strong></h3>
                 </div>
 
-                <div class="row">
                      <div class="panel-body">
-                                <div class="form-group">
-                                    <label class='col-md-3 col-xs-12 control-label' for="logo">Imagen Actual</label>
-                                    <div class='col-md-6 col-xs-12'>
-                                    <figure>
-                                        <img src="{{ $informacion->imagen }}" alt="logo" width="200" height="100" align="lefth">
-                                    </figure>
-                                </div>
-                                </div>
-                    </div>
 
-                    <div class="panel-body">
                         <div class='form-group'>
                             <label class='col-md-3 col-xs-12 control-label'>Nueva Imagen</label>
                             <div class='col-md-6 col-xs-12'>
                                 <input type='file' name='img' class='file' accept='image/*' data-preview-file-type='any' multiple /> 
                             </div>
                         </div>
-                    </div>
-                </div>
 
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Descripcion</label>
@@ -44,6 +31,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
                 <div class="panel-footer">
                     <a href="{{URL::action('adminActividadAventuraController@index')}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>

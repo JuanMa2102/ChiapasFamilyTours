@@ -5913,5 +5913,48 @@ select[name="diasCotizacion"] option.active {
     top: 15%;
 }
 
+.imageItinerario {
+    height: 300px;
+    width: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.itinerarioLargoContainer {
+    margin-top: 5%;
+}
+
+.itinerarioLargoContainer .row {
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.itinerarioLargoContainer p {
+    padding: 1%;
+    white-space: pre-line;
+}
+
+.topCustom {
+    padding-top: 10%;
+}
+
+.actividadContainer {
+    padding: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .2);
+    min-height: 260px;
+    margin: 2% 0%;
+    border-radius: 5px;
+}
+
+.actividadContainer h3 {
+    text-align: center;
+}
+
+.actividadContainer img {
+    width: 100%;
+    border-radius: 5px;
+}
+
 
 /*End classes*/
