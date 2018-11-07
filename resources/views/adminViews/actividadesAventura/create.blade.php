@@ -9,7 +9,7 @@
             {!!Form::open(array('method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'adminActividadAventuraController@store'))!!} {{Form::token()}}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Nuava Actividad de aventura</strong></h3>
+                    <h3 class="panel-title"><strong>Nueva Actividad de Aventura</strong></h3>
                 </div>
                 <div class="panel-body">
 

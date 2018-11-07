@@ -1,7 +1,7 @@
 @extends('masterPage.master')
 
 @section('content')
-{!!Form::open(array('url'=>'administrador/adminTraslados','method'=>'POST','autocomplete'=>'off','files' => 'true'))!!} 
+{!!Form::open(array('method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'adminActividadAventuraController@store'))!!} {{Form::token()}}
                 <div class="form-horizontal">
                 <div class="panel panel-default">
                                                                
