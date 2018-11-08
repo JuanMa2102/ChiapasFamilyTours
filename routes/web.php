@@ -45,6 +45,7 @@ Route::post('administrador/login', 'Auth\LoginController@index')->name('administ
 Route::get('administrador/home','HomeController@index')->name('administrador-home'); //ruta para ir al home admin
 Route::resource('administrador/infoEmpresa','AdminInfoEmpresaController');
 Route::resource('administrador/adminTraslados','AdminTrasladosController');
+Route::resource('administrador/adminContactos','AdminContactosController');
 Route::resource('administrador/adminActividadAventura','adminActividadAventuraController');
 Route::resource('administrador/slider', 'AdminSliderController');
 Route::resource('administrador/paquetes', 'AdminPaquetesController');
