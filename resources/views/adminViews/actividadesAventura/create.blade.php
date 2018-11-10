@@ -21,7 +21,7 @@
                                 <input value=" " name="nombreAventura" type="text" class="form-control" />
                             </div> 
 
-                            {!! $errors->first('nombreAventura','<span class="help-block">Es necesario introducir una nombre</span>')!!}
+                            {!! $errors->first('nombreAventura','<span class="help-block">Es necesario introducir un nombre</span>')!!}
 
                         </div>
                     </div>
@@ -31,6 +31,8 @@
                         <div class='col-md-6 col-xs-12'>
                             <input type='file' name='img' class='file' accept='image/*' data-preview-file-type='any' multiple /> 
                         </div>
+                        {!! $errors->first('img','<span class="help-block">Es necesario introducir una imagen</span>')!!}
+
                     </div>
 
                     <div class="InlcusionesContainer">

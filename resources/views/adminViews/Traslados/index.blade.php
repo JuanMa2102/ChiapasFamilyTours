@@ -56,10 +56,12 @@
                                             <td class="actionsContainer">
                                             <ul>
                                                 <a href="{{URL::action('AdminTrasladosController@edit',$item->id_traslados)}}"><button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
-                                                <a href=""><button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+                                                <a href="" data-target="#message-box-danger-{{$item->id_traslados}}" data-toggle="modal">
+                                                <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
                                             </ul>
                                             
                                             </td>
+                                            @include('adminViews.Traslados.delete')
                                          </tr>
                                          
                                          </tbody>                                         

@@ -93,3 +93,7 @@ Route::get('administrador/galeriaDias/{id}','GaleriaController@galeria');
 
 Route::resource('administrador/hoteles','AdminHotelesController');
 
+Route::resource('administrador/adminTraslados/{request}','AdminTrasladosController@store');
+
+
+

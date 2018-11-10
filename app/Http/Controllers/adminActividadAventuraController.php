@@ -31,9 +31,7 @@ class adminActividadAventuraController extends Controller
     }    
 
     public function create()
-    {
-        //
-        
+    {                
         return view('adminViews.actividadesAventura.create');
     }
 
@@ -75,9 +73,10 @@ class adminActividadAventuraController extends Controller
     public function store(Request $request)
     {
         $credentials=$this->validate(request(),[
-            'nombreAventura' => 'required|string|max:5000'
+            'nombreAventura' => 'required|string|max:5000',
+            'img'=>'required|mimes:jpg,jpeg,png|max:5000'
         ]);
-
+        
         $titulo=$request->get('nombreAventura');
         $id=0;
         $usuario=Auth::user()->id;
@@ -128,7 +127,8 @@ class adminActividadAventuraController extends Controller
         }
     }
 
-     public function update(Request $request, $id){
+     public function update(Request $request, $id)
+     {
 
             $titulo = $request->get('nombreActividad');
             $inlclusion = $request->get('inlclusion');
