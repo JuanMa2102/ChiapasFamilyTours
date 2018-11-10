@@ -19,9 +19,11 @@ class AdminDiasController extends Controller
         // dd("Días de " . $id);
         $paqueteActual = DB::table('tbl_paquete')
         ->select('nombre')
+        ->where('activo','=',1)
         ->where('id_paquete','=',$id)
         ->first();
         $dias = DB::table('tbl_dias')
+        ->where('activo','=',1)
         ->where('id_paquete','=',$id)
         ->get();
         return view("adminViews.paquetes.dias.index",['dias'=>$dias,
@@ -91,6 +93,26 @@ class AdminDiasController extends Controller
         return Redirect::to('administrador/paquetes/dias/'.$paqueteActual);
     }
     public function destroy($id){
-        dd("Destroy " . $id);
+        $paqueteActual = DB::table('tbl_dias')
+        ->where('id_dias','=',$id)
+        ->first();
+        $opcion = 3;
+        $usuario=Auth::user()->id;
+
+        $sql = "call spCSL_CRUD_dias(
+            '".$opcion."',
+            '1',
+            'no importa',
+            'no importa',
+            '".$usuario."',
+            '".$id."',
+            '1'
+        )";
+        $datos = DB::select($sql,array(1,10));
+        if($datos==null){
+            // return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
+            return redirect()->back()->withErrors(['erroregistro'=> 'Error'])->withInput();
+        }
+        return Redirect::to('administrador/paquetes/dias/'.$paqueteActual->id_paquete);
     }
 }

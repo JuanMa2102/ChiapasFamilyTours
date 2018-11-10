@@ -199,7 +199,7 @@
 
                             </li>
                             <li class="submenu">
-                                <a href="/hotelesRestaurantes" class="show-submenu">Hoteles & Restaurantes</i></a>
+                                <a href="/hotelesRestaurantes" class="show-submenu">Hoteles</i></a>
                             </li>
 
                             <li class="submenu">
