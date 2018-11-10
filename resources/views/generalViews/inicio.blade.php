@@ -93,6 +93,7 @@
 									</div>
 								</div>
 								<div class="col-lg-2 col-md-2 col-sm-2">
+									<p>EN HOTELES BOUTIQUE DESDE</p>
 									<div class="price_list">
 										<div><sup>$</sup>{{$item -> precio}}*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
 										<!-- <p><a href="single_hotel.html" class="btn_1">Details</a>

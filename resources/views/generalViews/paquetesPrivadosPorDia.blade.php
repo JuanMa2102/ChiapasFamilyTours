@@ -242,6 +242,7 @@
                                 <div class="form-group telefonoGroup">
                                     <label><i class="icon-phone"></i>Teléfono</label>
                                     <input type="text" class="form-control" id="telefono" value="{{old('telefono')}}" name="telefono" placeholder="Ingrese su teléfono aquí.">
+                                    <small style="color: #f00">*Este campo no es indispensable.</small>
                                 </div>
                             </div>
                         </div>

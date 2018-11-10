@@ -9077,6 +9077,15 @@ td img {
     width: 250px;
 }
 
+.tdMedium {
+    width: 300px !important;
+}
+
+.hideInformation {
+    display: block;
+    overflow: hidden;
+}
+
 .panel-body {
     overflow-x: scroll;
 }
