@@ -65,7 +65,7 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Atractivos</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Ver atractivos</a></li>
+                            <li><a href="/administrador/atractivos"><span class="fa fa-image"></span> Ver atractivos</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
@@ -95,8 +95,8 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Solicitudes</span></a>
                         <ul>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span>Mensajes de contacto</a></li>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span>Mensajes de cotización</a></li>
+                            <li><a href="/administrador/adminContactos"><span class="fa fa-image"></span>Mensajes de contacto</a></li>
+                            <li><a href="/administrador/cotizacion"><span class="fa fa-image"></span>Mensajes de cotización</a></li>
                         </ul>
                     </li>
                     

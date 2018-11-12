@@ -1,4 +1,3 @@
-
 var i = 0;
 $(document).on('click', '.addPaquete', function(e) {
     // console.log(this.options[e.target.selectedIndex].value);
@@ -6,7 +5,7 @@ $(document).on('click', '.addPaquete', function(e) {
     var nombrePaquete = $("#paqueteCotizacion option:selected").attr('nomPack');
     var valorPaquete = $("#paqueteCotizacion option:selected").val();
     if (valorPaquete != 0) {
-        alert("Correcto Paquete");
+        // alert("Correcto Paquete");
         var nombreDia = $("#diasCotizacion option:selected").attr('nomDia');
         var valorDia = $("#diasCotizacion option:selected").val();
         if (valorDia != 0) {
@@ -24,7 +23,7 @@ $(document).on('click', '.addPaquete', function(e) {
                 $(".paquetesAddedContainer").append(cadena);
                 $("select[name='paqueteCotizacion'] option[name='seleccione']").prop("selected", true);
                 $("select[name='diasCotizacion'] option[name='seleccione']").prop("selected", true);
-                alert("Día correcto");
+                // alert("Día correcto");
             }
 
         } else {

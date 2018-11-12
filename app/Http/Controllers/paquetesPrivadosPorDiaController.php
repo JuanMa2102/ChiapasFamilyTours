@@ -105,6 +105,7 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->where('tipo','=',0) // 0 sera de tipo galeria Días
         ->where('activo','=',1)
         ->get();
+        
 
         $diasDetalle = DB::table("tbl_diasdetalle")
         ->where('id_dias','=',$id_dia)

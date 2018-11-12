@@ -207,11 +207,11 @@ class AdminItinerariosController extends Controller
             '".$id."'
         )";
         $datos = DB::select($sql,array(1,10));
-            if($datos==null){
-                // return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
-                return redirect()->back()->withErrors(['erroregistro'=> 'Error'])->withInput();
-            }
-            return back();
+        if($datos==null){
+            // return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
+            return redirect()->back()->withErrors(['erroregistro'=> 'Error'])->withInput();
+        }
+        return back();
     
     }
 }

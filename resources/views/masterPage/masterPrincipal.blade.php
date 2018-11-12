@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-    <meta name="author" content="Ansonika">
+    <meta name="description" content="Chiapas Family Tours - Empresa de viajes de chiapas especializada en paquetes privados">
+    <meta name="author" content="Chiapas Family Tours">
     <title>Chiapas Family Tours - Principal</title>
 
     <!-- Favicons-->
@@ -239,34 +239,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-3">
-                    <h3>Need help?</h3>
-                    <a href="tel://004542344599" id="phone">+45 423 445 99</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
-                    <p>Monday to Friady 08.00am - 06.00pm</p>
+                    <h3>¿Necesita ayuda?</h3>
+                    <a href="tel://019616164137" id="telefono">Teléfono: 01 961 616 4137</a>
+                    <a href="mailto:reserva@chiapasfamilytours.com" id="email_footer">reserva@chiapasfamilytours.com</a>
+                    <p>Lunes a Viernes de 8:00am a 4:00pm</p>
                 </div>
                 <div class="col-md-2 col-sm-3">
-                    <h3>About</h3>
+                    <h3>Acerca de</h3>
                     <ul>
-                        <li><a href="#">About us</a>
+                        <li><a href="/nosotros">Nosotros</a>
                         </li>
-                        <li><a href="#">FAQ</a>
+                        <li><a href="/preguntasFrecuentes">Preguntas frecuentes</a>
                         </li>
-                        <li><a href="#">Blog</a>
+                        <li><a href="/actividadesDeAventura">Actividades de aventura</a>
                         </li>
-                        <li><a href="#">Gallery</a>
+                        <li><a href="/traslados">Traslados</a>
                         </li>
-                        <li><a href="#">Login</a>
-                        </li>
-                        <li><a href="#">Register</a>
-                        </li>
-                        <li><a href="#">Terms and conditions</a>
-                        </li>
-                        <li><a href="#">Privacy</a>
+                        <li><a href="/hotelesRestaurantes">Hoteles</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <h3>Latest post</h3>
+                    <h3>Comentarios de clientes</h3>
                     <!--Post-->
                     <div class="post">
                         <figure>
@@ -296,23 +290,9 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-12">
-                    <h3>Settings</h3>
-                    <div class="styled-select">
-                        <select class="form-control" name="lang" id="lang">
-										<option value="English" selected>English</option>
-										<option value="French">French</option>
-										<option value="Spanish">Spanish</option>
-										<option value="Russian">Russian</option>
-									</select>
-                    </div>
-                    <div class="styled-select">
-                        <select class="form-control" name="currency" id="currency">
-										<option value="USD" selected>USD</option>
-										<option value="EUR">EUR</option>
-										<option value="GBP">GBP</option>
-										<option value="RUB">RUB</option>
-									</select>
-                    </div>
+                    <h3>Contáctenos</h3>
+                    <p>Puede enviarnos un formulario en la sección de contactos</p>
+                    <a href="/contactos">Ir a contactos</a>
                 </div>
             </div>
             <!-- End row -->
@@ -337,7 +317,7 @@
                             <li><a href="#"><i class="icon-linkedin"></i></a>
                             </li>
                         </ul>
-                        <p>© Citytours 2015</p>
+                        <p>© Chiapas Family Tours 2018</p>
                     </div>
                 </div>
             </div>

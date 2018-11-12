@@ -9390,5 +9390,12 @@ textarea {
     width: 270px;
 }
 
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
 
 /* End Added Classes */

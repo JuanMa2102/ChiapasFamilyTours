@@ -90,11 +90,21 @@ Route::get('administrador/PreguntaDetalle/{id}','AdminPreguntasFrecuentesDetalle
 
 //Galeria 
 Route::get('administrador/galeriaDias/{id}','GaleriaController@galeria'); 
-
+Route::resource('administrador/cotizacion','AdminCotizacionController');
 
 Route::resource('administrador/hoteles','AdminHotelesController');
-
+Route::resource('administrador/atractivos','AdminAtractivosController');    
+Route::resource('administrador/atractivos/detalles','AdminAtractivosDetalleController');
+Route::get('administrador/atractivos/det/crear{id}',[
+    'as' => 'addSectionAtractivo',
+    'uses' => 'AdminAtractivosDetalleController@crearAtractivo'
+]);
+Route::get('administrador/atractivos/det/editar{id}',[
+    'as' => 'editarSeccionAtractivo',
+    'uses' => 'AdminAtractivosDetalleController@editarAtractivo'
+]);
 Route::resource('administrador/adminTraslados/{request}','AdminTrasladosController@store');
+
 
 
 

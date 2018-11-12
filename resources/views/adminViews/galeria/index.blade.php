@@ -29,7 +29,7 @@
                                          <tbody>
                                          @foreach($datos as $item) 
                                          <tr>
-                                            <td>
+                                            <td class="tdShort">
                                                 <img src="{{asset($item->imagen)}}" height="150" width="200">
                                                 
 

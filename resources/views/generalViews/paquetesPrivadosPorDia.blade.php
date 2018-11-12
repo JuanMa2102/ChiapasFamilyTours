@@ -50,25 +50,44 @@
 
                 <div id="Img_carousel" class="slider-pro">
                     <div class="sp-slides">
-                        @foreach($galeria as $key => $item)
-                        <div class="sp-slide">
-                            <img alt="Image" class="sp-image" src="{{asset('css/images/blank.gif')}}" data-src="{{asset('img/slider_single_tour/1_medium.jpg')}}" data-small="{{asset('img/slider_single_tour/5_small.jpg')}}" data-medium="{{asset($item->imagen)}}" data-large="{{asset('img/slider_single_tour/1_large.jpg')}}"
-                                data-retina="{{asset('img/slider_single_tour/1_large.jpg')}}"> @if($key >= 1) @if($key%2 == 0)
-                            <p class="sp-layer sp-white sp-padding" data-vertical="5%" data-horizontal="5%" data-width="90%" data-show-transition="down" data-show-delay="400">
-                                {{$item->descripcion}}
-                            </p>
-                            @else
-                            <p class="sp-layer sp-white sp-padding" data-horizontal="10" data-vertical="10" data-width="300">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            @endif @endif
+                        <div id="Img_carousel" class="slider-pro sp-horizontal" style="width: 100%; max-width: 960px;">
+
+
+                            <div class="sp-slides-container">
+                                <div class="sp-mask sp-grab" style="width: 750px; height: 390.625px;">
+                                    <div class="sp-slides" style="transform: translate3d(-3670px, 0px, 0px);">
+                                        @foreach($galeria as $key => $item)
+                                        <div class="sp-slide {{$key == 0 ? 'sp-selected' : ''}}" data-index="{{$item->id_galeria}}" data-init="true" data-loaded="true" style="width: 750px; height: 390.625px; left: 3670px;">
+                                            <div class="sp-image-container" style="width: 750px; height: 390.625px;"><img class="sp-image" data-default="{{$item->imagen}}" data-retina="img/slider_single_tour/1_large.jpg" data-large="img/slider_single_tour/1_large.jpg" data-medium="{{$item->imagen}}" data-small="img/slider_single_tour/1_small.jpg"
+                                                    alt="Image" src="{{$item->imagen}}" style="width: 100%; height: auto; margin-left: 0px; margin-top: -51.5px;"></div>
+
+                                        </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                                <div class="sp-arrows sp-fade-arrows">
+                                    <div class="sp-arrow sp-previous-arrow"></div>
+                                    <div class="sp-arrow sp-next-arrow"></div>
+                                </div>
+                            </div>
+                            <div class="sp-thumbnails-container sp-bottom-thumbnails" style="width: 750px;">
+                                <div class="sp-thumbnails sp-grab" style="width: 932px; height: 80px;">
+                                    @foreach($galeria as $key => $item)
+                                    <div class="sp-thumbnail-container {{$key==0 ? 'sp-selected-thumbnail' : ''}}" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="{{$item->imagen}}" data-index="0" data-init="true" style="width: auto; height: 100%; margin-left: -9px; margin-top: 0px;"></div>
+                                    @endforeach
+                                </div>
+                                <div class="sp-thumbnail-arrows sp-fade-thumbnail-arrows">
+                                    <div class="sp-thumbnail-arrow sp-previous-thumbnail-arrow" style="display: none;"></div>
+                                    <div class="sp-thumbnail-arrow sp-next-thumbnail-arrow" style="display: block;"></div>
+                                </div>
+                            </div>
                         </div>
-                        @endforeach
                     </div>
 
                     <div class="sp-thumbnails">
                         @foreach($galeria as $item)
-                        <img alt="Image" class="sp-thumbnail" src="{{asset($item->imagen)}}"> @endforeach
+                        <img alt="Image" class="sp-thumbnail" src="{{$item->imagen}}"> @endforeach
                     </div>
 
                 </div>
@@ -176,30 +195,7 @@
                         <h3>Incluye</h3>
                     </div>
                     <div class="col-md-9">
-
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <ul class="list_ok">
-                                    <?php $i = 0; ?> @foreach($diasDetalle as $itemDetalle) @if($i++==4)
-                                    <!-- Se quitó el error por el momento -->
-                                    @endif
-                                    <li>
-                                        {{$itemDetalle->inclusion}}
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <ul class="list_ok">
-                                    <?php $i = 0; ?> @foreach($diasDetalle as $itemDetalle) @if($i++>=4)
-                                    <li>
-                                        {{$itemDetalle->inclusion}}
-                                    </li>
-                                    @endif @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
+                        <p style="white-space: pre-line">{{$dias[0]->inclusiones}}</p>
                     </div>
                     <!-- End row  -->
                 </div>
@@ -218,7 +214,7 @@
                         </div>
                         <p style="display: block; margin: auto; font-size: 120%; text-align: center; margin-top: 1%;">Introduzca los siguientes datos</p>
 
-                        
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group nombreGroup">
@@ -401,7 +397,7 @@
 <script src="{{asset('js/jquery.sliderPro.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function($) {
-        
+
         $(document).on('change', '#paqueteCotizacion', function(e) {
             console.log(this.options[e.target.selectedIndex].value);
             var idPaquete = this.options[e.target.selectedIndex].value;
