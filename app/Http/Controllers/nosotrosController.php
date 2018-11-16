@@ -13,6 +13,9 @@ use App\Http\Controllers\Post;
 class nosotrosController extends Controller
 {
     public function index(){
-        return view("generalViews.nosotros");
+        $infoGeneral = DB::table('tbl_general')
+        ->where('activo','=',1)
+        ->get();
+        return view("generalViews.nosotros",['infoGeneral'=>$infoGeneral]);
     }
 }
