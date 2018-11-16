@@ -98,6 +98,19 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->where('id_paquete','=',$id)
         ->where('activo','=',1)
         ->get();
+        $hotelesIncluidos = DB::table('tbl_hoteles')
+        ->select('tbl_hoteles.nombre as nombreHotel',
+                 'tbl_hoteles.pagina as paginaHotel',
+                 'tbl_tipohotel.descripcion as tipoHotel',
+                 'tbl_hoteles.id_hotel as idHotel',
+                 'tbl_tipohotel.id_tipoHotel',
+                 'tbl_hoteldia.id_hotelDia as idHotelDia')
+        ->where('tbl_hoteles.activo','=',1)
+        ->where('tbl_hoteldia.activo','=',1)
+        ->join('tbl_tipohotel', 'tbl_hoteles.id_TipoHotel', '=', 'tbl_tipohotel.id_tipoHotel')
+        ->join('tbl_hoteldia','tbl_hoteles.id_hotel','=','tbl_hoteldia.id_hotel')
+        ->where('tbl_hoteldia.id_dias','=',$id_dia)
+        ->get();
 
         $galeria = DB::table("tbl_galeria")
 
@@ -125,6 +138,7 @@ class PaquetesPrivadosPorDiaController extends Controller
                                             "id_dia"=>$id_dia,
                                             "galeria"=>$galeria,
                                             "itinerarioCorto"=>$itinerarioCorto,
-                                            "diasDetalle"=>$diasDetalle]);
+                                            "diasDetalle"=>$diasDetalle,
+                                            'hoteles'=>$hotelesIncluidos]);
     }
 }

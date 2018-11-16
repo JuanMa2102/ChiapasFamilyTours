@@ -52,6 +52,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Horario</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                <input value="{{ $informacion->horario }}" name="horario" type="horario" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Misión</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">

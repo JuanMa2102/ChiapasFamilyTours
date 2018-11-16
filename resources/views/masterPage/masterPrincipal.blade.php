@@ -2,15 +2,20 @@
 <!--[if IE 8]><html class="ie ie8"> <![endif]-->
 <!--[if IE 9]><html class="ie ie9"> <![endif]-->
 <html lang="en">
+@php
+$infoGeneral = DB::table('tbl_general')
+->where('activo','=',1)
+->get();
+@endphp
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Chiapas Family Tours - Empresa de viajes de chiapas especializada en paquetes privados">
+    <meta name="description" content="Chiapas Family Tours - Empresa de viajes al rededor de Chiapas especializada en paquetes privados">
     <meta name="author" content="Chiapas Family Tours">
-    <title>Chiapas Family Tours - Principal</title>
+    <title>{{$infoGeneral[0]->nombre}}</title>
 
     <!-- Favicons-->
     <link rel="icon" href="{{ asset('img/iconChiapas.png') }}" type="img/iconChiapas">
@@ -153,7 +158,7 @@
         <div id="top_line">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>0045 043204434</strong></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{$infoGeneral[0]->telefono}}</strong></div>
 
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <ul id="top_links">
@@ -179,7 +184,7 @@
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-2">
                     <div id="logo_home">
-                        <h1><a href="/" title="Chiapas Family Tours">Chiapas Family Tours</a></h1>
+                        <h1><a href="/" title="Chiapas Family Tours">{{$infoGeneral[0]->nombre}}</a></h1>
                     </div>
                 </div>
                 <nav class="col-md-10 col-sm-10 col-xs-10">
@@ -240,9 +245,9 @@
             <div class="row">
                 <div class="col-md-4 col-sm-3">
                     <h3>¿Necesita ayuda?</h3>
-                    <a href="tel://019616164137" id="telefono">Teléfono: 01 961 616 4137</a>
-                    <a href="mailto:reserva@chiapasfamilytours.com" id="email_footer">reserva@chiapasfamilytours.com</a>
-                    <p>Lunes a Viernes de 8:00am a 4:00pm</p>
+                    <a href="tel://019616164137" id="telefono">Teléfono: {{$infoGeneral[0]->telefono}}</a>
+                    <a href="mailto:reserva@chiapasfamilytours.com" id="email_footer">{{$infoGeneral[0]->email}}</a>
+                    <p>{{$infoGeneral[0]->horario}}</p>
                 </div>
                 <div class="col-md-2 col-sm-3">
                     <h3>Acerca de</h3>

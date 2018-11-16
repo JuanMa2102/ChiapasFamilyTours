@@ -1,5 +1,6 @@
 <div class="message-box message-box-danger animated fadeIn" id="message-box-danger-{{$item->id_itinerario}}">
 {{Form::Open(array('action'=>array('AdminItinerariosController@destroy',$item->id_itinerario),'method'=>'delete'))}}
+
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-times"></span> Eliminar Registro</div>

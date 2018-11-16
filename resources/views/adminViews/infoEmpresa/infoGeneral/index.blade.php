@@ -41,6 +41,12 @@
                                 </div>
                                 <div class="col-md-12 divLG">
                                     <div class="input-group">
+                                        <label for="horario">Horario</label>
+                                        <input name="horario" type="text" value="{{ $informacion->horario }}" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 divLG">
+                                    <div class="input-group">
                                         <label for="mision">Misión</label>
                                         <textarea class="form-control" name="mision" id="mision" cols="30" readonly rows="5">
                                             {{ $informacion->mision }}

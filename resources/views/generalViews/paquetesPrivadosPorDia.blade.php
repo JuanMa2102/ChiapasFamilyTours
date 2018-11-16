@@ -95,39 +95,14 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-3">
-                        <h3>Hoteles participantes</h3>
+                        <h3>Hoteles Participantes</h3>
                     </div>
                     <div class="col-md-9">
-                        <h4>Paris in love</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi. Eu ponderum mediocrem has, vitae adolescens in pro. Mea liber ridens inermis ei, mei legendos vulputate
-                            an, labitur tibique te qui.
-                        </p>
-                        <h4>What's include</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
-                        </p>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <ul class="list_ok">
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>No scripta electram necessitatibus sit</li>
-                                    <li>Quidam percipitur instructior an eum</li>
-                                    <li>Ut est saepe munere ceteros</li>
-                                    <li>No scripta electram necessitatibus sit</li>
-                                    <li>Quidam percipitur instructior an eum</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <ul class="list_ok">
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>No scripta electram necessitatibus sit</li>
-                                    <li>Quidam percipitur instructior an eum</li>
-                                    <li>No scripta electram necessitatibus sit</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End row  -->
+                        <ul class="list_ok">
+                            @foreach($hoteles as $item)
+                            <li>{{$item->nombreHotel}} - {{$item->tipoHotel}}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
                 <hr>

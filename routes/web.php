@@ -61,6 +61,14 @@ Route::get('administrador/paquetes/dias/crearDia/{diaActual}',[
     'uses' => 'AdminDiasController@createDia'
 ]);
 //borrar galeria
+Route::get('administrador/deleteHotel/{idHotelDia}',[
+    'as' => 'deleteHotel',
+    'uses' => 'AdminItinerariosController@eliminarHotel'
+]);
+Route::get('administrador/paquetes/dias/add-hotel/{idDiaActual}',[
+    'as' => 'addHotel',
+    'uses' => 'AdminItinerariosController@addHotel'
+]);
 Route::get('administrador/paquetes/dias/itinerarios/{paquete}/{dia}',[
     'as' => 'verItinerario',
     'uses' => 'AdminItinerariosController@verItinerario'
@@ -79,6 +87,7 @@ Route::get('administrador/paquetes/dias/itinerario/add-section/{dia}',[
     'as' => 'addSection',
     'uses' => 'AdminItinerariosController@addSection'
 ]);
+
 
 //PreguntasFrecuentes
 Route::get('administrador/preguntasFrecuentes/PreguntaDetalle/add-section/{id}',[

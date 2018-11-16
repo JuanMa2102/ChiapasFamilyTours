@@ -30,12 +30,27 @@ class AdminItinerariosController extends Controller
         ->where('activo','=',1)
         ->where('id_dias','=',$idDia)
         ->get();
+        $hotelesIncluidos = DB::table('tbl_hoteles')
+        ->select('tbl_hoteles.nombre as nombreHotel',
+                 'tbl_hoteles.pagina as paginaHotel',
+                 'tbl_tipohotel.descripcion as tipoHotel',
+                 'tbl_hoteles.id_hotel as idHotel',
+                 'tbl_tipohotel.id_tipoHotel',
+                 'tbl_hoteldia.id_hotelDia as idHotelDia')
+        ->where('tbl_hoteles.activo','=',1)
+        ->where('tbl_hoteldia.activo','=',1)
+        ->join('tbl_tipohotel', 'tbl_hoteles.id_TipoHotel', '=', 'tbl_tipohotel.id_tipoHotel')
+        ->join('tbl_hoteldia','tbl_hoteles.id_hotel','=','tbl_hoteldia.id_hotel')
+        ->where('tbl_hoteldia.id_dias','=',$idDia)
+        ->get();
         
         return view("adminViews.paquetes.dias.itinerarios.index",['paqueteActual'=>$idPaquete,
                                                                   'info'=>$info->itinerariocorto,
                                                                   'infoLarga'=>$infoLarga,
-                                                                  'diaActual' => $idDia]);
+                                                                  'diaActual' => $idDia,
+                                                                  'hoteles' => $hotelesIncluidos]);
     }
+   
     public function editarCorto($id){
         $info = DB::table('tbl_dias')
         ->where('activo','=',1)
@@ -66,13 +81,32 @@ class AdminItinerariosController extends Controller
         ->first();
         return view("adminViews.paquetes.dias.itinerarios.addSection",['info'=>$info]);
     }
-    public function create(){
-        dd("Creando");
-    }
-    public function edit($id){
-        dd("Editando " . $id);
+  
+    public function addHotel($id){
+        $hoteles = DB::table('tbl_hoteles')
+        ->where('activo','=',1)
+        ->get();
+        return view("adminViews.paquetes.dias.itinerarios.addHotel",['hotel'=>$hoteles,
+                                                                     'diaActual'=>$id]);
     }
     public function store(Request $request){
+        if($request->get('idDiaItinerario') == 'EsteNoEsItinerario'){
+            $opcion = 1;
+            $usuario=Auth::user()->id;
+            $idDiaActual = $request->get('idPaqueteActual'); //Uso la variable de paquetes para no confundirme, pero de ahí es el día actual
+            $hotelElegido = $request->get('hotel');
+            $sql = "call spCSL_CRUD_addHotel(
+                '".$opcion."',
+                '".$hotelElegido."',
+                '".$idDiaActual."',
+                '".$usuario."'
+            )";
+            $datos = DB::select($sql,array(1,10));
+            if($datos==null){
+                return Redirect::to('administrador/paquetes')->withErrors(['erroregistro'=> 'Error']);
+            }
+            return Redirect::to('administrador/paquetes');
+        }
         $credentials=$this->validate(request(),[
             'textolateral' => 'required|string|max:5000', 
             'textopie' => 'required|string|max:5000',
@@ -213,5 +247,20 @@ class AdminItinerariosController extends Controller
         }
         return back();
     
+    }
+    public function eliminarHotel($id){
+        $opcion = 1;
+        $usuario=Auth::user()->id;
+        $sql = "call spCSL_CRUD_eliminarHotelIncluido(
+            '".$opcion."',
+            '".$usuario."',
+            '".$id."'
+        )";
+        $datos = DB::select($sql,array(1,10));
+        if($datos==null){
+            // return Redirect::to('administrador/slider')->withErrors(['erroregistro'=> 'Error']);
+            return redirect()->back()->withErrors(['erroregistro'=> 'Error'])->withInput();
+        }
+        return back();
     }
 }

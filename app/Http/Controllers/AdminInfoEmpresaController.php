@@ -34,6 +34,7 @@ class AdminInfoEmpresaController extends Controller
             $nombreEmpresa = $request->get('nombreEmpresa');
             $telefonoEmpresa = $request->get('telefono');
             $direccionEmpresa = $request->get('direccion');
+            $horario = $request->get('horario');
             $correoEmpresa = $request->get('email');
             $misionEmpresa = $request->get('mision');
             $visionEmpresa = $request->get('vision');
@@ -50,6 +51,7 @@ class AdminInfoEmpresaController extends Controller
                     '".$telefonoEmpresa."',
                     '".$direccionEmpresa."',
                     '".$correoEmpresa."',
+                    '".$horario."',
                     '".$misionEmpresa."',
                     '".$visionEmpresa."',
                     '".$valoresEmpresa."',
@@ -82,6 +84,7 @@ class AdminInfoEmpresaController extends Controller
                     '".$telefonoEmpresa."',
                     '".$direccionEmpresa."',
                     '".$correoEmpresa."',
+                    '".$horario."',
                     '".$misionEmpresa."',
                     '".$visionEmpresa."',
                     '".$valoresEmpresa."',

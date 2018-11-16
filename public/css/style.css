@@ -1567,7 +1567,7 @@ Author URI: http://themeforest.net/user/Ansonika/
         font-size: 38px;
         color: #e74c3c;
         width: 100%;
-        margin-left: -15px;
+        /* margin-left: -15px; */
     }
     
     .price_list small {
@@ -5761,7 +5761,12 @@ Author URI: http://themeforest.net/user/Ansonika/
         color: #41aa54;
         font-weight: bold;
     }
+    
+    .titlePrice {
+        text-align: center;
+        font-weight: bold;
+    }
     /*End classes*/
     /*End classes*/
     /*End classes*/
-/*End classes*/
+    /*End classes*/

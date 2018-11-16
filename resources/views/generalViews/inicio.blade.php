@@ -43,7 +43,6 @@
 			<div class="main_title">
 				<h2><span>Paquetes Privados
 					<span></h2>
-						<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
 					</div>
 
 					@foreach($paquetes as $item)
@@ -93,7 +92,7 @@
 									</div>
 								</div>
 								<div class="col-lg-2 col-md-2 col-sm-2">
-									<p>EN HOTELES BOUTIQUE DESDE</p>
+									<p class="titlePrice">EN HOTELES BOUTIQUE DESDE</p>
 									<div class="price_list">
 										<div><sup>$</sup>{{$item -> precio}}*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
 										<!-- <p><a href="single_hotel.html" class="btn_1">Details</a>
@@ -114,7 +113,7 @@
 				<div class="boutiqueHoteles">
 					<div class="main_title">
 						<h2> <span>HOTELES BOUTIQUE RECOMENDADOS</span></h2>
-						<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
+						
 					</div>
 
 
@@ -155,7 +154,7 @@
 				<div class="fourStarsHoteles">
 					<div class="main_title">
 						<h2> <span>HOTELES 4 ESTRELLAS RECOMENDADOS</span></h2>
-						<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
+						
 					</div>
 
 					<div class="row">
@@ -370,7 +369,6 @@
 								<p>
 									Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in.
 								</p>
-								<a href="single_tour.html" class="btn_1 white">Read more</a>
 							</div>
 							<!--MAPA-->  
 							<div>
@@ -401,9 +399,9 @@
 					<div class="container margin_60">
 
 						<div class="main_title">
-							<h2> <span>Eligenos</span> </h2>
+							<h2> <span>¿POR QUÉ ELEGIRNOS?</span> </h2>
 							<p>
-								Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+								Le ofrecemos los siguientes servicios
 							</p>
 						</div>
 
@@ -411,34 +409,51 @@
 
 							<div class="col-md-4 wow zoomIn" data-wow-delay="0.2s">
 								<div class="feature_home">
-									<i class="icon_set_1_icon-41"></i>
-									<h3><span>+120</span> Premium tours</h3>
-									<p>
-										Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+									<i class=" icon-star-empty-2"></i>
+									<h4>Nuestros 16 Paquetes son <span>PRIVADOS</span>. Solo para ud., Amigos y Familiares</h4>
+									<p style="white-space: pre-line">
+										Nosotros sugerimos la hora de inicio de los tours y el tiempo que dedicaremos a las visitas. !Pero ustedes deciden!
+
+										¡Sabrán de antemano las horas y minutos, que tendremos en carretera!
+
+										La sección de itinerarios detallados le indica a qué hora terminan los tours y así usted, puede organizar su tiempo para otras actividades con su familia.
 									</p>
-									<a href="about.html" class="btn_1 outline">Read more</a>
+
 								</div>
 							</div>
 
 							<div class="col-md-4 wow zoomIn" data-wow-delay="0.4s">
 								<div class="feature_home">
-									<i class="icon_set_1_icon-30"></i>
-									<h3><span>+1000</span> Customers</h3>
-									<p>
-										Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+									<i class="icon-chat-5"></i>
+									<h4>Más de 50 Tips y Respuestas a Preguntas Frecuentes.</h4>
+									<h5 style="color: #f00">(Los Tips se encuentras en Atractivos Naturales y Culturales de Chiapas)</h5>
+									<p style="white-space: pre-line">
+										Más información:
+										De los Atractivos Naturales y Culturales con los que cuenta Chiapas y con información gráfica que le podrá ayudar a hacer su propio itinerario.
+
+										Posibilidad de incluir actividades de aventura:
+										Rappel en diferentes niveles, Cañonismo, Tirolesas, Descenso de Cascadas en Balsa (Rafting) y Caminata en la Selva.
 									</p>
-									<a href="about.html" class="btn_1 outline">Read more</a>
 								</div>
 							</div>
 
 							<div class="col-md-4 wow zoomIn" data-wow-delay="0.6s">
 								<div class="feature_home">
 									<i class="icon_set_1_icon-57"></i>
-									<h3><span>H24 </span> Support</h3>
-									<p>
-										Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+									<h3>Asistencia</h3>
+									<p style="white-space: pre-line; text-align: left">
+										En requerimientos especiales como:
+										* Habitaciones Handicap
+										* Asientos para Bebés 
+										* Solicitud de Cunas 
+										* Renta de Silla de Ruedas 
+										* Disponibilidade de Guías en Diferentes Idiomas:
+											- Inglés
+											- Francés
+											- Italiano
+											- Alemán
 									</p>
-									<a href="about.html" class="btn_1 outline">Read more</a>
+
 								</div>
 							</div>
 
@@ -457,11 +472,11 @@
 								</p>
 								
 								<div class="panel-group getStartedInstructions" id="accordion">
-									@foreach($reservaDetalle as $itemDetalle)
+									@foreach($reservaDetalle as $key => $itemDetalle)
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{$itemDetalle->id_reservadetalle}}"><span>1</span> {{$itemDetalle->titulo}}<i class="indicator icon-plus pull-right"></i></a>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{$itemDetalle->id_reservadetalle}}"><span>{{$key + 1}}</span> {{$itemDetalle->titulo}}<i class="indicator icon-plus pull-right"></i></a>
 											</h4>
 										</div>
 										<div id="{{$itemDetalle->id_reservadetalle}}" class="panel-collapse collapse">

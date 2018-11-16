@@ -54,16 +54,45 @@
                 </div>
                 <div class="itinerarioLargoActions">
                     <a href="{{route('editarLargo',$item->id_itinerario)}}"><button class="btn btn-primary"><i class="fa fa-edit"></i> Editar esta sección</button></a>
-                    <a href="" data-target="#message-box-danger-{{$item->id_itinerario}}" data-toggle="modal"><button class="btn btn-danger deleteSection"><i class="fa fa-trash-o"></i> Eliminar esta sección</button></a> 
+                    <a href="" data-target="#message-box-danger-{{$item->id_itinerario}}" data-toggle="modal"><button class="btn btn-danger deleteSection"><i class="fa fa-trash-o"></i> Eliminar esta sección</button></a>
                 </div>
-                
-                @include('adminViews.paquetes.dias.itinerarios.deleteSection')
-                @endforeach
-                <br>
-                    <a href="{{route('addSection',$diaActual)}}" style="display: block; margin-top: 1%; margin: auto;"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Añadir nueva sección</button></a>
-                
-                <a href="{{URL::action('AdminDiasController@show',$paqueteActual)}}"><button type="button" style="margin: 2%;" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
 
+                @include('adminViews.paquetes.dias.itinerarios.deleteSection') @endforeach
+                <br>
+                <a href="{{route('addSection',$diaActual)}}" style="display: block; margin-top: 1%; margin: auto;"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Añadir nueva sección</button></a>
+                <div class="row">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>HOTELES INCLUIDOS</strong></h3>
+                        <table class="table">
+                            <thead>
+                                <th>Hotel</th>
+                                <th>Página web</th>
+                                <th>Tipo de hotel</th>
+                                <th>Acciones</th>
+                            </thead>
+                            <tbody>
+                                @foreach($hoteles as $item)
+                                <tr>
+                                    <td>{{$item->nombreHotel}}</td>
+                                    <td>{{$item->paginaHotel}}</td>
+                                    <td>{{$item->tipoHotel}}</td>
+                                    <td>
+                                        <ul>
+                                            <a href="" data-target="#message-box-danger-{{$item->idHotelDia}}" data-toggle="modal">
+                                                <button class="btn btn-danger">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </button>
+                                        </ul>
+                                    </td>
+                                    @include('adminViews.paquetes.dias.itinerarios.deleteHotel')
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <a href="{{route('addHotel',$diaActual)}}" style="display: block; margin-top: 1%; margin: auto;"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Incluir hotel</button></a>
+                    </div>
+                    <a href="{{URL::action('AdminDiasController@show',$paqueteActual)}}"><button type="button" style="margin: 2%;" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
+                </div>
             </div>
             <!-- END DEFAULT DATATABLE -->
 
@@ -71,6 +100,7 @@
 
         </div>
     </div>
+
 
 </div>
 <!-- PAGE CONTENT WRAPPER -->
