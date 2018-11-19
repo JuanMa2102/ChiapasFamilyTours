@@ -3441,6 +3441,17 @@ blockquote.pull-right {
 .switch {
     cursor: pointer;
     position: relative;
+    width: 200px;
+}
+
+.switch>* {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.switch p {
+    margin: 0% 2%;
+    font-size: 15px;
 }
 
 .switch input {
@@ -9395,6 +9406,56 @@ textarea {
     font-weight: bold;
     font-size: 20px;
     text-transform: uppercase;
+}
+
+.notificacionSolicitud {
+    position: relative;
+}
+
+.notificacionSolicitud:after {
+    position: absolute;
+    content: '¡Tienes mensajes!';
+    top: 18px;
+    left: 230px;
+    width: 150px;
+    height: 20px;
+    font-size: 13px;
+    background-color: #038868;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    animation: zooming 2s infinite ease;
+    transform-origin: center;
+}
+
+@keyframes zooming {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.iconNotificacion:before {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 15px 0px 15px 15px;
+    border-color: transparent transparent transparent #038868;
+    top: 5px;
+    animation: inOut infinite linear 3s;
+}
+
+@keyframes inOut {
+    0%,
+    100% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(0px);
+    }
 }
 
 

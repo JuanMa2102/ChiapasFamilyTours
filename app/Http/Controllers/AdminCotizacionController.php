@@ -34,7 +34,7 @@ class AdminCotizacionController extends Controller
         ->where('tbl_cotizaciondetalle.activo','=',1)
         ->join('tbl_cotizaciondetalle', 'tbl_paquete.id_paquete', '=', 'tbl_cotizaciondetalle.id_paquete')
         ->join('tbl_dias','tbl_dias.id_dias','=','tbl_cotizaciondetalle.id_dias')
-        ->where('id_cotizaciondetalle','=',$id)
+        ->where('id_cotizacion','=',$id)
         ->get();
         
         $datos=DB::table('tbl_cotizacion')

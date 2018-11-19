@@ -39,14 +39,14 @@ function validar() {
         } else {
             $(".nombreGroup").addClass("inputValido");
             $(".nombreGroup").removeClass("inputInvalido");
-            bn= true;
+            bn = true;
 
         }
     });
 
 
 
- /**Validacion apellido */
+    /**Validacion apellido */
     document.getElementById('apellido').addEventListener('input', function() {
         campo = event.target;
 
@@ -114,7 +114,7 @@ function validar() {
         if (telefonoRegex.test(campo.value) && campo.value.length < 20 && campo.value.length > 7) {
             $(".telefonoGroup").addClass("inputValido");
             $(".telefonoGroup").removeClass("inputInvalido");
-            bt = true; 
+            bt = true;
         } else {
             $(".telefonoGroup").removeClass("inputValido");
             $(".telefonoGroup").addClass("inputInvalido");
@@ -170,7 +170,7 @@ function validar() {
 
         verificacionRegex = /^([0-9])*$/i;
 
-        if (verificacionRegex.test(campo.value) && campo.value.length < 10 && campo.value==4) {
+        if (verificacionRegex.test(campo.value) && campo.value.length < 10 && campo.value == 4) {
             $(".verificacionGroup").addClass("inputValido");
             $(".verificacionGroup").removeClass("inputInvalido");
             bv = true;
@@ -216,7 +216,7 @@ function validarsend() {
         return true;
 
     } else {
-       alert("La informacion no es valida");
-        return false;
+
+        return true;
     }
 }

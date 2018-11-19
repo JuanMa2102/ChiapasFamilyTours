@@ -102,7 +102,7 @@
             <p class="titlePrice">EN HOTELES BOUTIQUE DESDE</p>
             <div class="price_list">
                 <div><sup>$</sup>{{$item -> precio}}*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
-                    <!-- <p><a href="single_hotel.html" class="btn_1">Details</a>
+                    <!-- <p><a href="" class="btn_1">Details</a>
 										</p> -->
                 </div>
             </div>
@@ -125,79 +125,70 @@
 
 
         <div class="row">
-            @foreach($hotelesBoutique as $item)
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
-                <div class="hotel_container">
-                    <div class="ribbon_3 popular"><span>Popular</span></div>
-                    <div class="img_container">
-                        <a href="single_hotel.html">
-										<img src="{{asset($item->imagen)}}" width="800" height="533" class="img-responsive" alt="single-hotel">
-										<div class="score"><span>7.5</span>Good</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>59</span>
-										</div>
-									</a>
+            @if($hotelesBoutique->isEmpty())
+            <p style="text-align: center; margin: auto; display: block; font-size: 18px; font-weight: bold;">No hay Hoteles Boutique recomendados por el momento</p>
+            @else @foreach($hotelesBoutique as $item)
+            <div class=" col-md-4 col-sm-6 wow zoomIn " data-wow-delay="0.1s ">
+                <div class="hotel_container ">
+                    <div class="ribbon_3 popular "><span>TOP</span></div>
+                    <div class="img_container ">
+                        <a href="">
+                                            <img src="{{asset($item->imagen)}}" width="800" height="533" class="img-responsive" alt="single-hotel">
+                </a>
                     </div>
                     <div class="hotel_title">
-                        <h3><strong>{{$item->nombre}}</strong> </h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-                        </div>
+                    <h3><strong>{{$item->nombre}} - <a href="{{$item->pagina == null ? '' : 'http://'.$item->pagina}}">{{$item->pagina == null ? 'Página no disponible' : 'Visitar página'}}</a></strong> </h3>
+                        <p></p>
                         <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
+
                         <!-- End wish list-->
                     </div>
                 </div>
                 <!-- End box -->
             </div>
+            @endforeach @endif
+
+
             <!-- End col-md-4 -->
-            @endforeach
+
         </div>
 
 
     </div>
     <div class="fourStarsHoteles">
-        <div class="main_title">
+        <div class="main_title" style="margin-top: 3%;">
             <h2> <span>HOTELES 4 ESTRELLAS RECOMENDADOS</span></h2>
-
         </div>
 
         <div class="row">
-            @foreach($hotelesCuatroEstrella as $item)
+            @if($hotelesCuatroEstrella->isEmpty())
+            <p style="text-align: center; margin: auto; display: block; font-size: 18px; font-weight: bold;">No hay Hoteles 4 Estrellas recomendados por el momento</p>
+            @else @foreach($hotelesCuatroEstrella as $item)
             <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
                 <div class="hotel_container">
-                    <div class="ribbon_3 popular"><span>Popular</span></div>
+                    <div class="ribbon_3 popular"><span>TOP</span></div>
                     <div class="img_container">
-                        <a href="single_hotel.html">
+                        <a href="">
 										<img src="{{asset($item->imagen)}}" width="800" height="533" class="img-responsive" alt="image">
-										<div class="score"><span>7.5</span>Good</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>59</span>
-										</div>
 									</a>
                     </div>
                     <div class="hotel_title">
-                        <h3><strong>{{$item->nombre}}</strong> </h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-                        </div>
+                    <h3><strong>{{$item->nombre}} - <a href="{{$item->pagina == null ? '' : 'http://'.$item->pagina}}">{{$item->pagina == null ? 'Página no disponible' : 'Visitar página'}}</a></strong> </h3>
                         <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
+
                         <!-- End wish list-->
                     </div>
                 </div>
                 <!-- End box -->
             </div>
             <!-- End col-md-4 -->
-            @endforeach
+            @endforeach @endif
+
+
         </div>
         <!-- End row -->
-        <p class="text-center nopadding">
-            <a href="/hotelesRestaurantes" class="btn_1 medium"><i class="icon-eye-7"></i>Ver todos los hoteles</a>
+        <p class="text-center" style="margin-top: 30px;">
+            <a href="/hoteles-all" class="btn_1 medium"><i class="icon-eye-7"></i>Ver todos los hoteles</a>
         </p>
     </div>
     <div class="container-fluid">
@@ -361,20 +352,42 @@
 						</div>
 						<div class="col-md-8">
 							<!-- START MAP -->
-							<div id="map" class="map"></div>
+							<div style="position: relative; overflow: hidden" class="sp-slide">
+                                <button class="timeSwitch"><i class="icon-menu"></i></button>
+  <img style="width: 100%; " alt="Image" class="sp-image" src="{{asset('img/rutaTrabajo.png')}}" data-src="{{asset('img/rutaTrabajo.png')}}" data-small="img/slider_single_tour/6_small.jpg" data-medium="{{asset('img/rutaTrabajo.png')}}" data-large="img/slider_single_tour/6_large.jpg" data-retina="img/slider_single_tour/6_large.jpg">
+  <p class="sp-layer sp-white sp-padding infoTiempo" data-horizontal="10" data-vertical="10" data-width="390">
+  Aeropuerto Angel Albino Corzo – Tuxtla Gutierrez   40  min
+Aeropuerto Angel Albino Corzo – Chiapa de Corzo      30  min
+Aeropuerto Angel Albino Corzo – San Cristobal de las Casas  1  h 10 min.
+San Cristobal de las Casas – Comitan de Dominguez    1  h  45  min 
+Comitan de Dominguez   - Cascadas del  Chiflon   50  min
+Comitan de Dominguez   - Lagos  de  Montebello   1  h  10  min
+Lagos  de  Montebello  . Centro  Ecoturístico las  Nubes   2  h
+Centro Ecoturístico las Nubes -Centro Ecoturístico las Guacamayas 2  h 45 min.
+Centro  Ecoturístico las Guacamayas –Frontera Corozal  3  h 
+Frontera Corozal -  Zona Arqueológica  de  Bonampak    50  min
+Zona Arqueológica  de  Bonampak – Palenque   2   h   40  min 
+Palenque – Cascadas de Misol Ha -  40  min
+Palenque – Cascadas de Agua Azul  -  1  h   50  min
+Palenque – Aeropuerto  de  Villa Hermosa   2   h
+___________________________________________________________________________________
+Tuxtla Gutierrez – Sima  de las Cotorras  1 h  30 min
+Tuxtla Gutierrez – Cañon rio la Venta y Cascada del Aguacero 1 h 15 min
+San Cristobal -  Palenque .  Via Ocosingo  6 H.
+
+ </p>
+</div>
+
 							<!-- END MAP -->
 						</div>
 					</div>
 					<div class="white_bg">
 						<div class="container margin_60">
-							
 							<!-- End row -->
-
 							<div class="banner colored">
-
-								<h4>Discover our Top tours <span>from $34</span></h4>
+								<h4>Hoteles Boutique a partir de <span>$1800</span></h4>
                 <p>
-                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in.
+                    Comuníquese con nosotros al número {{$infoGeneral[0]->telefono}} y le damos grandiosos tips antes de cotizar su viaje
                 </p>
         </div>
         <!--MAPA-->
@@ -391,14 +404,7 @@
 
     <section class="promo_full">
         <div class="promo_full_wp magnific">
-
-            <div>
-                <h3>BELONG ANYWHERE</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset, doctus volumus explicari qui ex.
-                </p>
-                <a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video"><i class="icon-play-circled2-1"></i></a>
-            </div>
+        <iframe width="100%" height="500" src="{{$infoGeneral[0]->video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
     <!-- End section -->
@@ -419,8 +425,9 @@
                     <i class=" icon-star-empty-2"></i>
                     <h4>Nuestros 16 Paquetes son <span>PRIVADOS</span>. Solo para ud., Amigos y Familiares</h4>
                     <p style="white-space: pre-line">
-                        Nosotros sugerimos la hora de inicio de los tours y el tiempo que dedicaremos a las visitas. !Pero ustedes deciden! ¡Sabrán de antemano las horas y minutos, que tendremos en carretera! La sección de itinerarios detallados le indica a qué hora terminan
-                        los tours y así usted, puede organizar su tiempo para otras actividades con su familia.
+                        Nosotros sugerimos la hora de inicio de los tours y el tiempo que dedicaremos a las visitas. !Pero ustedes deciden! ¡Sabrán de antemano las horas y minutos, que tendremos en carretera! 
+                        
+                        La sección de itinerarios detallados le indica a qué hora terminan los tours y así usted, puede organizar su tiempo para otras actividades con su familia.
                     </p>
 
                 </div>
@@ -432,7 +439,10 @@
                     <h4>Más de 50 Tips y Respuestas a Preguntas Frecuentes.</h4>
                     <h5 style="color: #f00">(Los Tips se encuentras en Atractivos Naturales y Culturales de Chiapas)</h5>
                     <p style="white-space: pre-line">
-                        Más información: De los Atractivos Naturales y Culturales con los que cuenta Chiapas y con información gráfica que le podrá ayudar a hacer su propio itinerario. Posibilidad de incluir actividades de aventura: Rappel en diferentes niveles, Cañonismo, Tirolesas,
+                        Más información: 
+                        De los Atractivos Naturales y Culturales con los que cuenta Chiapas y con información gráfica que le podrá ayudar a hacer su propio itinerario. 
+                            
+                        Posibilidad de incluir actividades de aventura: Rappel en diferentes niveles, Cañonismo, Tirolesas,
                         Descenso de Cascadas en Balsa (Rafting) y Caminata en la Selva.
                     </p>
                 </div>
@@ -443,7 +453,12 @@
                     <i class="icon_set_1_icon-57"></i>
                     <h3>Asistencia</h3>
                     <p style="white-space: pre-line; text-align: left">
-                        En requerimientos especiales como: * Habitaciones Handicap * Asientos para Bebés * Solicitud de Cunas * Renta de Silla de Ruedas * Disponibilidade de Guías en Diferentes Idiomas: - Inglés - Francés - Italiano - Alemán
+                        En requerimientos especiales como: 
+                        * Habitaciones Handicap 
+                        * Asientos para Bebés 
+                        * Solicitud de Cunas 
+                        * Renta de Silla de Ruedas 
+                        * Disponibilidade de Guías en Diferentes Idiomas: - Inglés - Francés - Italiano - Alemán
                     </p>
 
                 </div>
@@ -509,7 +524,20 @@
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script type="text/javascript" src="{{asset('js/map_home.js')}}"></script>
 <script type="text/javascript" src="{{asset('rev-slider-files/js/extensions/revolution.extension.video.min.js')}}"></script>
-
+<script>
+    var tiempo = false;
+    $(".timeSwitch").click(()=>{
+        if(!tiempo){
+            $(".infoTiempo").addClass('active');
+            tiempo = true;
+        }
+        else{
+            $(".infoTiempo").removeClass('active');
+            tiempo = false;
+        }
+        
+    });
+</script>
 <script type="text/javascript">
     var tpj = jQuery;
 

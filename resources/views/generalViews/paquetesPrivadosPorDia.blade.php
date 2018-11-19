@@ -131,35 +131,33 @@
                     </div>
                     <div class="col-md-9 infoPaqueteCosto">
                         <!-- BTN HOTEL -->
+                        <!-- Sin Precio -->
                         <table class="table">
+                            <h3>PRECIOS POR PERSONA</h3>
                             <thead>
                                 <tr>
                                     <th>Hotel</th>
                                     <th>Habitación Doble</th>
-                                    <th>Habitación Triple</th>
-                                    <th>Habitación Cuádruple APROVECHE</th>
-                                    <th>Habitación Individual
-                                        <th>
+                                    <th>Hoteles incluidos</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Boutique</td>
                                     <td>$3000</td>
-                                    <td>$2000</td>
-                                    <td>$1800</td>
-                                    <td>$2500</td>
+                                    <td>Hotel BO, Hotel Casa del Alma, Hotel Plaza Gallery</td>
                                 </tr>
                                 <tr>
                                     <td>4 Estrellas</td>
                                     <td>$3000</td>
-                                    <td>$2000</td>
-                                    <td>$1800</td>
-                                    <td>$2500</td>
+                                    <td>Hotel Sombra del Agua, Hotel Ciudad Real, Hotel Casa Vieja</td>
                                 </tr>
-
                             </tbody>
                         </table>
+                        <p>* Precio de temporada baja (10 de Enero al 20 de Abril)</p>
+                        <p>* Precio de temporada baja (10 de Enero al 20 de Abril)</p>
+                        <p>* Precio de temporada baja (10 de Enero al 20 de Abril)</p>
+                        <p>* Suplemento HOTEL BO, HOTEL PLAZA GALLERY, HOTEL UVENZE ARTE</p>
                         <!-- END BTN HOTEL -->
                         <!-- End row  -->
                     </div>
@@ -295,7 +293,7 @@
                                     <div class="input-group">
                                         <label>Seleccione categoría de hotel</label>
                                         <select name="tipoHotel" class="form-control" id="tipoHotel">
-                                                        <option name = "seleccione" value="0" >Seleccione...</option>
+                                                        <option selected name = "seleccione" value="0" >Seleccione...</option>
                                                         @foreach($tipoHotel as $item)
                                                         <option value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
                                                         @endforeach
@@ -310,9 +308,11 @@
                                 <div class="form-group tipoGroup">
                                     <div class="input-group">
                                         <label>Seleccione Hotel</label>
-                                        <select name="tipoHotel" class="form-control" id="tipoHotel">
+                                        <select name="hotelElegido" class="form-control" id="hotelElegido">
                                                         <option name = "seleccione" value="0" >Seleccione...</option>
-                                                        <option value="1">Hotel Boutique Bo</option>    
+                                                        @foreach($hotelElegido as $item)
+                                                        <option cosmico="{{$item->id_TipoHotel}}" value="{{$item->nombre}}">{{$item->nombre}}</option>
+                                                        @endforeach
                                                     </select>
                                     </div>
                                     <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
@@ -379,6 +379,14 @@
             $("select[name='diasCotizacion'] option[name='seleccione']").prop("selected", true);
             $("select[name='diasCotizacion'] option").removeClass('active');
             $("select[name='diasCotizacion'] option[cosmico='" + idPaquete + "']").addClass('active');
+
+        });
+        $(document).on('change', '#tipoHotel', function(e) {
+            console.log(this.options[e.target.selectedIndex].value);
+            var idTipoHotel = this.options[e.target.selectedIndex].value;
+            $("select[name='hotelElegido'] option[name='seleccione']").prop("selected", true);
+            $("select[name='hotelElegido'] option").removeClass('active');
+            $("select[name='hotelElegido'] option[cosmico='" + idTipoHotel + "']").addClass('active');
 
         });
         $('#Img_carousel').sliderPro({

@@ -7,10 +7,7 @@ $(document).ready(function() {
         $('#nombre').val(localStorage.getItem("nombre"));
     }
 
-    if (localStorage.getItem("tipoHotel")) {
-        $("#tipoHotel option[value=" + localStorage.getItem("tipoHotel") + "]").attr("selected", true);
 
-    }
 
     if (localStorage.getItem("apellido")) {
         $('#apellido').val(localStorage.getItem("apellido"));
@@ -78,8 +75,6 @@ $(document).ready(function() {
         localStorage.setItem("salida", $('#salida').val());
     });
 
-    $('#tipoHotel').change(function() {
-        localStorage.setItem("tipoHotel", $('#tipoHotel').val());
-    });
+
 
 });

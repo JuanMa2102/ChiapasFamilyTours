@@ -204,7 +204,7 @@ $infoGeneral = DB::table('tbl_general')
 
                             </li>
                             <li class="submenu">
-                                <a href="/hotelesRestaurantes" class="show-submenu">Hoteles</i></a>
+                                <a href="/hoteles-all" class="show-submenu">Hoteles</i></a>
                             </li>
 
                             <li class="submenu">
@@ -240,6 +240,19 @@ $infoGeneral = DB::table('tbl_general')
 	@yield('content')
 	<!-- ================= END CONTENT SECTION ============ -->
 
+    <div class="containerFixed">
+        <div class="messageBox">
+            @if(session()->has('success'))
+            <h3>¡Envío Exitoso!</h3>
+            <p>{{session()->get('success')}}</p>
+            @endif
+            @if(session()->has('error'))
+            <h3>¡Error!</h3>
+            <p>{{session()->get('error')}}</p>
+            @endif
+        </div>
+    </div>
+
     <footer style="z-index: -1 !important;" id="pattern_3" class="revealed">
         <div class="container">
             <div class="row">
@@ -260,39 +273,14 @@ $infoGeneral = DB::table('tbl_general')
                         </li>
                         <li><a href="/traslados">Traslados</a>
                         </li>
-                        <li><a href="/hotelesRestaurantes">Hoteles</a>
+                        <li><a href="/hoteles-all">Hoteles</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <h3>Comentarios de clientes</h3>
                     <!--Post-->
-                    <div class="post">
-                        <figure>
-                            <a href="#"><img src="img/post-thumb-1.jpg" alt="">
-                            </a>
-                        </figure>
-                        <h4><a href="#">Planning for the future</a></h4>
-                        <i class="icon-calendar-empty"></i> Jun 12,2016
-                    </div>
-                    <!--Post-->
-                    <div class="post">
-                        <figure>
-                            <a href="#"><img src="img/post-thumb-2.jpg" alt="">
-                            </a>
-                        </figure>
-                        <h4><a href="#">Unique places to discover</a></h4>
-                        <i class="icon-calendar-empty"></i> Jun 14,2016
-                    </div>
-                    <!--Post-->
-                    <div class="post">
-                        <figure>
-                            <a href="#"><img src="img/post-thumb-3.jpg" alt="">
-                            </a>
-                        </figure>
-                        <h4><a href="#">We love travel</a></h4>
-                        <i class="icon-calendar-empty"></i>Jun 17,2016
-                    </div>
+                    <p>Vea lo que dicen nuetros clientes <a style="text-decoration: underline" href="/nosotros">Aquí</a></p>
                 </div>
                 <div class="col-md-2 col-sm-12">
                     <h3>Contáctenos</h3>
@@ -304,25 +292,8 @@ $infoGeneral = DB::table('tbl_general')
             <div class="row">
                 <div class="col-md-12">
                     <div id="social_footer">
-                        <ul>
-                            <li><a href="#"><i class="icon-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="icon-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="icon-google"></i></a>
-                            </li>
-                            <li><a href="#"><i class="icon-instagram"></i></a>
-                            </li>
-                            <li><a href="#"><i class="icon-pinterest"></i></a>
-                            </li>
-                            <li><a href="#"><i class="icon-vimeo"></i></a>
-                            </li>
-                            <li><a href="#"><i class="icon-youtube-play"></i></a>
-                            </li>
-                            <li><a href="#"><i class="icon-linkedin"></i></a>
-                            </li>
-                        </ul>
-                        <p>© Chiapas Family Tours 2018</p>
+                       
+                        <p>© Impulsado por <a href="http://www.creativasoftline.com">Creativa Softline</a> - Todos los derechos reservados</p>
                     </div>
                 </div>
             </div>
@@ -337,9 +308,30 @@ $infoGeneral = DB::table('tbl_general')
 
 
     <!-- Common scripts -->
+    
     <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('js/common_scripts_min.js') }}"></script>
     <script src="{{ asset('js/functions.js') }}"></script>
+    <script>
+    $(window).on("load",() => {
+        var contenedor = $("#contenedorCarga");
+        $(contenedor).css({
+                "visibility":"hidden",
+                "opacity":"0"
+            });
+            @if(session()-> has('success') || session()-> has('error'))
+            $(".containerFixed").css('display', 'block');
+            setTimeout(() => {
+                $(".messageBox").css('transform', 'scale(0)');
+            }, 5000);
+            setTimeout(()=>{
+                $(".containerFixed").css('display', 'none');
+            },5500);
+            @endif
+
+        });
+
+    </script>
     @stack('contactScripts')
     @stack('inicioScripts')
     @stack('hotelesRestaurantesScript')
@@ -349,13 +341,8 @@ $infoGeneral = DB::table('tbl_general')
     @stack('actividadesDeAventuraScripts')
     @stack('paquetesPrivadosPorDiaScript')
     <!-- Preloader -->
-    <script>
-        window.onload = function() {
-            var contenedor = document.getElementById('contenedorCarga')
-            contenedor.style.visibility = 'hidden';
-            contenedor.style.opacity = '0';
-        }
-    </script>
+
+    
 
 
 </body>

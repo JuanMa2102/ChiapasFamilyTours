@@ -19,11 +19,13 @@ class inicioController extends Controller
         ->where('activo','=',1)
         ->get();
         $hotelesBoutique = DB::table('tbl_hoteles')
+        ->where('recomendado','=',1)
         ->where('activo','=',1)
         ->where('id_TipoHotel','=',1)
         ->take(3)
         ->get();
         $hotelesCuatroEstrella = DB::table('tbl_hoteles')
+        ->where('recomendado','=',1)
         ->where('activo','=',1)
         ->where('id_TipoHotel','=',2)
         ->take(3)
@@ -34,13 +36,17 @@ class inicioController extends Controller
         $reservaDetalle = DB::table('tbl_reservadetalle')
         ->where('activo','=',1)
         ->get();
+        $infoGeneral = DB::table('tbl_general')
+        ->where('activo','=',1)
+        ->get();
         return view("generalViews.inicio",["slider"=>$slider,
                                            "paquetes"=>$paquetes,
                                            "dias"=>$dias,
                                            "hotelesBoutique"=>$hotelesBoutique,
                                            "hotelesCuatroEstrella"=>$hotelesCuatroEstrella,
                                            "reserva"=>$reserva,
-                                           "reservaDetalle"=>$reservaDetalle
+                                           "reservaDetalle"=>$reservaDetalle,
+                                           "infoGeneral"=>$infoGeneral
                                           ]);
     }
 }

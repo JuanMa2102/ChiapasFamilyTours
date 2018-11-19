@@ -20,6 +20,8 @@ class AdminHotelesController extends Controller
     public function index(){
         $hotel = DB::table('tbl_hoteles')
         ->select('tbl_hoteles.nombre as nombreHotel',
+        'tbl_hoteles.precio as precio',
+                 'tbl_hoteles.recomendado as recomendado',
                  'tbl_hoteles.direccion as direccionHotel',
                  'tbl_hoteles.pagina as paginaHotel',
                  'tbl_hoteles.imagen as imagenHotel',
@@ -40,6 +42,8 @@ class AdminHotelesController extends Controller
     public function edit($id){
         $hotel = DB::table('tbl_hoteles')
         ->select('tbl_hoteles.nombre as nombreHotel',
+                 'tbl_hoteles.precio as precio',
+                 'tbl_hoteles.recomendado as recomendado',
                  'tbl_hoteles.direccion as direccionHotel',
                  'tbl_hoteles.pagina as paginaHotel',
                  'tbl_hoteles.imagen as imagenHotel',
@@ -63,24 +67,38 @@ class AdminHotelesController extends Controller
             'url' => 'required',
             'pagina' => 'required',
             'tipo' => 'required',
-            'imagenHotel'=>'required|mimes:jpg,jpeg,png|max:5000'
+            'imagenHotel'=>'required|mimes:jpg,JPG,PNG,jpeg,png|max:5000'
         ]);
+        
         $nombre = $request->get('nombre');
         $url = $request->get('url');
         $pagina = $request->get('pagina');
         $tipoHotel = $request->get('tipo');
         $usuario=Auth::user()->id;
+        $recomendado = 0;
+        if($request->get('precio') == "" || $request->get('precio') == null){
+            $precio = "Precio a discutir";
+        }
+        else{
+            $precio = $request->get('precio');
+        }
+        if($request->get('recomendado') == "on"){
+            $recomendado = 1;
+        }
+        
         if($request->file('imagenHotel')){
             $path= Storage::disk('local')->put('uploads/hoteles', $request->file('imagenHotel'));
             $imgHotel = asset($path);
             $opcion = 1;
-            $sql = "call spCSL_CRUD_hoteles(
+            $sql = "call spCSL_CRUD_hoteles (
                 '".$opcion."',
                 '".$nombre."',
                 '".$url."',
                 '".$pagina."',
                 '".$tipoHotel."',
                 '".$imgHotel."',
+                '".$recomendado."',
+                '".$precio."',
                 '".$usuario."',
                 '1'
             )";
@@ -100,6 +118,16 @@ class AdminHotelesController extends Controller
         $pagina = $request->get('pagina');
         $tipoHotel = $request->get('tipo');
         $usuario=Auth::user()->id;
+        $recomendado = 0;
+        if($request->get('precio') == "" || $request->get('precio') == null){
+            $precio = "Precio a discutir";
+        }
+        else{
+            $precio = $request->get('precio');
+        }
+        if($request->get('recomendado') == "on"){
+            $recomendado = 1;
+        }
         if($request->file('imagenHotel')){
             $imagenAnterior = DB::table('tbl_hoteles')
                 ->select('imagen')
@@ -120,6 +148,8 @@ class AdminHotelesController extends Controller
                 '".$pagina."',
                 '".$tipoHotel."',
                 '".$imgHotel."',
+                '".$recomendado."',
+                '".$precio."',
                 '".$usuario."',
                 '".$id."'
             )";
@@ -138,6 +168,8 @@ class AdminHotelesController extends Controller
                 '".$pagina."',
                 '".$tipoHotel."',
                 'no importa',
+                '".$recomendado."',
+                '".$precio."',
                 '".$usuario."',
                 '".$id."'
             )";

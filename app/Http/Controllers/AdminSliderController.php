@@ -36,11 +36,8 @@ class AdminSliderController extends Controller
     public function store(Request $request){
         
         $credentials=$this->validate(request(),[
-            'tituloP' => 'required|string|max:199', 
-            'subtituloP' => 'required|string|max:99',
             'imgPresentacion'=>'required|mimes:jpg,JPG,PNG,jpeg,png|max:5000'
         ]);
-        dd($request->file('imgPresentacion'));
     
         $tituloP = $request->get('tituloP');
         $subtituloP = $request->get('subtituloP');

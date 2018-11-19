@@ -62,6 +62,26 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Precio de hotel</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                <input value="{{$hotel->precio}}" name="precio" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">¿Desea recomendar este hotel?</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <input name="recomendado" class="checkbox" {{$hotel->recomendado == 1 ? 'checked' : ''}} type="checkbox">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Imagen de hotel</label>
                         <div class="col-md-6 col-xs-12">
                             <input type="file" name="imagenHotel" class="file" accept="image/*" data-preview-file-type="any" /> {!! $errors->first('img','<span class="help-block">Es necesario introducir una imagen</span>')!!}

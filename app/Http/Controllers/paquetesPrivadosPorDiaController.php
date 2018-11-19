@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
+use Mail;
 
 class PaquetesPrivadosPorDiaController extends Controller
 {
@@ -19,10 +20,14 @@ class PaquetesPrivadosPorDiaController extends Controller
         $tipoHotel = DB::table('tbl_tipohotel')
         ->where('activo','=',1)
         ->get();
+        $hotelElegido = DB::table('tbl_hoteles')
+        ->where('activo','=',1)
+        ->get();
 
         return view("generalViews.paquetesPrivadosPorDia",["paquetes"=>$paquetes,
                                             "dias"=>$dias,
-                                            "tipoHotel"=>$tipoHotel]);
+                                            "tipoHotel"=>$tipoHotel,
+                                            "hotelElegido"=>$hotelElegido]);
     }
 
     public function store(Request $request)
@@ -38,7 +43,7 @@ class PaquetesPrivadosPorDiaController extends Controller
         $mensaje = $request->get('mensaje');
         $tipoHotel = $request->get('tipoHotel');
         $usuario=1;
-
+        $hotelElegido = $request->get('hotelElegido');
         $paqute= $request->get('paqueteID');
         $dias = $request->get('diaID');
         
@@ -55,6 +60,7 @@ class PaquetesPrivadosPorDiaController extends Controller
             '".$salida."',
             '".$mensaje."',
             '".$tipoHotel."',
+            '".$hotelElegido."',
             '".$usuario."'
         )";
         
@@ -71,14 +77,20 @@ class PaquetesPrivadosPorDiaController extends Controller
             )";
             $datos_cotizacionDetalle = DB::select($sql_cotiazacionDetalle,array(1,5));
         }
+   
+        Mail::send('generalViews.email',["datos"=>$request->all()], function($messaje){
+            $messaje->from('servicios.creativasoftline@gmail.com','Solicitud de Cotización');
+            $messaje->to('jassselvas@gmail.com')->subject('SOLICITUD DE COTIZACIÓN');
+            
+        });
         
         if($datos_contacto != null)
         {
-            return Redirect::to('/paquetesPrivados');
+            return redirect()->back()->with("success","Hemos recibido su solicitud. Nos comunicaremos con usted en breve.");;
         }
         else
         {
-            return Redirect::to('/paquetesPrivados')->with("error","Ha ocurrido un error al enviar su formulario. Inténtelo más tarde.");
+            return redirect()->back()->with("error","Tenemos problemas para recibir su solicitud. Porfavor inténtelo más tarde.");
         }
     }
 
@@ -128,6 +140,9 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->where('id_dias','=',$id_dia)
         ->where('activo','=',1)
         ->first();
+        $hotelElegido = DB::table('tbl_hoteles')
+        ->where('activo','=',1)
+        ->get();
 
 
         return view("generalViews.paquetesPrivadosPorDia",["paquetes"=>$paquetes,
@@ -139,6 +154,7 @@ class PaquetesPrivadosPorDiaController extends Controller
                                             "galeria"=>$galeria,
                                             "itinerarioCorto"=>$itinerarioCorto,
                                             "diasDetalle"=>$diasDetalle,
-                                            'hoteles'=>$hotelesIncluidos]);
+                                            'hoteles'=>$hotelesIncluidos,
+                                            'hotelElegido'=>$hotelElegido]);
     }
 }

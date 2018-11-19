@@ -11,6 +11,6 @@ class hotelesRestaurantesController extends Controller
         $hoteles = DB::table('tbl_hoteles')
         ->where('activo','=',1)
         ->get();
-        return view('generalViews.hotelesRestaurantes',["hoteles"=>$hoteles]);
+        return view('generalViews.hoteles-all',["hoteles"=>$hoteles]);
     }
 }

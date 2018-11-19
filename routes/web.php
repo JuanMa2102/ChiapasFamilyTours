@@ -16,7 +16,7 @@ Route::resource('/','inicioController');
 Route::resource('/paquetesPrivados','paquetesPrivadosController');
 Route::resource('/contactos','contactosController');
 Route::resource('/preguntasFrecuentes','preguntasFrecuentesController');
-Route::resource('/hotelesRestaurantes','hotelesRestaurantesController');
+Route::resource('/hoteles-all','hotelesRestaurantesController');
 Route::resource('/error404','error404Controller');
 Route::resource('/descAtractivo','descAtractivoController');
 Route::resource('/itinerarioDetallado','itinerarioDetalladoController');

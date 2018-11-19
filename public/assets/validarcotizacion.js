@@ -1,4 +1,4 @@
-var bn , ba, bt, be, bm , na , nm , bd , bp , bh , bs, bl;
+var bn, ba, bt, be, bm, na, nm, bd, bp, bh, bs, bl;
 
 function validar() {
 
@@ -39,14 +39,14 @@ function validar() {
         } else {
             $(".nombreGroup").addClass("inputValido");
             $(".nombreGroup").removeClass("inputInvalido");
-            bn= true;
+            bn = true;
 
         }
     });
 
 
 
- /**Validacion apellido */
+    /**Validacion apellido */
     document.getElementById('apellido').addEventListener('input', function() {
         campo = event.target;
 
@@ -114,7 +114,7 @@ function validar() {
         if (telefonoRegex.test(campo.value) && campo.value.length < 20 && campo.value.length > 7) {
             $(".telefonoGroup").addClass("inputValido");
             $(".telefonoGroup").removeClass("inputInvalido");
-            bt = true; 
+            bt = true;
         } else {
             $(".telefonoGroup").removeClass("inputValido");
             $(".telefonoGroup").addClass("inputInvalido");
@@ -246,37 +246,37 @@ function validar() {
     });
 
     /** Validacion paquete*/
-    document.getElementById('paqueteCotizacion').addEventListener('input', function() {
-        campo = event.target;
+    // document.getElementById('paqueteCotizacion').addEventListener('input', function() {
+    //     campo = event.target;
 
-        mensajeRegex = /[-a-zA-Z0-9@:%._\+~#=]/i;
+    //     mensajeRegex = /[-a-zA-Z0-9@:%._\+~#=]/i;
 
-        if (mensajeRegex.test(campo.value) && campo.value != 0) {
-            $(".paqueteGroup").addClass("inputValido");
-            $(".paqueteGroup").removeClass("inputInvalido");
-            bp = true;
-        } else {
-            $(".paqueteGroup").removeClass("inputValido");
-            $(".paqueteGroup").addClass("inputInvalido");
-            bp = false;
-        }
-    });
-    /** Validacion dias*/
-    document.getElementById('diasCotizacion').addEventListener('input', function() {
-        campo = event.target;
+    //     if (mensajeRegex.test(campo.value) && campo.value != 0) {
+    //         $(".paqueteGroup").addClass("inputValido");
+    //         $(".paqueteGroup").removeClass("inputInvalido");
+    //         bp = true;
+    //     } else {
+    //         $(".paqueteGroup").removeClass("inputValido");
+    //         $(".paqueteGroup").addClass("inputInvalido");
+    //         bp = false;
+    //     }
+    // });
+    // /** Validacion dias*/
+    // document.getElementById('diasCotizacion').addEventListener('input', function() {
+    //     campo = event.target;
 
-        mensajeRegex = /[-a-zA-Z0-9@:%._\+~#=]/i;
+    //     mensajeRegex = /[-a-zA-Z0-9@:%._\+~#=]/i;
 
-        if (mensajeRegex.test(campo.value) && campo.value != 0) {
-            $(".diasGroup").addClass("inputValido");
-            $(".diasGroup").removeClass("inputInvalido");
-            bd = true;
-        } else {
-            $(".diasGroup").removeClass("inputValido");
-            $(".diasGroup").addClass("inputInvalido");
-            bd = false;
-        }
-    });
+    //     if (mensajeRegex.test(campo.value) && campo.value != 0) {
+    //         $(".diasGroup").addClass("inputValido");
+    //         $(".diasGroup").removeClass("inputInvalido");
+    //         bd = true;
+    //     } else {
+    //         $(".diasGroup").removeClass("inputValido");
+    //         $(".diasGroup").addClass("inputInvalido");
+    //         bd = false;
+    //     }
+    // });
 
     /** Validacion tipo Hotel*/
     document.getElementById('tipoHotel').addEventListener('input', function() {
@@ -297,31 +297,30 @@ function validar() {
 
     document.getElementById('llegada').onchange = function() {
         campo = event.target;
-        
+
         var llegada = document.getElementById('llegada').value.split('-');
         var salida = document.getElementById('salida').value.split('-');
 
         var rightNow = new Date();
-        var fecLLegada = new Date(llegada[0],llegada[1]-1,llegada[2]);
-        var fecSalida = new Date(salida[0],salida[1]-1,salida[2]);
+        var fecLLegada = new Date(llegada[0], llegada[1] - 1, llegada[2]);
+        var fecSalida = new Date(salida[0], salida[1] - 1, salida[2]);
 
-        rightNow.setHours(0,0,0,0);
-        fecLLegada.setHours(0,0,0,0);
+        rightNow.setHours(0, 0, 0, 0);
+        fecLLegada.setHours(0, 0, 0, 0);
 
         if (fecLLegada >= rightNow) {
             $(".llegadaGroup").addClass("inputValido");
             $(".llegadaGroup").removeClass("inputInvalido");
-                if(fecSalida>fecLLegada)
-                {
-                    $(".salidaGroup").addClass("inputValido");
-                    $(".salidaGroup").removeClass("inputInvalido");
-                    bs = true;
-                }else {
-                    $(".salidaGroup").removeClass("inputValido");
-                    $(".salidaGroup").addClass("inputInvalido");
-                    bs = false;
-                }
-                bl = true
+            if (fecSalida > fecLLegada) {
+                $(".salidaGroup").addClass("inputValido");
+                $(".salidaGroup").removeClass("inputInvalido");
+                bs = true;
+            } else {
+                $(".salidaGroup").removeClass("inputValido");
+                $(".salidaGroup").addClass("inputInvalido");
+                bs = false;
+            }
+            bl = true
         } else {
             $(".llegadaGroup").removeClass("inputValido");
             $(".llegadaGroup").addClass("inputInvalido");
@@ -334,9 +333,9 @@ function validar() {
 
         var llegada = document.getElementById('llegada').value.split('-');
         var salida = document.getElementById('salida').value.split('-');
-        var fecLLegada = new Date(llegada[0],llegada[1]-1,llegada[2]);
-        var fecSalida = new Date(salida[0],salida[1]-1,salida[2]);
-        
+        var fecLLegada = new Date(llegada[0], llegada[1] - 1, llegada[2]);
+        var fecSalida = new Date(salida[0], salida[1] - 1, salida[2]);
+
         if (fecSalida > fecLLegada) {
             $(".salidaGroup").addClass("inputValido");
             $(".salidaGroup").removeClass("inputInvalido");
@@ -346,7 +345,7 @@ function validar() {
             $(".salidaGroup").addClass("inputInvalido");
             bs = false;
         }
-        
+
     };
 
 }
@@ -355,10 +354,10 @@ validar();
 
 /*****************************************/
 function validarsend() {
-    if (bn === true && ba === true && bt === true && be === true && bm === true && nm === true && na === true && bp === true && bd === true && bh===true && bs===true && bl===true){
+    if (bn === true && ba === true && bt === true && be === true && bm === true && nm === true && na === true && bh === true && bs === true && bl === true) {
         return true;
-    }else {
-       alert("La informacion no es valida");
-        return false;
+    } else {
+        // alert("La informacion no es valida");
+        return true;
     }
 }

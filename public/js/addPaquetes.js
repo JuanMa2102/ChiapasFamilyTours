@@ -27,7 +27,7 @@ $(document).on('click', '.addPaquete', function(e) {
             }
 
         } else {
-            alert("seleccione día");
+
         }
     } else {
         alert("Seleccione una opción")
