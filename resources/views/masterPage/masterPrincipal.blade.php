@@ -11,7 +11,7 @@ $infoGeneral = DB::table('tbl_general')
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <meta name="description" content="Chiapas Family Tours - Empresa de viajes al rededor de Chiapas especializada en paquetes privados">
     <meta name="author" content="Chiapas Family Tours">
@@ -161,17 +161,7 @@ $infoGeneral = DB::table('tbl_general')
                     <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{$infoGeneral[0]->telefono}}</strong></div>
 
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <ul id="top_links">
-                            <li>
-
-                                <a href="#"><i class="icon-facebook"></i> </a>
-
-
-                            </li>
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-
-                            <li> <a href="#"><i class="icon-google"></i></a></li>
-                        </ul>
+            
                     </div>
                 </div>
                 <!-- End row -->

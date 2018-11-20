@@ -5559,16 +5559,23 @@ Author URI: http://themeforest.net/user/Ansonika/
         color: #000;
     }
     
-    .filtroHotelesRestaurantes .col-md-6>* {
+    .filtroHotelesRestaurantes select[name="selectHoRe"] {
+        width: 100%;
+    }
+    
+    #busquedaHotel>* {
         display: inline-block;
+        vertical-align: middle;
     }
     
-    .filtroHotelesRestaurantes .col-md-6 .form-group:nth-of-type(1) {
-        width: 70%;
+    .filtroHotelesRestaurantes input[name="buscarHoRe"] {
+        width: 100%;
     }
     
-    .filtroHotelesRestaurantes .col-md-6 .form-group:nth-of-type(2) {
-        width: 20%;
+    .filtroHotelesRestaurantes button {
+        width: 100%;
+        margin-top: 25px;
+        margin-left: 35px;
     }
     
     .mapContainer iframe {

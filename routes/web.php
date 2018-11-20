@@ -25,12 +25,17 @@ Route::resource('/seccionDescripcion','seccionDescripcionController');
 Route::resource('/traslados','trasladosController');
 Route::resource('/paquetesPrivadosPorDia','paquetesPrivadosPorDiaController');
 Route::resource('/nosotros','nosotrosController');
+Route::resource('/busqueda-hotel','busquedaHotelController');
 
 Route::get('paquetesPrivadosPorDia/{id}/{id_dias}',[
     'as' => 'paquetes-detalle',
     'uses' => 'paquetesPrivadosPorDiaController@show'
 ]); 
 
+Route::get('/tipo-hoteles/{idTipo}',[
+    'as' => 'tipoHotelesRoute',
+    'uses' => 'busquedaHotelController@separarHoteles'
+]);
 
 // Administrador rutas
 Auth::routes(); //ruta cargar auth

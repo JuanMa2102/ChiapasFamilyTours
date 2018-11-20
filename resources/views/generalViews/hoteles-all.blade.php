@@ -1,30 +1,35 @@
-@extends ('masterPage.masterPrincipal')
-@section ('content')
+@extends ('masterPage.masterPrincipal') @section ('content')
 
 <div class="container-fluid full-height">
     <div class="row row-height">
         <div class="col-md-7 content-left">
             <div class="row filtroHotelesRestaurantes">
-                <form>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="selectHoRe">Mostrar por: </label>
-                            <select class="form-control" name="selectHoRe">
-                            <option selected>Hoteles Boutique</option>
-                            <option>Hoteles 4 Estrellas</option>
-                        </select>
-                        </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="selectHoRe">Mostrar por: </label>
+                        <select class="form-control" id="selectHoRe" name="selectHoRe">
+                                <option value="0">Seleccione...</option>
+                                <option value="all">Mostrar todos los hoteles</option>
+                                @foreach($tipoHotel as $item)
+                                <option class="clickableOption" data-href="/contactos" value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
+                                @endforeach
+                            </select>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="buscarHoRe">Buscar: </label>
-                            <input name="buscarHoRe" placeholder="Ingrese un hotel" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <button class="form-control" type="button">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
-                        </div>
+                </div>
+                <div class="col-md-6">
+                    {!!Form::open(array('method'=>'POST','id'=>'busquedaHotel','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'busquedaHotelController@store'))!!} {{Form::token()}}
+
+                    <div class="form-group">
+                        <label for="buscarHoRe">Buscar: </label>
+                        <input name="buscarHoRe" placeholder="Ingrese un hotel" type="text" class="form-control">
                     </div>
-                </form>
+                    <div class="form-group">
+                        <button class="form-control" type="submit">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                    {!!Form::close()!!}
+                </div>
+
             </div>
 
             <div class="row">
@@ -34,14 +39,14 @@
 
                         <div class="img_container hoteles">
                             <a href="/seccionDescripcion">
-                         <img src="{{($item->imagen)}}" width="800" height="533" class="img-responsive" alt="Image">
+                         <img src="{{($item->imagenHotel)}}" width="800" height="533" class="img-responsive" alt="Image">
                     </a>
                         </div>
                         <div class="hotel_title">
-                            <h3><strong>{{ $item->nombre }}</strong> - <span style="font-size: 11px">{{$item->id_TipoHotel == 1 ? 'Hotel Boutique' : 'Hotel 4 Estrellas'}}</span></h3>
+                            <h3><strong>{{ $item->nombreHotel }}</strong> - <span style="font-size: 11px">{{$item->tipoHotel}}</span></h3>
                             <div class="hotelActions">
-                                <div class="verEnMapa"><button direccion="{{$item->direccion}}" class="seeOnMap">Ver en mapa</button></div>
-                                <div class="visitarPaginaHotel"><a href="{{$item->pagina == null ? '#' : 'http://'.$item->pagina}}" target="_blank">{{$item->pagina == null ? 'Sin página' : 'Ir a página web'}}</a></div>
+                                <div class="verEnMapa"><button direccion="{{$item->direccionHotel}}" class="seeOnMap">Ver en mapa</button></div>
+                                <div class="visitarPaginaHotel"><a href="{{$item->paginaHotel == null ? '#' : 'http://'.$item->paginaHotel}}" target="_blank">{{$item->paginaHotel == null ? 'Sin página' : 'Ir a página web'}}</a></div>
                             </div>
                         </div>
                     </div>
@@ -51,21 +56,11 @@
                 @endforeach
             </div>
             <!-- End row -->
-
-
             <hr>
-
-
             <div class="text-center">
-                <ul class="pagination">
-                    <li><a href="#">Prev</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
+
+                {{ $hoteles->links() }}
+
             </div>
             <!-- end pagination-->
 
@@ -80,8 +75,13 @@
 </div>
 <!-- End container-fluid -->
 
-@endsection 
-@push('hotelesRestaurantesScript')
+@endsection @push('hotelesRestaurantesScript')
+<script>
+    $(document).on('change', '#selectHoRe', function(e) {
+        var tipoHotel = this.options[e.target.selectedIndex].value;
+        window.location = "/tipo-hoteles/" + tipoHotel;
+    });
+</script>
 <!-- Map -->
 <script src="{{asset('js/funcionMapa.js')}}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
