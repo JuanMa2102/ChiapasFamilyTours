@@ -140,6 +140,12 @@ $atractivos = DB::table('tbl_atractivos')
 $atractivosDetalle = DB::table('tbl_atractivosdetalles')
 ->where('activo','=',1)
 ->get();
+$dias = DB::table('tbl_dias')
+        ->where('activo','=',1)
+        ->get();
+$paquetes = DB::table('tbl_paquete')
+->where('activo','=',1)
+->get();
 @endphp
     <!-- preloader -->
     <div id="contenedorCarga">
@@ -167,7 +173,7 @@ $atractivosDetalle = DB::table('tbl_atractivosdetalles')
                         <ul id="top_links">
                             <li><a href="#" id="fb-icon"><i class="icon-facebook"></i></a></li>
                             <li><a href="#" id="tw-icon"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" id="yt-icon"><i class="icon-youtube"></i></a></li>
+                            <li><a href="#" id="inst-icon"><i class="icon-instagramm"></i></a></li>
                         </ul>
                     </div>
                 </div><!-- End row -->
@@ -197,13 +203,18 @@ $atractivosDetalle = DB::table('tbl_atractivosdetalles')
                                 <a href="/paquetesPrivados" class="show-submenu">Paquetes Privados </i></a>
                                 <div class="menu-wrapper">
                                 	<div class="row">
-                                        @foreach($atractivos as $itemA)
-                                        <div class="col-lg-4">
-											<h3>{{$itemA->nombre}}</h3>
+                                    @php $cont = 0; $diaMenor = 0; $descripciones = ""; @endphp
+                                        @foreach($paquetes as $key => $item)
+                                        <div class="col-md-3">
+											<h3><strong>{{$item->nombre}}</strong></h3>
 											<ul>
-                                                @foreach($atractivosDetalle as $itemB)
-                                                @if($itemB->id_atractivos == $itemA->id_atractivos)
-                                                <li><a href="{{URL::action('descAtractivoController@show',$itemA->id_atractivos)}}#{{$itemB->titulo}}">{{$itemB->titulo}}</a></li>
+                                                @foreach($dias as $itemDias)
+                                                @if($itemDias->id_paquete == $item->id_paquete)
+                                                <li>
+                                                    <a href="{{ route('paquetes-detalle',[$item->id_paquete,$itemDias->id_dias])}}">
+                                                       {{$itemDias->cantidad}} DÍAS {{$itemDias->descripcion == "" ? '' : ' - '.$itemDias->descripcion}}
+                                                    </a>
+                                                </li>
                                                 @endif
                                                 @endforeach
 											</ul>
@@ -227,7 +238,7 @@ $atractivosDetalle = DB::table('tbl_atractivosdetalles')
                                 	<div class="row">
                                     @foreach($atractivos as $itemA)
                                         <div class="col-lg-4">
-											<h3>{{$itemA->nombre}}</h3>
+											<h3><strong>{{$itemA->nombre}}</strong></h3>
 											<ul>
                                                 @foreach($atractivosDetalle as $itemB)
                                                 @if($itemB->id_atractivos == $itemA->id_atractivos)

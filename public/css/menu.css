@@ -151,12 +151,13 @@ a.dropdown-toggle.icon-search {
     /* Submenu + megamenu*/
     .megamenu .menu-wrapper {
         overflow-y: scroll;
-        max-height: 500px
+        max-height: 500px;
+        text-align: center;
     }
     .main-menu ul ul,
     .main-menu ul li .menu-wrapper {
         position: absolute;
-        border-top: 2px solid #e04f67;
+        border-top: 2px solid #36ba57;
         z-index: 1;
         visibility: hidden;
         left: 3px;
@@ -210,7 +211,7 @@ a.dropdown-toggle.icon-search {
         padding: 0;
     }
     .main-menu ul ul li a {
-        font-size: 12px;
+        font-size: 10px;
         color: #666;
         border-bottom: 1px solid #ededed;
         display: block;
@@ -220,7 +221,7 @@ a.dropdown-toggle.icon-search {
     }
     .main-menu ul ul li:hover>a {
         background-color: #f9f9f9;
-        color: #e04f67;
+        color: #1e9143;
         padding-left: 15px;
     }
     /* Megamenu */

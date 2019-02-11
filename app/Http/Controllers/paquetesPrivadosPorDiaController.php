@@ -139,6 +139,7 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->join('tbl_municipios','tbl_hoteles.id_municipio','=', 'tbl_municipios.id_municipio')
         ->where('tbl_hoteldia.id_dias','=',$id_dia)
         ->orderBy('tbl_municipios.nombre','desc')
+        ->orderBy('tbl_tipohotel.descripcion','desc')
         ->get();
         $precioHoteles = DB::table('tbl_desctablapordia')
         ->where('activo',1)
