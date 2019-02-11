@@ -38,7 +38,7 @@
                         <div class="col-md-6">
                             <div class="texto">
                                 <p>
-                                    {{$item->descripcion != null ? $item->descripcion : 'No se ha asignado una descripcion'}}
+                                    {!!$item->descripcion != null ? $item->descripcion : 'No se ha asignado una descripcion'!!}
                                 </p>
                             </div>
                         </div>

@@ -38,7 +38,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Inclusiones</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <textarea class="form-control" name="inclusiones" id="inclusiones" cols="30" rows="20">{{$info->inclusiones}}</textarea>
+                                <textarea class="form-control summernote" name="inclusiones" id="inclusiones" cols="30" rows="20">{{$info->inclusiones}}</textarea>
                             </div>
                         </div>
                     </div>

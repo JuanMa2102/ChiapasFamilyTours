@@ -37,9 +37,9 @@ class AdminAtractivosDetalleController extends Controller
     }
     public function store(Request $request){
         $credentials=$this->validate(request(),[
+            'descImagen'=>'required|string|max:499',
             'tituloSeccion'=>'required|string|max:99',
             'textolateral' => 'required|string|max:5000', 
-            'textopie' => 'required|string|max:5000',
             'imagenSeccion'=>'required|mimes:jpg,jpeg,png|max:5000'
         ]);
 
@@ -50,6 +50,7 @@ class AdminAtractivosDetalleController extends Controller
         $textolateral = $request->get('textolateral');
         $textopie = $request->get('textopie');
         $usuario=Auth::user()->id;
+        $descImagen = $request->get('descImagen');
         if($request->file('imagenSeccion')){
             $path= Storage::disk('local')->put('uploads/atractivos', $request->file('imagenSeccion'));
             $imgSeccion = asset($path);
@@ -57,6 +58,7 @@ class AdminAtractivosDetalleController extends Controller
                 '".$opcion."',
                 '".$titulo."',
                 '".$imgSeccion."',
+                '".$descImagen."',
                 '".$textolateral."',
                 '".$textopie."',
                 '".$usuario."',
@@ -76,6 +78,7 @@ class AdminAtractivosDetalleController extends Controller
         $textolateral = $request->get('textolateral');
         $textopie = $request->get('textopie');
         $usuario=Auth::user()->id;
+        $descImagen = $request->get('descImagen');
         if($request->file('imagenSeccion')){
             $imagenAnterior = DB::table('tbl_atractivosdetalles')
             ->select('imagen')
@@ -93,6 +96,7 @@ class AdminAtractivosDetalleController extends Controller
                 '".$opcion."',
                 '".$titulo."',
                 '".$imgSeccion."',
+                '".$descImagen."',
                 '".$textolateral."',
                 '".$textopie."',
                 '".$usuario."',
@@ -111,6 +115,7 @@ class AdminAtractivosDetalleController extends Controller
                 '".$opcion."',
                 '".$titulo."',
                 'no importa',
+                '".$descImagen."',
                 '".$textolateral."',
                 '".$textopie."',
                 '".$usuario."',
@@ -139,6 +144,7 @@ class AdminAtractivosDetalleController extends Controller
         $usuario=Auth::user()->id;
         $sql = "call spCSL_CRUD_atractivosDetalle (
             '".$opcion."',
+            'no importa',
             'no importa',
             'no importa',
             'no importa',

@@ -16,6 +16,10 @@ class nosotrosController extends Controller
         $infoGeneral = DB::table('tbl_general')
         ->where('activo','=',1)
         ->get();
-        return view("generalViews.nosotros",['infoGeneral'=>$infoGeneral]);
+        $clientes = DB::table('tbl_clientes')
+        ->where('activo',1)
+        ->get();
+        return view("generalViews.nosotros",['infoGeneral'=>$infoGeneral,
+        'clientes'=>$clientes]);
     }
 }

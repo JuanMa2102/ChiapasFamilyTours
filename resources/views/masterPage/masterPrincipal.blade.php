@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="ie ie8"> <![endif]-->
-<!--[if IE 9]><html class="ie ie9"> <![endif]-->
-<html lang="en">
-@php
-$infoGeneral = DB::table('tbl_general')
-->where('activo','=',1)
-->get();
-@endphp
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="Chiapas Family Tours - Empresa de viajes al rededor de Chiapas especializada en paquetes privados">
-    <meta name="author" content="Chiapas Family Tours">
-    <title>{{$infoGeneral[0]->nombre}}</title>
-
     <!-- Favicons-->
     <link rel="icon" href="{{ asset('img/iconChiapas.png') }}" type="img/iconChiapas">
     <!-- Google web fonts -->
@@ -38,6 +19,15 @@ $infoGeneral = DB::table('tbl_general')
     <link rel="stylesheet" type="text/css" href="{{asset('rev-slider-files/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('rev-slider-files/fonts/font-awesome/css/font-awesome.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('rev-slider-files/css/settings.css')}}">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131289317-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131289317-1');
+</script>
 
     <!-- REVOLUTION LAYERS STYLES -->
     <style>
@@ -140,6 +130,17 @@ $infoGeneral = DB::table('tbl_general')
 </head>
 
 <body>
+    @php
+$infoGeneral = DB::table('tbl_general')
+->where('activo','=',1)
+->get();
+$atractivos = DB::table('tbl_atractivos')
+        ->where('activo','=',1)
+        ->get();
+$atractivosDetalle = DB::table('tbl_atractivosdetalles')
+->where('activo','=',1)
+->get();
+@endphp
     <!-- preloader -->
     <div id="contenedorCarga">
         <figure id="logoChiapas">
@@ -158,17 +159,20 @@ $infoGeneral = DB::table('tbl_general')
         <div id="top_line">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{$infoGeneral[0]->telefono}}</strong></div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-            
+                    <div class="col-6">
+                        <div class="topPhone">
+                            <i class="icon-phone"></i><strong>0045 043204434</strong></div>
+                        </div>
+                    <div class="col-6">
+                        <ul id="top_links">
+                            <li><a href="#" id="fb-icon"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#" id="tw-icon"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#" id="yt-icon"><i class="icon-youtube"></i></a></li>
+                        </ul>
                     </div>
-                </div>
-                <!-- End row -->
-            </div>
-            <!-- End container-->
+                </div><!-- End row -->
+            </div><!-- End container-->
         </div>
-        <!-- End top line-->
 
         <div class="container">
             <div class="row">
@@ -178,10 +182,10 @@ $infoGeneral = DB::table('tbl_general')
                     </div>
                 </div>
                 <nav class="col-md-10 col-sm-10 col-xs-10">
-                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                    <a class="cmn-toggle-switch"><span class="icon-menu"></span></a>
                     <div class="main-menu">
                         <div id="header_menu">
-						<img class="logo" src="{{ asset('img/CHFTcslimage/chiapasfamily.png') }}" alt="chiapas">
+						<img class="logo_menu" src="{{ asset('img/CHFTcslimage/chiapasfamily.png') }}" alt="chiapas">
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul>
@@ -189,8 +193,24 @@ $infoGeneral = DB::table('tbl_general')
                                 <a href="/" class="show-submenu">Inicio </a>
 
                             </li>
-                            <li class="submenu">
+                            <li class="megamenu submenu">
                                 <a href="/paquetesPrivados" class="show-submenu">Paquetes Privados </i></a>
+                                <div class="menu-wrapper">
+                                	<div class="row">
+                                        @foreach($atractivos as $itemA)
+                                        <div class="col-lg-4">
+											<h3>{{$itemA->nombre}}</h3>
+											<ul>
+                                                @foreach($atractivosDetalle as $itemB)
+                                                @if($itemB->id_atractivos == $itemA->id_atractivos)
+                                                <li><a href="{{URL::action('descAtractivoController@show',$itemA->id_atractivos)}}#{{$itemB->titulo}}">{{$itemB->titulo}}</a></li>
+                                                @endif
+                                                @endforeach
+											</ul>
+										</div>
+                                        @endforeach
+                                    </div><!-- End row -->
+                                </div>
 
                             </li>
                             <li class="submenu">
@@ -201,6 +221,29 @@ $infoGeneral = DB::table('tbl_general')
                                 <a href="/actividadesDeAventura" class="show-submenu">Actividades de Aventura</i></a>
 
                             </li>
+                            <li class="megamenu submenu">
+                                <a href="/actividadesDeAventura" class="show-submenu-mega">Atractivos</i></a>
+                                <div class="menu-wrapper">
+                                	<div class="row">
+                                    @foreach($atractivos as $itemA)
+                                        <div class="col-lg-4">
+											<h3>{{$itemA->nombre}}</h3>
+											<ul>
+                                                @foreach($atractivosDetalle as $itemB)
+                                                @if($itemB->id_atractivos == $itemA->id_atractivos)
+                                                <li><a href="{{URL::action('descAtractivoController@show',$itemA->id_atractivos)}}#{{$itemB->titulo}}">{{$itemB->titulo}}</a></li>
+                                                @endif
+                                                @endforeach
+											</ul>
+										</div>
+                                        @endforeach
+                                    </div><!-- End row -->
+                                </div>
+                            </li>
+                            <li class="submenu">
+                                <a href="/traslados" class="show-submenu">Traslados</i></a>
+
+                            </li>
                             <li class="submenu">
                                 <a href="/preguntasFrecuentes" class="show-submenu">Preguntas frecuentes </i></a>
                             </li>
@@ -208,10 +251,7 @@ $infoGeneral = DB::table('tbl_general')
                                 <a href="/contactos" class="show-submenu">Contacto </i></a>
 
                             </li>
-                            <li class="submenu">
-                                <a href="/traslados" class="show-submenu">Traslados</i></a>
-
-                            </li>
+                            
 
 
                         </ul>
@@ -255,15 +295,21 @@ $infoGeneral = DB::table('tbl_general')
                 <div class="col-md-2 col-sm-3">
                     <h3>Acerca de</h3>
                     <ul>
+                        <li><a href="/">Inicio</a>
+                        </li>
                         <li><a href="/nosotros">Nosotros</a>
                         </li>
-                        <li><a href="/preguntasFrecuentes">Preguntas frecuentes</a>
+                        <li><a href="/paquetesPrivados">Paquetes Privados</a>
+                        </li>
+                        <li><a href="/hoteles-all">Hoteles</a>
                         </li>
                         <li><a href="/actividadesDeAventura">Actividades de aventura</a>
                         </li>
                         <li><a href="/traslados">Traslados</a>
                         </li>
-                        <li><a href="/hoteles-all">Hoteles</a>
+                        <li><a href="/preguntasFrecuentes">Preguntas frecuentes</a>
+                        </li>
+                        <li><a href="/politicas">Políticas de la empresa</a>
                         </li>
                     </ul>
                 </div>
@@ -271,11 +317,18 @@ $infoGeneral = DB::table('tbl_general')
                     <h3>Comentarios de clientes</h3>
                     <!--Post-->
                     <p>Vea lo que dicen nuetros clientes <a style="text-decoration: underline" href="/nosotros">Aquí</a></p>
+                    <div class="certificateImageContent">
+                        <div class="titleCertificate">
+                            <h3>Registro nacional de turismo</h3>
+                        </div>
+                        <a href="{{asset('img/restaurant2.jpg')}}" target="_blank"><div class="certificate" style="background-image: url({{asset('img/restaurant2.jpg')}})">
+                        </div></a>
+                    </div>
                 </div>
                 <div class="col-md-2 col-sm-12">
                     <h3>Contáctenos</h3>
                     <p>Puede enviarnos un formulario en la sección de contactos</p>
-                    <a href="/contactos">Ir a contactos</a>
+                    <a style="text-decoration: underline" href="/contactos">Ir a contactos</a>
                 </div>
             </div>
             <!-- End row -->
@@ -301,6 +354,32 @@ $infoGeneral = DB::table('tbl_general')
     
     <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('js/common_scripts_min.js') }}"></script>
+    <script>
+        $(".cmn-toggle-switch").click(function(){
+            $(".main-menu").toggleClass("active");
+        });
+        $("#close_in").click(function(){
+            $(".main-menu").removeClass("active");
+        });
+    $("#toTop").click(()=>{
+        $("html, body").animate({scrollTop : 0},700);
+    });
+    $('a.open_close').click(function() {
+    $('.main-menu').toggleClass('show');
+    $('.layer').toggleClass('layer-is-visible');
+});
+$('a.show-submenu').click(function() {
+    $(this).next().toggleClass("show_normal");
+});
+$('a.show-submenu-mega').click(function() {
+    $(this).next().toggleClass("show_mega");
+});
+if ($(window).width() <= 480) {
+    $('a.open_close').click(function() {
+        $('.cmn-toggle-switch').removeClass('active')
+    });
+}
+    </script>
     <script src="{{ asset('js/functions.js') }}"></script>
     <script>
     $(window).on("load",() => {

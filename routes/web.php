@@ -13,6 +13,7 @@
 
 
 Route::resource('/','inicioController');
+Route::resource('/index.php','inicioController');
 Route::resource('/paquetesPrivados','paquetesPrivadosController');
 Route::resource('/contactos','contactosController');
 Route::resource('/preguntasFrecuentes','preguntasFrecuentesController');
@@ -25,7 +26,13 @@ Route::resource('/seccionDescripcion','seccionDescripcionController');
 Route::resource('/traslados','trasladosController');
 Route::resource('/paquetesPrivadosPorDia','paquetesPrivadosPorDiaController');
 Route::resource('/nosotros','nosotrosController');
+Route::resource('/politicas','politicasController');
 Route::resource('/busqueda-hotel','busquedaHotelController');
+Route::resource('/share','shareController');
+// Route::get('/proof', function()
+// {
+//     return view('generalViews.compartir');
+// });
 
 Route::get('paquetesPrivadosPorDia/{id}/{id_dias}',[
     'as' => 'paquetes-detalle',
@@ -49,6 +56,7 @@ Route::get('administrador', function() { //ruta login
 Route::post('administrador/login', 'Auth\LoginController@index')->name('administrador-login'); //ruta para iniciar sesion post
 Route::get('administrador/home','HomeController@index')->name('administrador-home'); //ruta para ir al home admin
 Route::resource('administrador/infoEmpresa','AdminInfoEmpresaController');
+Route::resource('administrador/rutaTrabajo','AdminRutaController');
 Route::resource('administrador/adminTraslados','AdminTrasladosController');
 Route::resource('administrador/adminContactos','AdminContactosController');
 Route::resource('administrador/adminActividadAventura','adminActividadAventuraController');
@@ -57,9 +65,11 @@ Route::resource('administrador/paquetes', 'AdminPaquetesController');
 Route::resource('administrador/paquetes/dias','AdminDiasController');
 Route::resource('administrador/galeria','GaleriaController');
 Route::resource('administrador/paquetes/dias/itinerarios', 'AdminItinerariosController');
-
 Route::resource('administrador/preguntasFrecuentes/PreguntaDetalle', 'AdminPreguntasFrecuentesDetalleController');
 Route::resource('administrador/preguntasFrecuentes', 'AdminPreguntasFrecuentesController');
+Route::resource('administrador/politicas', 'AdminPoliticasController');
+Route::resource('administrador/clientes','AdminClientesController');
+Route::resource('administrador/tipos-hoteles','AdminTiposHotelesController');
 
 Route::get('administrador/paquetes/dias/crearDia/{diaActual}',[
     'as' => 'crearDia',
@@ -73,6 +83,18 @@ Route::get('administrador/deleteHotel/{idHotelDia}',[
 Route::get('administrador/paquetes/dias/add-hotel/{idDiaActual}',[
     'as' => 'addHotel',
     'uses' => 'AdminItinerariosController@addHotel'
+]);
+
+Route::get('administrador/edit-table/dia/{data}',[
+    'as' => 'editDescHotel',
+    'uses' => 'AdminItinerariosController@editarDescHotel'
+]);
+
+Route::resource('administrador/politicas', 'AdminPoliticasController');
+
+Route::get('administrador/paquetes/dias/edit-added-hotel/{idHotelDia}',[
+    'as' => 'editAddedHotel',
+    'uses' => 'AdminItinerariosController@editAddHotel'
 ]);
 Route::get('administrador/paquetes/dias/itinerarios/{paquete}/{dia}',[
     'as' => 'verItinerario',
@@ -92,6 +114,7 @@ Route::get('administrador/paquetes/dias/itinerario/add-section/{dia}',[
     'as' => 'addSection',
     'uses' => 'AdminItinerariosController@addSection'
 ]);
+
 
 
 //PreguntasFrecuentes
@@ -117,7 +140,8 @@ Route::get('administrador/atractivos/det/editar{id}',[
     'as' => 'editarSeccionAtractivo',
     'uses' => 'AdminAtractivosDetalleController@editarAtractivo'
 ]);
-Route::resource('administrador/adminTraslados/{request}','AdminTrasladosController@store');
+
+// Route::resource('administrador/adminTraslados/{algo}','AdminTrasladosController');
 
 
 

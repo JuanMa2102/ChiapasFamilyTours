@@ -29,7 +29,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Descripción</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <textarea name="descPaquete" class="form-control" id="descPaquete" cols="30" rows="15">{{old('descPaquete')}}</textarea>
+                                <textarea name="descPaquete" class="form-control summernote" id="descPaquete" cols="30" rows="15">{{old('descPaquete')}}</textarea>
                             </div>
                             {!! $errors->first('descPaquete','<span class="help-block">Es necesario introducir una descripción</span>')!!}
                         </div>
@@ -43,6 +43,28 @@
                                 <input name="precio" type="text" class="form-control" value="{{old('precio')}}"/>
                             </div>
                             {!! $errors->first('precio','<span class="help-block">Es necesario introducir un precio</span>')!!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Precio de tachado</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                <input name="preciotachado" type="text" class="form-control" value="{{old('preciotachado')}}"/>
+                            </div>
+                            {!! $errors->first('preciotachado','<span class="help-block">Es necesario introducir un precio tachado</span>')!!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Subtítulo de precio de paquete</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                <input name="subtituloprecio" type="text" class="form-control" value="{{old('subtituloprecio')}}"/>
+                            </div>
+                            {!! $errors->first('subtituloprecio','<span class="help-block">Es necesario introducir un subtítulo de precio</span>')!!}
                         </div>
                     </div>
 
@@ -62,6 +84,13 @@
                                 <input name="titleImg" type="text" class="form-control" value="{{old('titleImg')}}"/>
                             </div>
                             {!! $errors->first('titleImg','<span class="help-block">Es necesario introducir un título de imagen</span>')!!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Guía rápida</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="file" name="guia" class="file" data-preview-file-type="any" />
                         </div>
                     </div>
 

@@ -15,6 +15,7 @@
 @endif @endforeach
 <!-- End section -->
 
+
 <main>
     <!-- End Position -->
 
@@ -30,13 +31,22 @@
                     <div class="diasPaquete">
 
                         <ul>
-                            @foreach($diasPaquete as $item)
+                            @php $descripciones = ""; @endphp @foreach($diasPaquete as $item)
                             <li>
                                 <a href="{{ route('paquetes-detalle',[$id,$item->id_dias])}}">  
                                     <div class="paqueteItem" style="{{ $item->id_dias == $id_dia ? 'background-color: #46D34D' : '' }}">
                                         <?php if($item->id_dias==$id_dia ) $diasCantidad = $item->cantidad ?>
                                         <p>{{$item->cantidad}}</p>
-                                        <p>DÍAS{{$item->descripcion}}</p>
+                                        <p>
+                                        @if($item->descripcion != "")
+                                        @php
+                                        $descripciones .= $item->cantidad . " DÍAS*: " .$item->descripcion . "\n";
+                                        @endphp
+                                        DÍAS*
+                                        @else
+                                        DÍAS
+                                        @endif
+                                        </p>
                                     </div>
                                 </a>
                             </li>
@@ -45,52 +55,34 @@
 
 
                     </div>
+
+                    <div class="descPaquetes">
+                        <p style="white-space: pre-line">
+                            {{$descripciones}}
+                        </p>
+                    </div>
                 </div>
                 <!-- Map button for tablets/mobiles -->
 
                 <div id="Img_carousel" class="slider-pro">
                     <div class="sp-slides">
-                        <div id="Img_carousel" class="slider-pro sp-horizontal" style="width: 100%; max-width: 960px;">
-
-
-                            <div class="sp-slides-container">
-                                <div class="sp-mask sp-grab" style="width: 750px; height: 390.625px;">
-                                    <div class="sp-slides" style="transform: translate3d(-3670px, 0px, 0px);">
-                                        @foreach($galeria as $key => $item)
-                                        <div class="sp-slide {{$key == 0 ? 'sp-selected' : ''}}" data-index="{{$item->id_galeria}}" data-init="true" data-loaded="true" style="width: 750px; height: 390.625px; left: 3670px;">
-                                            <div class="sp-image-container" style="width: 750px; height: 390.625px;"><img class="sp-image" data-default="{{$item->imagen}}" data-retina="img/slider_single_tour/1_large.jpg" data-large="img/slider_single_tour/1_large.jpg" data-medium="{{$item->imagen}}" data-small="img/slider_single_tour/1_small.jpg"
-                                                    alt="Image" src="{{$item->imagen}}" style="width: 100%; height: auto; margin-left: 0px; margin-top: -51.5px;"></div>
-
-                                        </div>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                                <div class="sp-arrows sp-fade-arrows">
-                                    <div class="sp-arrow sp-previous-arrow"></div>
-                                    <div class="sp-arrow sp-next-arrow"></div>
-                                </div>
-                            </div>
-                            <div class="sp-thumbnails-container sp-bottom-thumbnails" style="width: 750px;">
-                                <div class="sp-thumbnails sp-grab" style="width: 932px; height: 80px;">
-                                    @foreach($galeria as $key => $item)
-                                    <div class="sp-thumbnail-container {{$key==0 ? 'sp-selected-thumbnail' : ''}}" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="{{$item->imagen}}" data-index="0" data-init="true" style="width: auto; height: 100%; margin-left: -9px; margin-top: 0px;"></div>
-                                    @endforeach
-                                </div>
-                                <div class="sp-thumbnail-arrows sp-fade-thumbnail-arrows">
-                                    <div class="sp-thumbnail-arrow sp-previous-thumbnail-arrow" style="display: none;"></div>
-                                    <div class="sp-thumbnail-arrow sp-next-thumbnail-arrow" style="display: block;"></div>
-                                </div>
-                            </div>
+                        @foreach($galeria as $item)
+                        <div class="sp-slide">
+                            <img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="{{$item->imagen}}" data-medium="{{$item->imagen}}">
+                            <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-vertical="0" data-width="100%" data-show-transition="up">
+                                {{$item->descripcion}}
+                            </p>
                         </div>
-                    </div>
+                        @endforeach
 
+
+                    </div>
                     <div class="sp-thumbnails">
                         @foreach($galeria as $item)
                         <img alt="Image" class="sp-thumbnail" src="{{$item->imagen}}"> @endforeach
                     </div>
-
                 </div>
+
 
                 <hr>
                 <div class="row">
@@ -98,9 +90,19 @@
                         <h3>Hoteles Participantes</h3>
                     </div>
                     <div class="col-md-9">
-                        <ul class="list_ok">
+                        <ul class="listHoteles">
+                            <h3>{{$hoteles[0]->municipio}}</h3>
+                            @php
+                            $temp = $hoteles[0]->id_municipio;
+                            @endphp
                             @foreach($hoteles as $item)
-                            <li>{{$item->nombreHotel}} - {{$item->tipoHotel}}</li>
+                            @if($item->id_municipio != $temp)
+                            <h3>{{$item->municipio}}</h3>
+                            @php
+                            $temp = $item->id_municipio;
+                            @endphp
+                            @endif
+                            <li>- {{$item->nombreHotel}} - {{$item->tipoHotel}}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -113,12 +115,12 @@
                     </div>
 
                     <div class="col-md-9">
-                        <p>{{$itinerarioCorto->itinerariocorto}}</p>
+                        <p class="itinerarioCortoCustom" style="white-space: pre-line">{!!$itinerarioCorto->itinerariocorto!!}</p>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="hidden-sm hidden-xs">
-                                    <a class="btnComparacion" target="_blank" href="{{ URL::action('itinerarioDetalladoController@show',$id_dia) }}">ITINERARIO DETALLADO CON SUGERENCIAS</a>
+                                <p>
+                                    <a class="btnComparacion" href="{{ URL::action('itinerarioDetalladoController@show',$id_dia) }}">ITINERARIO DETALLADO CON SUGERENCIAS</a>
                                 </p>
                             </div>
                         </div>
@@ -126,38 +128,37 @@
                     </div>
                 </div>
                 <div class="row itinerarioPart">
-                    <div class="col-md-3">
-                        <h3>Costo</h3>
-                    </div>
-                    <div class="col-md-9 infoPaqueteCosto">
+                    
+                    <div class="col-md-12 infoPaqueteCosto">
                         <!-- BTN HOTEL -->
                         <!-- Sin Precio -->
                         <table class="table">
-                            <h3>PRECIOS POR PERSONA</h3>
+                            <h3>PRECIO DEL PAQUETE POR PERSONA</h3>
                             <thead>
                                 <tr>
                                     <th>Hotel</th>
+                                    <th>Habitación Cuádruple</th>
                                     <th>Habitación Doble</th>
                                     <th>Hoteles incluidos</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($tipoHotel as $item)
                                 <tr>
-                                    <td>Boutique</td>
-                                    <td>$3000</td>
-                                    <td>Hotel BO, Hotel Casa del Alma, Hotel Plaza Gallery</td>
+                                    <td>{{$item->descripcion}}</td>
+                                    <td>@foreach($precioHotel as $itemP) @if($itemP->id_tipoHotel == $item->id_tipoHotel && $itemP->id_dias == $id_dia ) ${{$itemP->preciocuadruple}} @endif @endforeach</td>
+                                    <td>
+                                        @foreach($precioHotel as $itemP) @if($itemP->id_tipoHotel == $item->id_tipoHotel && $itemP->id_dias == $id_dia ) ${{$itemP->precio}} @endif @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach($hoteles as $itemB) @if($itemB->asociado == 1 && $itemB->tpHotel == $item->id_tipoHotel) {{$itemB->nombreHotel.' / '}} @endif @endforeach
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>4 Estrellas</td>
-                                    <td>$3000</td>
-                                    <td>Hotel Sombra del Agua, Hotel Ciudad Real, Hotel Casa Vieja</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
-                        <p>* Precio de temporada baja (10 de Enero al 20 de Abril)</p>
-                        <p>* Precio de temporada baja (10 de Enero al 20 de Abril)</p>
-                        <p>* Precio de temporada baja (10 de Enero al 20 de Abril)</p>
-                        <p>* Suplemento HOTEL BO, HOTEL PLAZA GALLERY, HOTEL UVENZE ARTE</p>
+                        {!! $precioHotel[0]->descripcion !!}
+                        <p>* Suplemento @foreach($hoteles as $item){{$item->asociado == 0 ? $item->nombreHotel . ", " : ''}} @endforeach</p>
                         <!-- END BTN HOTEL -->
                         <!-- End row  -->
                     </div>
@@ -168,7 +169,7 @@
                         <h3>Incluye</h3>
                     </div>
                     <div class="col-md-9">
-                        <p style="white-space: pre-line">{{$dias[0]->inclusiones}}</p>
+                        <p style="white-space: pre-line">{!!$diasDetalle->inclusiones!!}</p>
                     </div>
                     <!-- End row  -->
                 </div>
@@ -176,13 +177,21 @@
                 <hr>
             </div>
             <aside class="col-md-5" id="sidebar">
+            <div class="box_style_1">
+                    <span class="tape"></span>
+                    <div class="shareButtonContent">
+                       <button type="button" class="shareButton shareSwitch"><i class="icon-share"></i> COMPARTIR CON UN AMIGO</button>
+                    </div>
+                    
+                </div>
                 {!! Form::open(array('url' => 'paquetesPrivadosPorDia','autocomplete'=>'off','method'=>'POST', 'onsubmit'=>'return validarsend();')) !!} {{Form::token()}}
                 <div class="theiaStickySidebar barraCotizacion">
                     <div class="box_style_1 expose">
                         <h3 class="inner">- ENVIAR SOLICITUD -</h3>
                         <div class="llamar">
                             <span style="margin: auto; display: block; text-align: center; font-size: 450%;"><i class="icon_set_1_icon-57"></i></span>
-                            <p style="display: block; margin: auto; font-size: 150%; text-align: center; margin-top: 1%;">Llámenos al 9611060320</p>
+                            <p style="display: block; margin: auto; font-size: 125%; text-align: center; margin-top: 1%;">Comuníquese con nosostros a los siguientes números:</p>
+                            <p style="font-weight: 500;display: block; margin: auto; font-size: 150%; text-align: center; margin-top: 1%;">{{$general->telefono}}</p>
                             <p style="display: block; margin: auto; font-size: 200%; text-align: center; margin-top: 1%;">O</p>
                         </div>
                         <p style="display: block; margin: auto; font-size: 120%; text-align: center; margin-top: 1%;">Introduzca los siguientes datos</p>
@@ -266,7 +275,7 @@
                                                         @endforeach
                                                     </select>
                                     </div>
-                                    <small>*Con rafting</small>
+                                    
                                 </div>
                             </div>
                             <div class="col-sm-2">
@@ -287,42 +296,11 @@
                         </div>
 
                         <div style="width: 100%; height: 1px; background-color: #ccc; margin: 1% 0% 3% 0%;"></div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group tipoGroup">
-                                    <div class="input-group">
-                                        <label>Seleccione categoría de hotel</label>
-                                        <select name="tipoHotel" class="form-control" id="tipoHotel">
-                                                        <option selected name = "seleccione" value="0" >Seleccione...</option>
-                                                        @foreach($tipoHotel as $item)
-                                                        <option value="{{$item->id_tipoHotel}}">{{$item->descripcion}}</option>
-                                                        @endforeach
-                                                    </select>
-                                    </div>
-                                    <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group tipoGroup">
-                                    <div class="input-group">
-                                        <label>Seleccione Hotel</label>
-                                        <select name="hotelElegido" class="form-control" id="hotelElegido">
-                                                        <option name = "seleccione" value="0" >Seleccione...</option>
-                                                        @foreach($hotelElegido as $item)
-                                                        <option cosmico="{{$item->id_TipoHotel}}" value="{{$item->nombre}}">{{$item->nombre}}</option>
-                                                        @endforeach
-                                                    </select>
-                                    </div>
-                                    <small>*Hoteles Boutique disponibles únicamente en San Cristobal</small>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mensajeGroup">
-                                    <textarea placeholder="Sea más específico con nosotros en esta parte" class="form-control" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí."></textarea>
+                                    <textarea placeholder="Comentarios" class="form-control" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí."></textarea>
                                 </div>
                             </div>
 
@@ -349,7 +327,47 @@
     <!-- Mask on input focus -->
 
 </main>
-@endsection @push('paquetesPrivadosPorDiaScript')
+<!-- MailBox -->
+<div class="mailBox">
+    <div class="mailContent">
+    <div class="closeButtonContent">
+        <button class="closeButton"><i class="icon-cancel-7"></i></button>
+    </div>
+    {!! Form::open(array('url' => 'share','autocomplete'=>'off','method'=>'POST', 'files' => 'true')) !!} {{Form::token()}}
+        <div class="group-form">
+            <label for="mine">De:</label>
+            <input type="email" required class="form-control" id="mine" name="mine" placeholder="Ingrese su correo">
+            <input type="hidden" value="{{url()->current()}}" name="url">
+            <input type="hidden" value="{{$id}}" name="paqueteActual">
+            <input type="hidden" value="{{$id_dia}}" name="diaActual">
+        </div>
+        <div class="group-form">
+            <label for="friend">Para:</label>
+            <input type="email" required class="form-control" id="friend" name="friend" placeholder="Ingrese correo de amigo">
+        </div>
+        <div class="group-form">
+            <label for="emailMessage">Mensaje:</label>
+            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje para él"></textarea>
+        </div>
+        <div class="shareButtonContent">
+                       <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTA PÁGINA</button>
+                    </div>
+    {!! Form::close() !!}
+    </div>
+</div>
+
+@endsection 
+@extends ('meta.metaComponent')
+@section('meta')
+<title>Chiapas Family Tours: Paquete {{$info->paquete}} día {{$info->cantidad}}</title>
+<meta name="description" content="Esta sección le da información específica del paquete {{$info->paquete}} en su día {{$info->cantidad}}"/>
+<meta property="og:url" content="http://www.chiapasfamilytours.com.mx/paquetesPrivadosPorDia/{{$id}}/{{$id_dia}}" />
+<meta property="og:description" content="Esta sección le da información específica del paquete {{$info->paquete}} en su día {{$info->cantidad}}"/>
+<link rel="canonical" href="http://www.chiapasfamilytours.com.mx/paquetesPrivadosPorDia/{{$id}}/{{$id_dia}}" />
+@endsection
+
+
+@push('paquetesPrivadosPorDiaScript')
 <script src="{{ asset('js/addPaquetes.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/paquetes_por_dia.js') }}">
 </script>
@@ -429,6 +447,19 @@
 <script>
     jQuery('#sidebar').theiaStickySidebar({
         additionalMarginTop: 80
+    });
+    $(".shareSwitch").click(function(){
+        $(".mailBox").addClass("active");
+        setTimeout(function() {
+            $(".mailContent").addClass("active");
+        }, 100);
+        
+    });
+    $(".mailContent .closeButtonContent .closeButton").click(function(){
+        $(".mailContent").removeClass("active");
+        setTimeout(function() {
+            $(".mailBox").removeClass("active");
+        }, 500);
     });
 </script>
 

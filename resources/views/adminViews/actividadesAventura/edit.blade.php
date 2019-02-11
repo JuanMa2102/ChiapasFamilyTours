@@ -32,31 +32,16 @@
                                     </div>
                                 </div>
 
-                                @foreach($informacionDetalle as $item)
-                                <div class='form-group'>
-                                <label class='col-md-3 col-xs-12 control-label'>Inclusiones</label>
-                                <div class='col-md-4 col-xs-12'>
-                                    <div class='input-group'>
-                                        <span class='input-group-addon'>
-                                            <span class='fa fa-pencil'></span>
-                                        </span>
-                                         
-                                        <input type='text' class='form-control' name='inlclusion[]' value="{{$item->inclusion}}" /></div></div>
-                                       
-                                        <div class='col-md-2'>
-                                            <button type='button' class='removeProduct'><i class='fa fa-times'></i></button>
-                                        </div>
-                                </div>    
-                                 @endforeach
 
-                                 <div class="InlcusionesContainer">
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="button" class="addInclusiones"><i class="fa fa-plus-circle"></i>Añadir Inclusiones</button>
-                                    </div>
-                                </div>
+                               <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Inclusiones de la actividad</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <textarea class="form-control summernote" name="inclusiones" id="inclusiones" cols="30" rows="20">{{$informacion->inclusiones}}</textarea>
+                            </div>
+                            {!! $errors->first('inclusiones','<span class="help-block">Es necesario introducir inclusiones</span>')!!}
+                        </div>
+                    </div>
 
                             </div>
                             <div class="panel-footer">

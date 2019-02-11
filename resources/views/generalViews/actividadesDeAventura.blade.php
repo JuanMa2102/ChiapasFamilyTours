@@ -1,11 +1,10 @@
 @extends ('masterPage.masterPrincipal') @section ('content')
-
-<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/CHFTcslimage/cascada-azul1.jpg')}}" data-natural-width="1400" data-natural-height="470">
+<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/paginainicio.JPG')}}" data-natural-width="1400" data-natural-height="470">
     <div class="parallax-content-2">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-8">
-                    <h1>Actividades de Aventura</h1>
+                    <h1>ACTIVIDADES DE AVENTURA</h1>
                 </div>
             </div>
         </div>
@@ -42,26 +41,9 @@
                     <div class="infoAventura">
                         <h3>{{$item->titulo}}</h3>
                         <div class="row">
-                            <div class="col-md-6 col-sm-6">
-
+                            <div class="col-md-12 col-sm-12">
                                 <ul class="list_ok">
-                                    <?php $i = 0; ?> @foreach($ActividadAventuraDetalle as $itemDetalle) @if($item->id_actividadAventura == $itemDetalle->id_actividadAventura) @if($i++==5)
-                                    <?php break; ?> @endif
-                                    <li>
-                                        {{$itemDetalle->inclusion}}
-                                    </li>
-                                    @endif @endforeach
-
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-
-                                <ul class="list_ok">
-                                    <?php $i = 0; ?> @foreach($ActividadAventuraDetalle as $itemDetalle) @if($item->id_actividadAventura == $itemDetalle->id_actividadAventura) @if($i++>=5)
-                                    <li>
-                                        {{$itemDetalle->inclusion}}
-                                    </li>
-                                    @endif @endif @endforeach
+                                    {!!$item->inclusiones!!}
                                 </ul>
                             </div>
                         </div>
@@ -79,7 +61,17 @@
 
 </main>
 <!-- End main -->
-@endsection @push('actividadesDeAventuraScripts')
+@endsection 
+@extends ('meta.metaComponent')
+@section('meta')
+<title>Chiapas Family Tours: actividades de aventura en chiapas</title>
+<meta name="description" content="En esta sección serás conocedor de las asombrosas actividades de aventura que podrás realizar en Chiapas. Asegúrate de perderte de esta aventura."/>
+<meta property="og:url" content="http://www.chiapasfamilytours.com.mx/actividadesDeAventura" />
+<meta property="og:description" content="En esta sección serás conocedor de las asombrosas actividades de aventura que podrás realizar en Chiapas. Asegúrate de perderte de esta aventura."/>
+<link rel="canonical" href="http://www.chiapasfamilytours.com.mx/actividadesDeAventura" />
+@endsection
+
+@push('actividadesDeAventuraScripts')
 <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('js/bootstrap-timepicker.js')}}"></script>
 <script src="{{asset('assets/validate.js')}}"></script>

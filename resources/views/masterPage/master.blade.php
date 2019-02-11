@@ -47,7 +47,9 @@
                         <ul>
                             <li><a href="/administrador/infoEmpresa"><span class="fa fa-image"></span> Información de la empresa</a></li>
                             <li><a href="/administrador/slider"><span class="fa fa-image"></span> Presentaciones de inicio</a></li>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span> ¿Cómo reservar?</a></li>
+                            <li><a href="/administrador/rutaTrabajo"><span class="fa fa-image"></span> Ruta de trabajo</a></li>
+                            <li><a href="/administrador/politicas"><span class="fa fa-image"></span> Políticas de la empresa</a></li>
+                            <li><a href="/administrador/clientes"><span class="fa fa-image"></span> ¿Qué dicen los clientes?</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
@@ -72,6 +74,7 @@
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Hoteles</span></a>
                         <ul>
                             <li><a href="/administrador/hoteles"><span class="fa fa-image"></span> Ver hoteles</a></li>
+                            <li><a href="/administrador/tipos-hoteles"><span class="fa fa-image"></span> Tipos de hoteles</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">
@@ -218,6 +221,24 @@
         <script type="text/javascript" src="{{asset('js/pluginsJ.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/demo_dashboard.js')}}"></script>
+
+        <!-- Editor plugins -->
+        <script type='text/javascript' src='{{asset("js/plugins/icheck/icheck.min.js")}}'></script>
+        <script type="text/javascript" src="{{asset('js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js')}}"></script>
+        
+        <script type="text/javascript" src="{{asset('js/plugins/codemirror/codemirror.js')}}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/codemirror/mode/htmlmixed/htmlmixed.js')}}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/codemirror/mode/xml/xml.js')}}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/codemirror/mode/javascript/javascript.js')}}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/codemirror/mode/css/css.js')}}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/codemirror/mode/clike/clike.js')}}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/codemirror/mode/php/php.js')}}"></script>
+
+        <script type="text/javascript" src="{{asset('js/plugins/summernote/summernote.js')}}"></script>
+
+        <!-- End editor plugins -->
+
+         
 
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->         

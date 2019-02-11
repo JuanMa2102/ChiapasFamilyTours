@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
+use Mail;
 
 class contactosController extends Controller
 {
@@ -18,6 +19,7 @@ class contactosController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         if($request->get('verificacion') != 4){
             return back()-with("Error","Error");
         }
@@ -28,7 +30,7 @@ class contactosController extends Controller
             $telefono = $request->get('telefono');
             $mensaje = $request->get('mensaje');
             $opcion = 1;
-
+// dd($request->all());
             $sql = "call spCSL_setContacto (
                 '".$opcion."',
                 '".$nombre."',
@@ -38,6 +40,13 @@ class contactosController extends Controller
                 '".$mensaje."',
                 '1'
             )";
+
+            Mail::send('generalViews.email',['datos'=>$request->all()], function($messaje){
+                $messaje->from('servicios.creativasoftline@gmail.com','MENSAJE DE CONTACTO');
+                $messaje->to('reserva@chiapasfamilytours.com.mx')->subject('MENSAJE DE CONTACTO');
+                $messaje->to('industriascoc01@gmail.com')->subject('MENSAJE DE CONTACTO');
+                
+            });
             $datos = DB::select($sql,array(1,10));
             if($datos != null)
             {

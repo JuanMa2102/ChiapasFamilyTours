@@ -51,16 +51,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <h3 class="panel-title"><strong>Tipo de Hotel:</strong> </h3>
-                        <p>{{$tipoHotel->descripcion}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h3 class="panel-title"><strong>Hotel:</strong> </h3>
-                        <p>{{$datos->hotel}}</p>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12">
                         <h3 class="panel-title"><strong>Mensaje:</strong> </h3>
                         <p>{{$datos->mensaje}}</p>

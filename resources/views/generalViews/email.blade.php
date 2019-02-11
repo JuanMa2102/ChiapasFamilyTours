@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Solicitud de Cotización - Chiapas Family Tours</title>
+    <title>Solicitud de Contacto - Chiapas Family Tours</title>
 </head>
 <style>
     table, table *{
@@ -18,20 +18,12 @@
     <p>A <a href="http://www.creativasoftline.com">Creativa Softline</a> le es un gusto hacerle saber sus...</p>
     <h1>Datos de Cliente</h1>
     <p>Nombre: {{$datos['nombre']}}</p>
- 
+    <p>Apellido: {{$datos['apellido']}}</p>
+    <p>Correo: {{$datos['email']}}</p>
+    <p>Teléfono: {{$datos['telefono']}}</p>
+    <p>Mensaje: {{$datos['mensaje']}}</p>
     <br>
-    <h3>Productos solicitados</h3>
     
-    <table>
-        <thead>
-            <th style="padding: 1% 2%; text-align: center; width: 300px;">Nombre del producto</th>
-            <th style="padding: 1% 2%; text-align: center; width: 300px">Cantidad</th>
-        </thead>
-        <tbody>
-   
-            
-        </tbody>
-    </table>
 
     <br>
     <br>

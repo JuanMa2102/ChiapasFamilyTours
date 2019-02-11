@@ -22,7 +22,7 @@
                                             <th>URL Google Maps</th>
                                             <th>Página</th>
                                             <th>Tipo de hotel</th>
-                                            <th>Precio</th>
+                                            <th>Ubicación</th>
                                             <th>Recomendado</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -35,7 +35,7 @@
                                             <td class="tdMedium hideInformation">{{ $item->direccionHotel }}</td>
                                             <td>{{ $item->paginaHotel }}</td>
                                             <td>{{ $item->tipoHotel }}</td>
-                                            <td>{{ $item->precio }}</td>
+                                            <td>{{ $item->nombre }}</td>
                                             <td style="color: {{$item->recomendado == 1 ? '#0f0' : '#f00'}}">
                                                 {{$item->recomendado == 1 ? 'Recomendado' : 'No recomendado'}}
                                             </td>

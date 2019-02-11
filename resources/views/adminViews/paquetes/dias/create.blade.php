@@ -40,7 +40,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Inclusiones del día</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <textarea class="form-control" name="inclusiones" id="inclusiones" cols="30" rows="20">{{old('inclusiones')}}</textarea>
+                                <textarea class="form-control summernote" name="inclusiones" id="inclusiones" cols="30" rows="20">{{old('inclusiones')}}</textarea>
                             </div>
                             {!! $errors->first('inclusiones','<span class="help-block">Es necesario introducir inclusiones</span>')!!}
                         </div>

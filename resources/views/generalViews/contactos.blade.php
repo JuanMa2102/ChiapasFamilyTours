@@ -1,10 +1,13 @@
 @extends ('masterPage.masterPrincipal') @section ('content')
 
-<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/header_bg.jpg')}}" data-natural-width="1400" data-natural-height="470">
-    <div class="parallax-content-1">
-        <div class="animated fadeInDown">
-            <h1>Contáctanos</h1>
-
+<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/paginainicio.JPG')}}" data-natural-width="1400" data-natural-height="470">
+    <div class="parallax-content-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <h1>CONTÁCTANOS</h1>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -35,7 +38,7 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group apellidoGroup">
                                 <label>Apellido: </label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingese su apellido aquí.">
+                                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese su apellido aquí.">
                             </div>
                         </div>
                     </div>
@@ -87,7 +90,7 @@
                         {{$infoGeneral[0]->direccion}}
                     </p>
                     <hr>
-                    <h4>Help center <span><i class="icon-help pull-right"></i></span></h4>
+                    
                     <p>
                         Para nosotros es un gusto atenderle, por ello, en caso de que usted quiera ser mucho más específico, porfavor envíenos un email a la siguiente dirección de correo.
                     </p>
@@ -99,8 +102,8 @@
                     <i class="icon_set_1_icon-57"></i>
                     <h4>¿Necesita <span>ayuda?</span></h4>
                     <p>Prueba llamarnos al</p>
-                    <a href="tel://004542344599" class="phone">{{$infoGeneral[0]->telefono}}</a>
-                    <small>{{$infoGeneral[0]->horario}}</small>
+                    <a href="tel://004542344599" style="font-size: 18px; line-height: 1">{{$infoGeneral[0]->telefono}}</a>
+                    <p>{{$infoGeneral[0]->horario}}</p>
                 </div>
             </div>
             <!-- End col-md-4 -->
@@ -117,7 +120,17 @@
 </main>
 <!-- End main -->
 
-@endsection @push("contactScripts")
+@endsection 
+
+@extends ('meta.metaComponent')
+@section('meta')
+<title>Chiapas Family Tours: contacto</title>
+<meta name="description" content="Cualquier duda, queja o sugerencia, porfavor, ponte en contacto con nostros a través del formulario en esta sección."/>
+<meta property="og:url" content="http://www.chiapasfamilytours.com.mx/contactos" />
+<meta property="og:description" content="Cualquier duda, queja o sugerencia, porfavor, ponte en contacto con nostros a través del formulario en esta sección."/>
+<link rel="canonical" href="http://www.chiapasfamilytours.com.mx/contactos" />
+@endsection
+@push("contactScripts")
 <script src="{{asset('assets/validarcontacto.js')}}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 

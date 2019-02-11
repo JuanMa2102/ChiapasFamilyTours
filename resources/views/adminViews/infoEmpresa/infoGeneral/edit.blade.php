@@ -64,7 +64,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Misión</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <textarea class="form-control" name="mision" id="mision" cols="30" rows="5">{{ $informacion->mision }}</textarea>
+                                <textarea class="form-control summernote" name="mision" id="mision" cols="30" rows="5">{{ $informacion->mision }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Visión</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <textarea class="form-control" name="vision" id="vision" cols="30" rows="5">{{ $informacion->vision }}</textarea>
+                                <textarea class="form-control summernote" name="vision" id="vision" cols="30" rows="5">{{ $informacion->vision }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Valores</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <textarea class="form-control" name="valores" id="valores" cols="30" rows="5">{{ $informacion->valor }}</textarea>
+                                <textarea class="form-control summernote" name="valores" id="valores" cols="30" rows="5">{{ $informacion->valor }}</textarea>
                             </div>
                         </div>
                     </div>

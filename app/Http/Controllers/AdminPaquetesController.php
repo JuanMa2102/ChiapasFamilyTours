@@ -39,17 +39,29 @@ class AdminPaquetesController extends Controller
             'descPaquete' => 'required|string|max:1499',
             'precio' => 'required|string|max:10',
             'titleImg' => 'required|string|max:99',
-            'imgPaquete'=>'required|mimes:jpg,jpeg,png|max:5000'
+            'imgPaquete'=>'required|mimes:jpg,jpeg,png|max:5000',
+            'preciotachado' => 'required|string|max:10',
+            'subtituloprecio' => 'required|string|max:99'
         ]);
         if($request->file('imgPaquete')){
             $nombrePaquete = $request->get('nombrePaquete');
             $descPaquete = $request->get('descPaquete');
             $precio  = $request->get('precio');
             $titleImg = $request->get('titleImg');
+            $preciotachado = $request->get('preciotachado');
+            $subtituloprecio = $request->get('subtituloprecio');
             $path= Storage::disk('local')->put('uploads/paquetes', $request->file('imgPaquete'));
             $imgPaquete = asset($path);
             $usuario=Auth::user()->id;
             $opcion = 1;
+
+            if($request->get('guia')){
+                $pathGuia= Storage::disk('local')->put('uploads/paquetes/guias', $request->file('guia'));
+                $guia = asset($pathGuia);
+            }
+            else{
+                $guia = "";
+            }
             $sql = "call spCSL_CRUD_paquete(
                 '".$opcion."',
                 '".$titleImg."',
@@ -57,6 +69,9 @@ class AdminPaquetesController extends Controller
                 '".$descPaquete."',
                 '".$precio."',
                 '".$imgPaquete."',
+                '".$preciotachado."',
+                '".$subtituloprecio."',
+                '".$guia."',
                 '".$usuario."',
                 '1'
             )";
@@ -87,8 +102,32 @@ class AdminPaquetesController extends Controller
             $descPaquete = $request->get('descPaquete');
             $precio  = $request->get('precio');
             $titleImg = $request->get('titleImg');
+            $preciotachado = $request->get('preciotachado');
+            $subtituloprecio = $request->get('subtituloprecio');
             $usuario=Auth::user()->id;
             $opcion = 2;
+            
+            if($request->file('guia')){
+
+                $guiaAnterior = DB::table('tbl_paquete')
+                ->select('guia')
+                ->where('id_paquete','=',$id)
+                ->first();
+                $getGuia = $guiaAnterior->guia;
+                $cadena=substr($getGuia, 22,strlen ($getGuia));   
+                    if(Storage::disk('local')->exists($cadena)){
+                        $dele= Storage::disk('local')->delete($cadena);
+                    }
+                $pathGuia= Storage::disk('local')->put('uploads/paquetes/guias', $request->file('guia'));
+                $guia = asset($pathGuia);
+            }
+            else{
+                $guiaAnterior = DB::table('tbl_paquete')
+                ->select('guia')
+                ->where('id_paquete','=',$id)
+                ->first();
+                $guia = $guiaAnterior->guia;
+            }
             $sql = "call spCSL_CRUD_paquete(
                 '".$opcion."',
                 '".$titleImg."',
@@ -96,6 +135,9 @@ class AdminPaquetesController extends Controller
                 '".$descPaquete."',
                 '".$precio."',
                 '".$imgPaquete."',
+                '".$preciotachado."',
+                '".$subtituloprecio."',
+                '".$guia."'
                 '".$usuario."',
                 '".$id."'
             )";
@@ -109,9 +151,33 @@ class AdminPaquetesController extends Controller
             $nombrePaquete = $request->get('nombrePaquete');
             $descPaquete = $request->get('descPaquete');
             $precio  = $request->get('precio');
+            $preciotachado = $request->get('preciotachado');
+            $subtituloprecio = $request->get('subtituloprecio');
             $titleImg = $request->get('titleImg');
             $usuario=Auth::user()->id;
             $opcion = 3;
+            if($request->file('guia')){
+
+                $guiaAnterior = DB::table('tbl_paquete')
+                ->select('guia')
+                ->where('id_paquete','=',$id)
+                ->first();
+                $getGuia = $guiaAnterior->guia;
+                $cadena=substr($getGuia, 22,strlen ($getGuia));   
+                    if(Storage::disk('local')->exists($cadena)){
+                        $dele= Storage::disk('local')->delete($cadena);
+                    }
+                $pathGuia= Storage::disk('local')->put('uploads/paquetes/guias', $request->file('guia'));
+                $guia = asset($pathGuia);
+            }
+            else{
+                $guiaAnterior = DB::table('tbl_paquete')
+                ->select('guia')
+                ->where('id_paquete','=',$id)
+                ->first();
+                $guia = $guiaAnterior->guia;
+            }
+            
             $sql = "call spCSL_CRUD_paquete(
                 '".$opcion."',
                 '".$titleImg."',
@@ -119,6 +185,9 @@ class AdminPaquetesController extends Controller
                 '".$descPaquete."',
                 '".$precio."',
                 'no importa',
+                '".$preciotachado."',
+                '".$subtituloprecio."',
+                '".$guia."',
                 '".$usuario."',
                 '".$id."'
             )";
@@ -148,6 +217,18 @@ class AdminPaquetesController extends Controller
             }
         }
 
+        
+
+            $guiaAnterior = DB::table('tbl_paquete')
+            ->select('guia')
+            ->where('id_paquete','=',$id)
+            ->first();
+            $getGuia = $guiaAnterior->guia;
+            $cadena=substr($getGuia, 22,strlen ($getGuia));   
+                if(Storage::disk('local')->exists($cadena)){
+                    $dele= Storage::disk('local')->delete($cadena);
+                }
+
         $imagenAnterior = DB::table('tbl_paquete')
                 ->select('imagen')
                 ->where('id_paquete','=',$id)
@@ -166,6 +247,9 @@ class AdminPaquetesController extends Controller
             'no importa',
             '1',
             'no importa',
+            '1',
+            'no importa',
+            'No',
             '".$usuario."',
             '".$id."'
         )";

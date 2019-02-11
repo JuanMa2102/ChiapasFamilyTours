@@ -30,10 +30,10 @@
                                     @foreach($dias as $item)
                                         <tr>
                                             <td>{{ $item->cantidad }}</td>
-                                            <td>{{ $item->descripcion }}</td>
+                                            <td>{!! $item->descripcion !!}</td>
                                             <td><a href="{{ route('verItinerario',[$item->id_dias,$paqueteActual]) }}"><button class="btn btn-primary">Ver detalles</button></a></td>
-                                            <td style="width: 500px; white-space: pre-line;">{{ $item->inclusiones }}</td>
-                                            <td style="width: 100px;"><a href="{{ url('administrador/galeriaDias', $item->id_dias) }}") }}"><button class="btn btn-primary">Ver galería</button></a></td>
+                                            <td style="width: 500px; white-space: pre-line;">{!! $item->inclusiones !!}</td>
+                                            <td style="width: 100px;"><a href="{{ url('administrador/galeriaDias', $item->id_dias)}}"><button class="btn btn-primary">Ver galería</button></a></td>
                                             <td>
                                             <ul>
                                                         <a href="{{URL::action('AdminDiasController@edit',$item->id_dias)}}">

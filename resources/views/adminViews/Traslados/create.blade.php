@@ -49,7 +49,7 @@
                    
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="addInclusionesTraslados"><i class="fa fa-plus-circle"></i>Añadir</button>
+                            <button type="button" class="addInclusionesTraslados btn-primary"><i class="fa fa-plus-circle"></i> Añadir</button>
                         </div>
                     </div>
 

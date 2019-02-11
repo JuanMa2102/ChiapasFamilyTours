@@ -216,6 +216,10 @@ class AdminTrasladosController extends Controller
                             '".$usuario."'
                             )";
                             $datos = DB::select($sql_sol,array(1,10));
+                            if($datos==null)
+                {
+                    return Redirect::to('administrador/adminTraslados')->withErrors(['erroregistro'=> 'Error']);
+                }
                     }
                 }
             }

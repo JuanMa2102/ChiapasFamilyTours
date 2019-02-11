@@ -31,7 +31,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Texto lateral</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
-                                    <textarea class="form-control" name="textolateral" id="textolateral" cols="30" rows="15">{{old('textolateral')}}</textarea>
+                                    <textarea class="form-control summernote" name="textolateral" id="textolateral" cols="30" rows="15">{{old('textolateral')}}</textarea>
                                     {!! $errors->first('textolateral','<span class="help-block">Es necesario introducir un texto lateral</span>')!!}
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Texto de pié</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
-                                    <textarea class="form-control" name="textopie" id="textopie" cols="30" rows="15">{{old('textopie')}}</textarea>
+                                    <textarea class="form-control summernote" name="textopie" id="textopie" cols="30" rows="15">{{old('textopie')}}</textarea>
                                     {!! $errors->first('textopie','<span class="help-block">Es necesario introducir un texto de pié</span>')!!}
                                 </div>
                             </div>
@@ -52,6 +52,16 @@
                             <div class="col-md-6 col-xs-12">
                                 <input type="file" name="imagenSeccion" class="file" accept="image/*" data-preview-file-type="any" />
                                 {!! $errors->first('imagenSeccion','<span class="help-block">Es necesario introducir una imagen</span>')!!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Descripción de imagen</label>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="input-group">
+                                    <textarea class="form-control summernote" name="descImagen" id="descImagen" cols="30" rows="15">{{old('descImagen')}}</textarea>
+                                    {!! $errors->first('descImagen','<span class="help-block">Es necesario introducir una descripción de imagen</span>')!!}
+                                </div>
                             </div>
                         </div>
                     </div>                  

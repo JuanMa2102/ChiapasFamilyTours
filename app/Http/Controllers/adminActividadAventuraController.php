@@ -76,13 +76,13 @@ class adminActividadAventuraController extends Controller
             'nombreAventura' => 'required|string|max:5000',
             'img'=>'required|mimes:jpg,jpeg,png|max:5000'
         ]);
-        
+        $inlclusion = $request->get('inclusiones');
         $titulo=$request->get('nombreAventura');
         $id=0;
         $usuario=Auth::user()->id;
         $opcion=1;
 
-        $inlclusion= $request->get('inlclusion');
+        
 
         if($request->file('img')){
             $path= Storage::disk('local')->put('uploads/ActividadAventura', $request->file('img'));
@@ -94,25 +94,11 @@ class adminActividadAventuraController extends Controller
                 '".$id."',
                 '".$usuario."',
                 '".$titulo."',
-                '".$imagen."'
+                '".$imagen."',
+                '".$inlclusion."'
             )";
             
-            $datos =  DB::select($sql_sol, array(1,10));
-            $id = (int)$datos[0]->id;
-
-            for($i = 0; $i < count($inlclusion); $i++){
-                if($inlclusion[$i] != null){
-                    $sql_solDetalle = "call spCSL_CRUD_actividadAventuraDetalle
-                    (
-                    '".$opcion."',
-                    '".$id."',
-                    '".$inlclusion[$i]."',
-                    '".$usuario."'
-                    )";
-                    $datos_Detalle = DB::select($sql_solDetalle,array(1,5));
-                }
-            }
-            
+            $datos =  DB::select($sql_sol, array(1,10));            
             if($datos != null)
             {
                 return Redirect::to('administrador/adminActividadAventura');
@@ -131,7 +117,7 @@ class adminActividadAventuraController extends Controller
      {
 
             $titulo = $request->get('nombreActividad');
-            $inlclusion = $request->get('inlclusion');
+            $inlclusion = $request->get('inclusiones');
             $usuario=Auth::user()->id;
             
 
@@ -143,7 +129,8 @@ class adminActividadAventuraController extends Controller
                     '".$id."',
                     '".$usuario."',
                     '".$titulo."',
-                    'No importa' 
+                    'No importa',
+                    '".$inlclusion."' 
                 )";
                 $datos = DB::select($sql,array(1,10));
                 
@@ -170,52 +157,12 @@ class adminActividadAventuraController extends Controller
                     '".$id."',
                     '".$usuario."',
                     '".$titulo."',
-                    '".$imagen."'
+                    '".$imagen."',
+                    '".$inlclusion."'
                 )";            
 
                 $datos = DB::select($sql,array(1,10));
             }
-
-            if($request->get('inlclusion') == null){
-            $opcionCat = 2;
-            $sql_sol = "call spCSL_CRUD_actividadAventuraDetalle
-            (
-            '".$opcionCat."',
-            '".$id."',
-            '1',
-            '".$usuario."'
-            )";
-
-            $datos = DB::select($sql_sol,array(1,10));
-
-            }
-            else{
-                
-                $opcionCat1 = 3;
-                $sql_sol = "call spCSL_CRUD_actividadAventuraDetalle
-                (
-                    '".$opcionCat1."',
-                    '".$id."',
-                    '1',
-                    '".$usuario."'
-                )";
-                $datos = DB::select($sql_sol,array(1,10));
-                
-                $opcionCat = 4;
-                for($i = 0; $i < count($inlclusion); $i++){
-                    if($inlclusion[$i] != null){
-                    $sql_sol = "call spCSL_CRUD_actividadAventuraDetalle
-                        (
-                        '".$opcionCat."',
-                        '".$id."',
-                        '".$inlclusion[$i]."',
-                        '".$usuario."'
-                        )";
-                        $datos = DB::select($sql_sol,array(1,10));
-                    }
-                }
-            }
-
                 if($datos==null){
                     return Redirect::to('administrador/adminActividadAventura')->withErrors(['erroregistro'=> 'Error']);
                 }else{

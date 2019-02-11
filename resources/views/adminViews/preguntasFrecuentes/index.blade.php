@@ -28,7 +28,7 @@
                                     @foreach($preguntas as $item)
                                         <tr>
                                             <td class="tdShort">{{ $item->pregunta }}</td>
-                                            <td>{{ $item->respuesta }}</td>
+                                            <td>{!! $item->respuesta !!}</td>
                                             <td><a href="{{ url('administrador/PreguntaDetalle', $item->id_preguntaFrecuente) }}">
                                                 <button class="btn btn-primary">Ver detalles</button></a>
                                             </td>

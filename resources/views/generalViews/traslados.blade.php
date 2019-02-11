@@ -2,14 +2,17 @@
 
 @section ('content')
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/header_bg.jpg')}}" data-natural-width="1400" data-natural-height="470">
-		<div class="parallax-content-1">
-			<div class="animated fadeInDown">
-				<h1>Recomendaciones</h1>
-				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
-			</div>
-		</div>
-	</section>
+	<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/paginainicio.JPG')}}" data-natural-width="1400" data-natural-height="470">
+    <div class="parallax-content-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <h1>TRASLADOS</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 	<!-- End Section -->
 
 	<main>
@@ -59,6 +62,15 @@
 	</main>
 	<!-- End main -->
 
+@endsection
+
+@extends ('meta.metaComponent')
+@section('meta')
+<title>Chiapas Family Tours: traslados a aeropuertos</title>
+<meta name="description" content="Vea la información relevante a traslados a aeropuertos que tenemos para usted."/>
+<meta property="og:url" content="http://www.chiapasfamilytours.com.mx/traslados" />
+<meta property="og:description" content="Vea la información relevante a traslados a aeropuertos que tenemos para usted."/>
+<link rel="canonical" href="http://www.chiapasfamilytours.com.mx/traslados" />
 @endsection
 
 @push('transladosScript')

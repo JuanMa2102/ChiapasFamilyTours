@@ -14,7 +14,7 @@
                         <div class="col-md-12">
                             <div class="itinerarioCortoInfo">
                                 <p class="formatParraf">
-                                    {{$info != null ? $info : 'No se ha asignado itinerario corto' }}
+                                    {!!$info != null ? $info : 'No se ha asignado itinerario corto' !!}
                                 </p>
                                 <a href="{{route('editarCorto',$diaActual)}}"><button class="btn btn-primary">Editar Itinerario Corto</button></a>
                             </div>
@@ -37,7 +37,7 @@
                         <div class="col-md-6">
                             <div class="texto">
                                 <p>
-                                    {{$item->texto1 != null ? $item->texto1 : 'No se ha asignado texto'}}
+                                    {!!$item->texto1 != null ? $item->texto1 : 'No se ha asignado texto'!!}
                                 </p>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                         <div class="col-md-12">
                             <div class="texto">
                                 <p>
-                                    {{$item->texto2 != null ? $item->texto2 : 'No se ha asignado texto'}}
+                                    {!!$item->texto2 != null ? $item->texto2 : 'No se ha asignado texto'!!}
                                 </p>
                             </div>
                         </div>
@@ -68,6 +68,7 @@
                                 <th>Hotel</th>
                                 <th>Página web</th>
                                 <th>Tipo de hotel</th>
+                                <th>Asociado al precio de paquete</th>
                                 <th>Acciones</th>
                             </thead>
                             <tbody>
@@ -76,8 +77,11 @@
                                     <td>{{$item->nombreHotel}}</td>
                                     <td>{{$item->paginaHotel}}</td>
                                     <td>{{$item->tipoHotel}}</td>
+                                    <td style="{{$item->asociado == 0 ? 'color: #f00' : 'color:     #0f0'}}">{{$item->asociado == 0 ? 'No asociado' : 'Asociado' }}</td>
                                     <td>
                                         <ul>
+                                        <a href="{{route('editAddedHotel',$item->idHotelDia)}}">
+                                                        <button class="btn btn-info"><i class="fa fa-edit"></i></button></a>
                                             <a href="" data-target="#message-box-danger-{{$item->idHotelDia}}" data-toggle="modal">
                                                 <button class="btn btn-danger">
                                                         <i class="fa fa-trash-o"></i>
@@ -89,7 +93,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a href="{{route('addHotel',$diaActual)}}" style="display: block; margin-top: 1%; margin: auto;"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Incluir hotel</button></a>
+                <div class="itinerarioLargoActions">
+                <a href="{{route('addHotel',$diaActual)}}" style="display: block; margin-top: 1%; margin: auto;"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Incluir hotel</button></a>
+                        <a href="{{route('editDescHotel',['dia' => $diaActual, 'url'=> url()->current()])}}" style="display: block; margin-top: 1%; margin: auto;"><button style="display: block; margin: auto;" class="btn btn-primary"><i class="fa fa-edit"></i> Editar descripción de la tabla</button></a>
+                </div>
+                        
                     </div>
                     <a href="{{URL::action('AdminDiasController@show',$paqueteActual)}}"><button type="button" style="margin: 2%;" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
                 </div>

@@ -1,6 +1,7 @@
+
 @extends ('masterPage.masterPrincipal') @section('content')
 
-<main>
+<main style="overflow-x:hidden">
     <div id="rev_slider_54_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="notgeneric1" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
         <!-- START REVOLUTION SLIDER 5.4.1 fullwidth mode -->
         <div id="rev_slider_54_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
@@ -50,71 +51,75 @@
     <div class="container margin_60">
 
         <div class="main_title">
-            <h2><span>Paquetes Privados
-					<span></h2>
-					</div>
-
-					@foreach($paquetes as $item)
-					<div class="row">
-						<div class="paquetePrivado col-md-12">
-							<div class="imageContainer">
-								<div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
-									<div class="tour_container">
-										<div class="ribbon_3 popular"><span>PAQUETE</span></div>
+            <h2><span>Paquetes Privados<span></h2></div>
+					@foreach($paquetes as $key => $item)
+            <div class="row">
+                <div class="paquetePrivado col-md-12">
+                    <div class="imageContainer">
+                        <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
+                            <div class="tour_container">
+                                <div class="ribbon_3 popular"><span>PAQUETE</span></div>
         <div class="img_container">
-            <a href="/paquetesPrivadosPorDia">
-												<img src="{{asset($item->imagen)}}" class="img-responsive" alt="image">
-											</a>
+            <a href="/">
+                                            <img src="{{asset($item->imagen)}}" class="img-responsive" alt="image">
+                                        </a>
         </div>
         <div class="tour_title">
             <h3><strong>{{$item -> titulo_imagen}}</strong></h3>
         </div>
     </div>
-    <!-- End box tour -->
     </div>
     </div>
     <div class="paqueteDescription">
         <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="tour_list_desc">
-
-
                 <h3><strong>{{ $item -> nombre }}</strong> </h3>
-                <p>{{ $item->descripcion }}</p>
+                <p>{!! $item->descripcion !!}</p>
+                <div class="guiaRapida">
+                    <a href="{{$item->guia == '' ? '#' : $item->guia}}" {{$item->guia == '' ? 'disabled' : ''}}target="_blank"><button>{{$item->guia == "" ? 'GUÍA RÁPIDA NO DISPONIBLE' : 'VER GUÍA RÁPIDA'}}</button></a>
+                </div>
                 <div class="diasPaquete">
                     <p class="paqueteTitle">PAQUETES</p>
                     <ul>
-                        @foreach($dias as $itemDias) @if($itemDias->id_paquete == $item->id_paquete)
+                        @php $cont = 0; $diaMenor = 0; $descripciones = ""; @endphp @foreach($dias as $itemDias) @if($itemDias->id_paquete == $item->id_paquete) @php $cont == 0 ? $diaMenor = $itemDias->cantidad : $cont = $cont; $cont++; @endphp
                         <li>
                             <a href="{{ route('paquetes-detalle',[$item->id_paquete,$itemDias->id_dias])}}">
                                 <div class="paqueteItem">
                                     <!--  -->
                                     <p>{{$itemDias -> cantidad}}</p>
-                                    <p>DÍAS{{$itemDias->descripcion}}</p>
+                                    <p>
+                                        @if($itemDias->descripcion != "") @php $descripciones .= $itemDias->cantidad . " DÍAS*: " .$itemDias->descripcion . "\n"; @endphp DÍAS* @else DÍAS @endif
+                                    </p>
                                 </div>
                             </a>
                         </li>
                         @endif @endforeach
                     </ul>
                 </div>
+                <div class="descPaquetes">
+                    <p style="white-space: pre-line">
+                        {{$descripciones}}
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2">
-            <p class="titlePrice">EN HOTELES BOUTIQUE DESDE</p>
+            <p class="titlePrice">{{$item->subtituloprecio}}</p>
             <div class="price_list">
-                <div><sup>$</sup>{{$item -> precio}}*<span class="normal_price_list">$2500</span><small>Precio de paquete 3 Días</small>
-                    <!-- <p><a href="" class="btn_1">Details</a>
-										</p> -->
+                <div><sup>$</sup>{{$item -> precio}}*<span class="normal_price_list">${{$item->preciotachado}}</span><small>Precio de paquete {{$diaMenor}} Días</small>
+                   <small>En habitaciones cuádruple</small>
                 </div>
             </div>
         </div>
     </div>
 
     </div>
+    </div>
     <!-- End col-md-4 -->
     @endforeach
 
 
-    </div>
+
     <hr>
 
     <div class="boutiqueHoteles">
@@ -131,13 +136,10 @@
             <div class=" col-md-4 col-sm-6 wow zoomIn " data-wow-delay="0.1s ">
                 <div class="hotel_container ">
                     <div class="ribbon_3 popular "><span>TOP</span></div>
-                    <div class="img_container ">
-                        <a href="">
-                                            <img src="{{asset($item->imagen)}}" width="800" height="533" class="img-responsive" alt="single-hotel">
-                </a>
+                    <div class="img_container " style="background-image: url({{asset($item->imagen)}})">
                     </div>
                     <div class="hotel_title">
-                    <h3><strong>{{$item->nombre}} - <a href="{{$item->pagina == null ? '' : 'http://'.$item->pagina}}">{{$item->pagina == null ? 'Página no disponible' : 'Visitar página'}}</a></strong> </h3>
+                        <h3><strong>{{$item->nombre}} - <a href="{{$item->pagina == null ? '' : 'http://'.$item->pagina}}">{{$item->pagina == null ? 'Página no disponible' : 'Visitar página'}}</a></strong> </h3>
                         <p></p>
                         <!-- end rating -->
 
@@ -167,13 +169,10 @@
             <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
                 <div class="hotel_container">
                     <div class="ribbon_3 popular"><span>TOP</span></div>
-                    <div class="img_container">
-                        <a href="">
-										<img src="{{asset($item->imagen)}}" width="800" height="533" class="img-responsive" alt="image">
-									</a>
+                    <div class="img_container " style="background-image: url({{asset($item->imagen)}})">
                     </div>
                     <div class="hotel_title">
-                    <h3><strong>{{$item->nombre}} - <a href="{{$item->pagina == null ? '' : 'http://'.$item->pagina}}">{{$item->pagina == null ? 'Página no disponible' : 'Visitar página'}}</a></strong> </h3>
+                        <h3><strong>{{$item->nombre}} - <a href="{{$item->pagina == null ? '' : 'http://'.$item->pagina}}">{{$item->pagina == null ? 'Página no disponible' : 'Visitar página'}}</a></strong> </h3>
                         <!-- end rating -->
 
                         <!-- End wish list-->
@@ -193,210 +192,63 @@
     </div>
     <div class="container-fluid">
         <div class="main_title">
-            <h2><span>NUESTRA RUTA DE TRABAJO
-						<span></h2>
-						</div>
-						<div class="col-md-4 atractivosList">
-							<div class="panel-group" id="accordion">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a onclick="onHtmlClick('TuxtlaGutierrez',0)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">TUXTLA GUTIÉRREZ<i class="indicator icon-plus pull-right"></i></a>
 
-										</h4>
-									</div>
-									<div id="collapseOne" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="/descAtractivo">TUXTLA GUTIÉRREZ</a></li>
+        </div>
+        <div class="col-md-4 atractivosList">
+            <span><h2 class="rutaTitle">ATRACTIVOS NATURALES Y CULTURALES</h2></span>
+            <div class="panel-group" id="accordion">
+                @foreach($atractivos as $itemA)
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#_{{$itemA->id_atractivos}}">{{$itemA->nombre}}<i class="indicator icon-plus pull-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="_{{$itemA->id_atractivos}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="chiapasList">
+                                @foreach($atractivosDetalle as $itemB) @if($itemB->id_atractivos == $itemA->id_atractivos)
+                                <li><a href="{{URL::action('descAtractivoController@show',$itemA->id_atractivos)}}#{{$itemB->titulo}}">{{$itemB->titulo}}</a></li>
+                                @endif @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
 
-												<li><a href="/descAtractivo">CAÑON DEL SUMIDERO POR LOS MIRADORES</a></li>
-												<li><a href="/descAtractivo">EL PARQUE DE LA MARIMBA</a></li>
-												<li><a href="/descAtractivo">RESTAURANTE LAS PICHANCHAS SHOW DE BAILABLES REGIONALES </a></li>
-												<li><a href="/descAtractivo">EL ZOOLOGICO  MIGUEL ALVAREZ DEL TORO </a></li>
-												<li><a href="/descAtractivo">EL MUSEO  DEL CAFÉ</a></li>
-												<li><a href="/descAtractivo">EL CRISTO  DE CHIAPAS  ( COPOYA ) </a></li>
-												<li><a href="/descAtractivo">LA FOSA DE LAS COTORRAS (   AVISTAMIENTO DE COTORRAS   DE  MARZO A OCTUBRE</a></li>
-												<li><a href="/descAtractivo">CAÑON RIO LA VENTA Y LA CASCADA EL AGUACERO (VISITABLE  DE  NOVIEMBRE A  MAYO)</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a onclick="onHtmlClick('Chiapadecorzo', 0,1)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">CHIAPA DE CORZO <i class="indicator icon-plus pull-right"></i></a>
-										</h4>
-									</div>
+            </div>
 
-									<div id="collapseTwo" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="/descAtractivo">PUEBLO MAGICO DE CHIAPA DE CORZO </a></li>
-												<li><a href="/descAtractivo">CAÑON DEL SUMIDERO POR RIO</a></li>
-												<li><a href="/descAtractivo">IGLESIA  Y  CONVENTO  DE SANTO  DOMINGO  DE CHIAPA DE CORZO </a></li>
-												<li><a href="/descAtractivo">FUENTE  (LA PILA)  ó  (L QUIOSCO) </a></li>
-												<li><a href="/descAtractivo">CASCADA EL CHORREADERO </a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a onclick="onHtmlClick('Sancris',0)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">SAN CRISTOBAL DE LAS CASAS<i class="indicator icon-plus pull-right"></i></a>
-										</h4>
-									</div>
-									<div id="collapseThree" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="/descAtractivo">PUEBLO MAGICO DE SAN CRISTOBAL DE LAS CASAS </a></li>
-												<li><a href="/descAtractivo">COMUNIDADES INDIGENAS : SAN JUANCHAMULA Y ZINACANTAN </a></li>
-												<li><a href="/descAtractivo">CENTRO  CULTURAL DE LOS ALTOS DE CHIAPAS</a></li>
-												<li><a href="/descAtractivo">MUSEO  OBISPO SAMUEL RUIZ  </a></li>
-												<li><a href="/descAtractivo">MUSEO DEL JADE</a></li>
-												<li><a href="/descAtractivo">MUSEO NA – BOLOM</a></li>
-												<li><a href="/descAtractivo">GRUTAS DE RANCHO NUEVO</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a onclick="onHtmlClick('Comitan', 0)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">COMITÁN DE DOMINGUEZ<i class="indicator icon-plus pull-right"></i></a>
-										</h4>
+        </div>
+        <div class="col-md-8">
+            <span><h2 class="rutaTitle">NUESTRA RUTA DE TRABAJO</h2></span>
+            <!-- START MAP -->
+            <div style="position: relative; overflow: hidden" class="imageRutaContent">
+                <button class="timeSwitch"><i class="icon-menu"></i></button>
+                <img style="width: 100%; " alt="Image" class="sp-image" src="{{$ruta[0]->imagen}}" data-src="{{$ruta[0]->imagen}}" data-small="img/slider_single_tour/6_small.jpg" data-medium="{{$ruta[0]->imagen}}" data-large="img/slider_single_tour/6_large.jpg" data-retina="img/slider_single_tour/6_large.jpg">
+                <div class="infoTiempo">
+                {!!$ruta[0]->descripcion!!}
+                </div>
+            </div>
 
-									</div>
-									<div id="collapseFour" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="/descAtractivo">PUEBLO MAGICO DE COMITAN DE DOMINGUEZ </a></li>
-												<li><a href="/descAtractivo">MUSEO  DR. BELISARIO  DOMINGUEZ</a></li>
-												<li><a href="/descAtractivo">LAS CASCADAS DEL  CHIFLON</a></li>
-												<li><a href="/descAtractivo">LA ZONA ARQUEOLOGICA DE CHINCULTIK</a></li>
-												<li><a href="/descAtractivo">LOS LAGOS DEMONTEBELLO</a></li>
-												<li><a href="/descAtractivo">CENTRO ECOTURISTICO LAS NUBES</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a  onclick="onHtmlClick('Gucamayas', 0)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">CENTRO  ECOTURISTICO  DE LAS  GUACAMAYAS<i class="indicator icon-plus pull-right"></i></a>
-										</h4>
-									</div>
-									<div id="collapseFive" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="/descAtractivo">CENTRO  ECOTURISTICO  DE LAS  GUACAMAYAS</a></li>
-												<li><a href="/descAtractivo">PASEO EN LANCHA  RIO LACANTUN Y  RIO TZENDALES</a></li>
-												<li><a href="/descAtractivo">RESERVA DE LA BIOSFERA  DE  MONTES  AZULES</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a onclick="onHtmlClick('Yax', 0)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">YAXCHILAN<i class="indicator icon-plus pull-right"></i></a>
-										</h4>
-									</div>
-									<div id="collapseSix" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="/descAtractivo">LA  ZONA  ARQUEOLOGICA  DE YAXCHILAN </a></li>
-												<li><a href="/descAtractivo">LA ZONA ARQUEOLOGICA DE  BONAMPAK</a></li>
-												<li><a href="/descAtractivo">RAFTING (DESCENSO  DE CASCADAS  EN BALSA  RIO LACANJA)</a></li>
-												<li><a href="/descAtractivo">CASCADAS DE LAS GOLONDRINAS </a></li>
-												<li><a href="/descAtractivo">CASCADAS DE ROBERTO BARRIOS</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a onclick="onHtmlClick('Palenque', 0)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">PALENQUE<i class="indicator icon-plus pull-right"></i></a>
-										</h4>
-									</div>
-									<div id="collapseSeven" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="/descAtractivo">PUEBLO MAGICO  DE  PALENQUE </a></li>
-												<li><a href="/descAtractivo">LAS CASCADAS DE AGUA AZUL</a></li>
-												<li><a href="/descAtractivo">LA CASCADA DE MISOL HA </a></li>
-												<li><a href="/descAtractivo">LA ZONA ARQUEOLOGICA DE PALENQUE</a></li>
-												<li><a href="/descAtractivo">ECO PARQUE LOS ALUXES </a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a  onclick="onHtmlClick('Villa',0)" class="accordion-toggle " data-toggle="collapse" data-parent="#accordion" href="#collapseEight">VILLA HERMOSA, TABASCO<i class="indicator icon-plus pull-right"></i></a>
-										</h4>
-									</div>
-									<div id="collapseEight" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="chiapasList">
-												<li><a href="#">PARQUE MUSEO LA VENTA  (CULTURA OLMECA)</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
+            <!-- END MAP -->
+        </div>
+    </div>
+    <div class="white_bg">
+        <div class="container margin_60">
+            <!-- End row -->
+            <div class="banner colored">
 
-						</div>
-						<div class="col-md-8">
-							<!-- START MAP -->
-							<div style="position: relative; overflow: hidden" class="sp-slide">
-                                <button class="timeSwitch"><i class="icon-menu"></i></button>
-  <img style="width: 100%; " alt="Image" class="sp-image" src="{{asset('img/rutaTrabajo.png')}}" data-src="{{asset('img/rutaTrabajo.png')}}" data-small="img/slider_single_tour/6_small.jpg" data-medium="{{asset('img/rutaTrabajo.png')}}" data-large="img/slider_single_tour/6_large.jpg" data-retina="img/slider_single_tour/6_large.jpg">
-  <p class="sp-layer sp-white sp-padding infoTiempo" data-horizontal="10" data-vertical="10" data-width="390">
-  Aeropuerto Angel Albino Corzo – Tuxtla Gutierrez   40  min
-Aeropuerto Angel Albino Corzo – Chiapa de Corzo      30  min
-Aeropuerto Angel Albino Corzo – San Cristobal de las Casas  1  h 10 min.
-San Cristobal de las Casas – Comitan de Dominguez    1  h  45  min 
-Comitan de Dominguez   - Cascadas del  Chiflon   50  min
-Comitan de Dominguez   - Lagos  de  Montebello   1  h  10  min
-Lagos  de  Montebello  . Centro  Ecoturístico las  Nubes   2  h
-Centro Ecoturístico las Nubes -Centro Ecoturístico las Guacamayas 2  h 45 min.
-Centro  Ecoturístico las Guacamayas –Frontera Corozal  3  h 
-Frontera Corozal -  Zona Arqueológica  de  Bonampak    50  min
-Zona Arqueológica  de  Bonampak – Palenque   2   h   40  min 
-Palenque – Cascadas de Misol Ha -  40  min
-Palenque – Cascadas de Agua Azul  -  1  h   50  min
-Palenque – Aeropuerto  de  Villa Hermosa   2   h
-___________________________________________________________________________________
-Tuxtla Gutierrez – Sima  de las Cotorras  1 h  30 min
-Tuxtla Gutierrez – Cañon rio la Venta y Cascada del Aguacero 1 h 15 min
-San Cristobal -  Palenque .  Via Ocosingo  6 H.
-
- </p>
-</div>
-
-							<!-- END MAP -->
-						</div>
-					</div>
-					<div class="white_bg">
-						<div class="container margin_60">
-							<!-- End row -->
-							<div class="banner colored">
-								<h4>Hoteles Boutique a partir de <span>$1800</span></h4>
-                <p>
+                <p style="font-size: 18px">
                     Comuníquese con nosotros al número {{$infoGeneral[0]->telefono}} y le damos grandiosos tips antes de cotizar su viaje
                 </p>
-        </div>
-        <!--MAPA-->
-        <div>
+            </div>
+            <!--MAPA-->
+            <div>
 
+            </div>
+            <!-- End row -->
         </div>
-        <!-- End row -->
-    </div>
-    <!-- End container -->
+        <!-- End container -->
 
     </div>
     <!-- End white_bg -->
@@ -404,7 +256,7 @@ San Cristobal -  Palenque .  Via Ocosingo  6 H.
 
     <section class="promo_full">
         <div class="promo_full_wp magnific">
-        <iframe width="100%" height="500" src="{{$infoGeneral[0]->video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="500" src="{{$infoGeneral[0]->video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
     <!-- End section -->
@@ -425,9 +277,8 @@ San Cristobal -  Palenque .  Via Ocosingo  6 H.
                     <i class=" icon-star-empty-2"></i>
                     <h4>Nuestros 16 Paquetes son <span>PRIVADOS</span>. Solo para ud., Amigos y Familiares</h4>
                     <p style="white-space: pre-line">
-                        Nosotros sugerimos la hora de inicio de los tours y el tiempo que dedicaremos a las visitas. !Pero ustedes deciden! ¡Sabrán de antemano las horas y minutos, que tendremos en carretera! 
-                        
-                        La sección de itinerarios detallados le indica a qué hora terminan los tours y así usted, puede organizar su tiempo para otras actividades con su familia.
+                        Nosotros sugerimos la hora de inicio de los tours y el tiempo que dedicaremos a las visitas. !Pero ustedes deciden! ¡Sabrán de antemano las horas y minutos, que tendremos en carretera! La sección de itinerarios detallados le indica a qué hora terminan
+                        los tours y así usted, puede organizar su tiempo para otras actividades con su familia.
                     </p>
 
                 </div>
@@ -439,10 +290,7 @@ San Cristobal -  Palenque .  Via Ocosingo  6 H.
                     <h4>Más de 50 Tips y Respuestas a Preguntas Frecuentes.</h4>
                     <h5 style="color: #f00">(Los Tips se encuentras en Atractivos Naturales y Culturales de Chiapas)</h5>
                     <p style="white-space: pre-line">
-                        Más información: 
-                        De los Atractivos Naturales y Culturales con los que cuenta Chiapas y con información gráfica que le podrá ayudar a hacer su propio itinerario. 
-                            
-                        Posibilidad de incluir actividades de aventura: Rappel en diferentes niveles, Cañonismo, Tirolesas,
+                        Más información: De los Atractivos Naturales y Culturales con los que cuenta Chiapas y con información gráfica que le podrá ayudar a hacer su propio itinerario. Posibilidad de incluir actividades de aventura: Rappel en diferentes niveles, Cañonismo, Tirolesas,
                         Descenso de Cascadas en Balsa (Rafting) y Caminata en la Selva.
                     </p>
                 </div>
@@ -453,12 +301,7 @@ San Cristobal -  Palenque .  Via Ocosingo  6 H.
                     <i class="icon_set_1_icon-57"></i>
                     <h3>Asistencia</h3>
                     <p style="white-space: pre-line; text-align: left">
-                        En requerimientos especiales como: 
-                        * Habitaciones Handicap 
-                        * Asientos para Bebés 
-                        * Solicitud de Cunas 
-                        * Renta de Silla de Ruedas 
-                        * Disponibilidade de Guías en Diferentes Idiomas: - Inglés - Francés - Italiano - Alemán
+                        En requerimientos especiales como: * Habitaciones Handicap * Asientos para Bebés * Solicitud de Cunas * Renta de Silla de Ruedas * Disponibilidade de Guías en Diferentes Idiomas: - Inglés - Francés - Italiano - Alemán
                     </p>
 
                 </div>
@@ -466,41 +309,7 @@ San Cristobal -  Palenque .  Via Ocosingo  6 H.
 
         </div>
         <!--End row -->
-        @foreach($reserva as $item)
-        <hr>
-        <div class="row">
-            <div class="col-md-8 col-sm-6 hidden-xs">
-                <img src="{{asset($item->imagen)}}" alt="chiapas-family-tours-laptopimage" class="img-responsive laptop">
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <h3>{{$item->infoSecundario}}</h3>
-                <p>
-                    <h3>{{$item->titulo}}</h3>
-                </p>
 
-                <div class="panel-group getStartedInstructions" id="accordion">
-                    @foreach($reservaDetalle as $key => $itemDetalle)
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{$itemDetalle->id_reservadetalle}}"><span>{{$key + 1}}</span> {{$itemDetalle->titulo}}<i class="indicator icon-plus pull-right"></i></a>
-                            </h4>
-                        </div>
-                        <div id="{{$itemDetalle->id_reservadetalle}}" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <ul class="chiapasList">
-                                    <li><a href="/descAtractivo">{{$itemDetalle->descripcion}}</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-
-            </div>
-        </div>
-
-        @endforeach
         <!-- End row -->
 
     </div>
@@ -508,7 +317,18 @@ San Cristobal -  Palenque .  Via Ocosingo  6 H.
 </main>
 <!-- End main -->
 
-@endsection @push('inicioScripts')
+@endsection 
+@extends ('meta.metaComponent')
+@section('meta')
+<title>Chiapas Family Tours | viajes a chiapas con amigos y familiares</title>
+<meta name="description" content="Chiapas Family Tours es una empresa que ofrece tours y viajes a pueblos mágicos, zonas arqueológicas con actividades de aventura en los lugares más bellos de este estado."/>
+<meta property="og:url" content="http://www.chiapasfamilytours.com.mx/" />
+<meta property="og:description" content="Chiapas Family Tours es una empresa que ofrece tours y viajes a pueblos mágicos, zonas arqueológicas con actividades de aventura en los lugares más bellos de este estado."/>
+<link rel="canonical" href="http://www.chiapasfamilytours.com.mx/index.php" />
+@endsection
+
+
+@push('inicioScripts')
 <!-- SLIDER REVOLUTION SCRIPTS  -->
 <script type="text/javascript" src="{{asset('rev-slider-files/js/jquery.themepunch.tools.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('rev-slider-files/js/jquery.themepunch.revolution.min.js')}}"></script>
@@ -521,21 +341,20 @@ San Cristobal -  Palenque .  Via Ocosingo  6 H.
 <script type="text/javascript" src="{{asset('rev-slider-files/js/extensions/revolution.extension.parallax.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('rev-slider-files/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
 <!-- Map -->
-<script src="http://maps.googleapis.com/maps/api/js"></script>
+
 <script type="text/javascript" src="{{asset('js/map_home.js')}}"></script>
 <script type="text/javascript" src="{{asset('rev-slider-files/js/extensions/revolution.extension.video.min.js')}}"></script>
 <script>
     var tiempo = false;
-    $(".timeSwitch").click(()=>{
-        if(!tiempo){
+    $(".timeSwitch").click(() => {
+        if (!tiempo) {
             $(".infoTiempo").addClass('active');
             tiempo = true;
-        }
-        else{
+        } else {
             $(".infoTiempo").removeClass('active');
             tiempo = false;
         }
-        
+
     });
 </script>
 <script type="text/javascript">

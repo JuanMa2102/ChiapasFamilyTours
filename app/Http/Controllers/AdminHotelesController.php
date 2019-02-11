@@ -20,7 +20,8 @@ class AdminHotelesController extends Controller
     public function index(){
         $hotel = DB::table('tbl_hoteles')
         ->select('tbl_hoteles.nombre as nombreHotel',
-        'tbl_hoteles.precio as precio',
+        'tbl_hoteles.id_municipio as id_municipio',
+        'tbl_municipios.nombre as nombre',
                  'tbl_hoteles.recomendado as recomendado',
                  'tbl_hoteles.direccion as direccionHotel',
                  'tbl_hoteles.pagina as paginaHotel',
@@ -28,7 +29,9 @@ class AdminHotelesController extends Controller
                  'tbl_tipohotel.descripcion as tipoHotel',
                  'tbl_hoteles.id_hotel as idHotel')
         ->where('tbl_hoteles.activo','=',1)
+        ->where('tbl_tipohotel.activo',1)
         ->join('tbl_tipohotel', 'tbl_hoteles.id_TipoHotel','=','tbl_tipohotel.id_tipoHotel')
+        ->join('tbl_municipios','tbl_hoteles.id_municipio','=','tbl_municipios.id_municipio')
         ->get();
         
         return view("adminViews.hoteles.index",['hotel'=>$hotel]);
@@ -37,12 +40,15 @@ class AdminHotelesController extends Controller
         $hotel = DB::table('tbl_tipohotel')
         ->where('activo','=',1)
         ->get();
-        return view("adminViews.hoteles.create",["hotel"=>$hotel]);
+        $municipio = DB::table('tbl_municipios')
+        ->get();
+        return view("adminViews.hoteles.create",["hotel"=>$hotel, "municipio" => $municipio]);
     }
     public function edit($id){
         $hotel = DB::table('tbl_hoteles')
         ->select('tbl_hoteles.nombre as nombreHotel',
-                 'tbl_hoteles.precio as precio',
+                 'tbl_hoteles.id_municipio as id_municipio',
+                 'tbl_municipios.nombre as nombre',
                  'tbl_hoteles.recomendado as recomendado',
                  'tbl_hoteles.direccion as direccionHotel',
                  'tbl_hoteles.pagina as paginaHotel',
@@ -53,13 +59,17 @@ class AdminHotelesController extends Controller
         ->where('tbl_hoteles.id_hotel','=',$id)
         ->where('tbl_hoteles.activo','=',1)
         ->join('tbl_tipohotel', 'tbl_hoteles.id_TipoHotel','=','tbl_tipohotel.id_tipoHotel')
+        ->join('tbl_municipios','tbl_hoteles.id_municipio','=','tbl_municipios.id_municipio')
         ->first();
         $tipoHoteles = DB::table('tbl_tipohotel')
         ->where('activo','=',1)
         ->get();
+        $municipio = DB::table('tbl_municipios')
+        ->get();
         
         return view("adminViews.hoteles.edit",['hotel'=>$hotel,
-                                                'tipoHoteles'=>$tipoHoteles]);
+                                                'tipoHoteles'=>$tipoHoteles,
+                                                'municipio' =>$municipio]);
     }
     public function store(Request $request){
         $credentials=$this->validate(request(),[
@@ -67,6 +77,7 @@ class AdminHotelesController extends Controller
             'url' => 'required',
             'pagina' => 'required',
             'tipo' => 'required',
+            'municipio' => 'required',
             'imagenHotel'=>'required|mimes:jpg,JPG,PNG,jpeg,png|max:5000'
         ]);
         
@@ -76,12 +87,7 @@ class AdminHotelesController extends Controller
         $tipoHotel = $request->get('tipo');
         $usuario=Auth::user()->id;
         $recomendado = 0;
-        if($request->get('precio') == "" || $request->get('precio') == null){
-            $precio = "Precio a discutir";
-        }
-        else{
-            $precio = $request->get('precio');
-        }
+        $municipio = $request->get('municipio');
         if($request->get('recomendado') == "on"){
             $recomendado = 1;
         }
@@ -98,7 +104,7 @@ class AdminHotelesController extends Controller
                 '".$tipoHotel."',
                 '".$imgHotel."',
                 '".$recomendado."',
-                '".$precio."',
+                '".$municipio."',
                 '".$usuario."',
                 '1'
             )";
@@ -119,15 +125,11 @@ class AdminHotelesController extends Controller
         $tipoHotel = $request->get('tipo');
         $usuario=Auth::user()->id;
         $recomendado = 0;
-        if($request->get('precio') == "" || $request->get('precio') == null){
-            $precio = "Precio a discutir";
-        }
-        else{
-            $precio = $request->get('precio');
-        }
+        $municipio = $request->get('municipio');
         if($request->get('recomendado') == "on"){
             $recomendado = 1;
         }
+
         if($request->file('imagenHotel')){
             $imagenAnterior = DB::table('tbl_hoteles')
                 ->select('imagen')
@@ -149,7 +151,7 @@ class AdminHotelesController extends Controller
                 '".$tipoHotel."',
                 '".$imgHotel."',
                 '".$recomendado."',
-                '".$precio."',
+                '".$municipio."',
                 '".$usuario."',
                 '".$id."'
             )";
@@ -169,7 +171,7 @@ class AdminHotelesController extends Controller
                 '".$tipoHotel."',
                 'no importa',
                 '".$recomendado."',
-                '".$precio."',
+                '".$municipio."',
                 '".$usuario."',
                 '".$id."'
             )";

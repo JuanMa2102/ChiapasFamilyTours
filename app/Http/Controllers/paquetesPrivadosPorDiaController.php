@@ -32,6 +32,8 @@ class PaquetesPrivadosPorDiaController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
+        $datosCliente = [];
         $nombre=$request->get('nombre');
         $apellido=$request->get('apellido');
         $email=$request->get('email');
@@ -59,8 +61,6 @@ class PaquetesPrivadosPorDiaController extends Controller
             '".$llegada."',                                
             '".$salida."',
             '".$mensaje."',
-            '".$tipoHotel."',
-            '".$hotelElegido."',
             '".$usuario."'
         )";
         
@@ -75,13 +75,17 @@ class PaquetesPrivadosPorDiaController extends Controller
             '".$dias[$i]."',
             '".$usuario."'
             )";
+            $temp1 = DB::table('tbl_paquete')->select('nombre')->where('id_paquete',$paqute[$i])->first();
+            $temp2 = DB::table('tbl_dias')->select('cantidad')->where('id_dias',$dias[$i])->first();
+            $datosCliente[$i] =  $temp1->nombre. " Y " . $temp2->cantidad . " DÍA(S)"; 
             $datos_cotizacionDetalle = DB::select($sql_cotiazacionDetalle,array(1,5));
         }
-   
-        Mail::send('generalViews.email',["datos"=>$request->all()], function($messaje){
+        $datosCliente[count($datosCliente)] =  $request->all();
+        // dd($datosCliente[1]);
+        Mail::send('generalViews.emailCotizacion',["datos"=>$datosCliente], function($messaje){
             $messaje->from('servicios.creativasoftline@gmail.com','Solicitud de Cotización');
-            $messaje->to('jassselvas@gmail.com')->subject('SOLICITUD DE COTIZACIÓN');
-            
+            $messaje->to('reserva@chiapasfamilytours.com.mx')->subject('SOLICITUD DE COTIZACIÓN');   
+            $messaje->to('jassselvas@gmail.com')->subject('SOLICITUD DE COTIZACIÓN');   
         });
         
         if($datos_contacto != null)
@@ -96,6 +100,13 @@ class PaquetesPrivadosPorDiaController extends Controller
 
      public function show($id, $id_dia) 
     {
+        $info = DB::table('tbl_dias')
+        ->select('tbl_dias.cantidad as cantidad',
+                 'tbl_paquete.nombre as paquete')
+        ->where('tbl_dias.id_dias',$id_dia)
+        ->where('tbl_dias.activo',1)
+        ->join('tbl_paquete', 'tbl_paquete.id_paquete','=','tbl_dias.id_paquete')
+        ->first();
         $dias = DB::table('tbl_dias')
         ->where('activo','=',1)
         ->get();
@@ -113,37 +124,47 @@ class PaquetesPrivadosPorDiaController extends Controller
         $hotelesIncluidos = DB::table('tbl_hoteles')
         ->select('tbl_hoteles.nombre as nombreHotel',
                  'tbl_hoteles.pagina as paginaHotel',
+                 'tbl_hoteles.id_municipio as id_municipio',
+                 'tbl_municipios.nombre as municipio',
                  'tbl_tipohotel.descripcion as tipoHotel',
                  'tbl_hoteles.id_hotel as idHotel',
+                 'tbl_hoteles.id_TipoHotel as tpHotel',
                  'tbl_tipohotel.id_tipoHotel',
-                 'tbl_hoteldia.id_hotelDia as idHotelDia')
+                 'tbl_hoteldia.id_hotelDia as idHotelDia',
+                 'tbl_hoteldia.asociado as asociado')
         ->where('tbl_hoteles.activo','=',1)
         ->where('tbl_hoteldia.activo','=',1)
         ->join('tbl_tipohotel', 'tbl_hoteles.id_TipoHotel', '=', 'tbl_tipohotel.id_tipoHotel')
         ->join('tbl_hoteldia','tbl_hoteles.id_hotel','=','tbl_hoteldia.id_hotel')
+        ->join('tbl_municipios','tbl_hoteles.id_municipio','=', 'tbl_municipios.id_municipio')
         ->where('tbl_hoteldia.id_dias','=',$id_dia)
+        ->orderBy('tbl_municipios.nombre','desc')
+        ->get();
+        $precioHoteles = DB::table('tbl_desctablapordia')
+        ->where('activo',1)
         ->get();
 
         $galeria = DB::table("tbl_galeria")
 
         ->where('id_dia','=',$id_dia)
-        ->where('tipo','=',0) // 0 sera de tipo galeria Días
         ->where('activo','=',1)
         ->get();
-        
+       
 
-        $diasDetalle = DB::table("tbl_diasdetalle")
+        $diasDetalle = DB::table("tbl_dias")
         ->where('id_dias','=',$id_dia)
         ->where('activo','=',1)
-        ->get();
+        ->first();
         $itinerarioCorto = DB::table('tbl_dias')
         ->where('id_dias','=',$id_dia)
         ->where('activo','=',1)
         ->first();
-        $hotelElegido = DB::table('tbl_hoteles')
-        ->where('activo','=',1)
-        ->get();
-
+        $infoGeneral = DB::table('tbl_general')
+        ->where('activo',1)
+        ->first();
+       
+     
+        
 
         return view("generalViews.paquetesPrivadosPorDia",["paquetes"=>$paquetes,
                                             "dias"=>$dias,
@@ -155,6 +176,8 @@ class PaquetesPrivadosPorDiaController extends Controller
                                             "itinerarioCorto"=>$itinerarioCorto,
                                             "diasDetalle"=>$diasDetalle,
                                             'hoteles'=>$hotelesIncluidos,
-                                            'hotelElegido'=>$hotelElegido]);
+                                            'precioHotel'=>$precioHoteles,
+                                            'info'=>$info,
+                                            'general'=>$infoGeneral]);
     }
 }

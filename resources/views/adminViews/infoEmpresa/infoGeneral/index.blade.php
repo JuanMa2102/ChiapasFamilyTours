@@ -49,7 +49,7 @@
                                     <div class="input-group">
                                         <label for="mision">Misión</label>
                                         <textarea class="form-control" name="mision" id="mision" cols="30" readonly rows="5">
-                                            {{ $informacion->mision }}
+                                            {!! $informacion->mision !!}
                                         </textarea>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                     <div class="input-group">
                                         <label for="vision">Visión</label>
                                         <textarea class="form-control" name="vision" id="vision" cols="30" readonly rows="5">
-                                            {{ $informacion->vision }}
+                                            {!! $informacion->vision !!}
                                         </textarea>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                     <div class="input-group">
                                         <label for="valores">Valores</label>
                                         <textarea class="form-control" name="valores" id="valores" cols="30" readonly rows="5">
-                                            {{ $informacion->valor }}
+                                            {!! $informacion->valor !!}
                                         </textarea>
                                     </div>
                                 </div>

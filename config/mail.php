@@ -6,7 +6,7 @@ return [
     'port' => env('MAIL_PORT', 465),
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'servicios.creativasoftline@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Jesus Selvas'),
+        'name' => env('MAIL_FROM_NAME', 'Hector Alberto Ortiz Ramons'),
     ],
     'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
     'username' => env('MAIL_USERNAME'),

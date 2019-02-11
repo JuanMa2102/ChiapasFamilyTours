@@ -29,7 +29,16 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
+
+                        <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">¿Desea asociar este hotel al precio del paquete?</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <input name="asociado" class="checkbox" type="checkbox">
+                            </div>
+                        </div>
+                    </div>   
                 </div>
                 <div class="panel-footer">
                     

@@ -61,12 +61,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Precio de hotel</label>
+                        <label class="col-md-3 col-xs-12 control-label">Seleccione ubicación del hotel</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input value="{{old('precio')}}" name="precio" type="text" class="form-control" />
+                                <select class="form-control" placeholder="Seleccione..." name="municipio" id="municipio">
+                                    
+                                    @foreach($municipio as $item)
+                                    <option value="{{$item->id_municipio}}">{{$item->nombre}}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            {!! $errors->first('municipio','<span class="help-block">Es necesario seleccionar una ubicación</span>')!!}
                         </div>
                     </div>
 
@@ -82,8 +87,9 @@
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Imagen de hotel</label>
                         <div class="col-md-6 col-xs-12">
-                            <input type="file" name="imagenHotel" class="file" accept="image/*" data-preview-file-type="any" /> {!! $errors->first('imagenHotel','<span class="help-block">Es necesario introducir una imagen</span>')!!}
+                            <input type="file" name="imagenHotel" class="file" accept="image/*" data-preview-file-type="any" /> 
                         </div>
+                        {!! $errors->first('imagenHotel','<span class="help-block">Es necesario seleccionar una imagen</span>')!!}
                     </div>
 
                 </div>

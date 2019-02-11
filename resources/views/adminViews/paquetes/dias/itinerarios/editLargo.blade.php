@@ -22,7 +22,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Texto lateral</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
-                                    <textarea class="form-control" name="textolateral" id="textolateral" cols="30" rows="15">{{$itinerarioActual->texto1}}</textarea>
+                                    <textarea class="form-control summernote" name="textolateral" id="textolateral" cols="30" rows="15">{{$itinerarioActual->texto1}}</textarea>
                                     {!! $errors->first('textolateral','<span class="help-block">Es necesario introducir un texto lateral</span>')!!}
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Texto de pié</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
-                                    <textarea class="form-control" name="textopie" id="textopie" cols="30" rows="15">{{$itinerarioActual->texto2}}</textarea>
+                                    <textarea class="form-control summernote" name="textopie" id="textopie" cols="30" rows="15">{{$itinerarioActual->texto2}}</textarea>
                                     {!! $errors->first('textopie','<span class="help-block">Es necesario introducir un texto de pié</span>')!!}
                                 </div>
                             </div>

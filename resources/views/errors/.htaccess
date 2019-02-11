@@ -1,0 +1,17 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^chiapasfamilytours\.com\.mx$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.chiapasfamilytours\.com\.mx$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/www\.chiapasfamilytours\.com\.mx" [R=301,L]
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 day"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+   ExpiresByType image/jpeg "access plus 1 month"
+</IfModule>

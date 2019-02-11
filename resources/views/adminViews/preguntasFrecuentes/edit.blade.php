@@ -28,7 +28,7 @@
                         <label class="col-md-3 col-xs-12 control-label">Respuesta</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <textarea class="form-control" name="respuesta" id="respuesta" cols="30" rows="5">{{$informacion->respuesta}}</textarea>
+                                <textarea class="form-control summernote" name="respuesta" id="respuesta" cols="30" rows="5">{{$informacion->respuesta}}</textarea>
                             </div>
                             {!! $errors->first('respuesta','<span class="help-block">Es necesario introducir una respuesta</span>')!!}
                         </div>

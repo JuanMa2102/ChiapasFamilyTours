@@ -21,7 +21,7 @@
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
                                 
-                                <textarea name="itinerarioCorto" id="itinerarioCorto" class="form-control" cols="30" rows="25">{{$info->itinerariocorto}}</textarea>
+                                <textarea name="itinerarioCorto" id="itinerarioCorto" class="form-control summernote" cols="30" rows="25">{{$info->itinerariocorto}}</textarea>
                             </div>
                         </div>
                     </div>                    

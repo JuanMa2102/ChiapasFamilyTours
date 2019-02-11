@@ -20,8 +20,10 @@
                                             <th>Imagen</th>
                                             <th>Título de imagen</th>
                                             <th>Nombre de paquete</th>
-                                            <th>Descripción</th>
-                                            <th>Precio</th>
+                                            <th>Precio real</th>
+                                            <th>Precio tachado</th>
+                                            <th>Subtítulo de precio</th>
+                                            <th>Guía rápida</th>
                                             <th>Días de paquete</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -33,8 +35,10 @@
                                             <td class="tdShort"><img src="{{ $item->imagen }}" alt="img_{{$item->titulo_imagen}}"></td>
                                             <td>{{ $item->titulo_imagen }}</td>
                                             <td>{{ $item->nombre }}</td>
-                                            <td style="width: 500px">{{ $item->descripcion }}</td>
                                             <td style="width: 100px;">{{ $item->precio }}</td>
+                                            <td style="width: 100px;">{{ $item->preciotachado }}</td>
+                                            <td class="tdShort">{{ $item->subtituloprecio }}</td>
+                                            <td style="{{$item->guia == '' ? 'color: #f00;' : 'color: #0f0;'}}" class="tdShort">{{$item->guia == "" ? 'Guía rápida no asignada' : 'Guía rápida Asignada'}}</td>
                                             <td>
                                                 <a href="{{URL::action('AdminDiasController@show',$item->id_paquete)}}"><button class="btn btn-success">Ver días</button></a>
                                             </td>

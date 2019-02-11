@@ -41,10 +41,7 @@ class AdminCotizacionController extends Controller
         ->where('activo','=',1)
         ->where('id_cotizacion','=',$id)
         ->first();
-        $tipoHotel = DB::table('tbl_tipohotel')
-        ->where('activo','=',1)
-        ->where('id_tipoHotel','=',$datos->id_tipoHotel)
-        ->first();
+        
         
         if($datos==null){
             return Redirect::to('administrador/cotizacion')->withErrors(['erroregistro'=> 'Error']);
@@ -58,8 +55,7 @@ class AdminCotizacionController extends Controller
                 'usu_upd'=>$usuario
             ]);
             return view("adminViews.cotizacion.show",['datos'=>$datos,
-                                                      'paquetesElegidos'=>$paquetesElegidos,
-                                                      'tipoHotel'=>$tipoHotel]);
+                                                      'paquetesElegidos'=>$paquetesElegidos]);
         }
     }
 }

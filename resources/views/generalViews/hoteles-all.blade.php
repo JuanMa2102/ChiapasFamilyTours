@@ -3,6 +3,8 @@
 <div class="container-fluid full-height">
     <div class="row row-height">
         <div class="col-md-7 content-left">
+        <h1><span>Hoteles
+					<span></h1>
             <div class="row filtroHotelesRestaurantes">
 
                 <div class="col-md-6">
@@ -37,10 +39,7 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="hotel_container">
 
-                        <div class="img_container hoteles">
-                            <a href="/seccionDescripcion">
-                         <img src="{{($item->imagenHotel)}}" width="800" height="533" class="img-responsive" alt="Image">
-                    </a>
+                        <div class="img_container hoteles" style="background-image: url({{($item->imagenHotel)}})">
                         </div>
                         <div class="hotel_title">
                             <h3><strong>{{ $item->nombreHotel }}</strong> - <span style="font-size: 11px">{{$item->tipoHotel}}</span></h3>
@@ -75,7 +74,18 @@
 </div>
 <!-- End container-fluid -->
 
-@endsection @push('hotelesRestaurantesScript')
+@endsection 
+
+@extends ('meta.metaComponent')
+@section('meta')
+<title>Chiapas Family Tours: información de hoteles</title>
+<meta name="description" content="En esta sección, usted podrá ver información básica sobre los hoteles que le ofrecemos en nuestros paquetes. Cualquier duda porfavor, mándenos un mensaje en la sección de contactos."/>
+<meta property="og:url" content="http://www.chiapasfamilytours.com.mx/hoteles-all" />
+<meta property="og:description" content="En esta sección, usted podrá ver información básica sobre los hoteles que le ofrecemos en nuestros paquetes. Cualquier duda porfavor, mándenos un mensaje en la sección de contactos."/>
+<link rel="canonical" href="http://www.chiapasfamilytours.com.mx/hoteles-all" />
+@endsection
+
+@push('hotelesRestaurantesScript')
 <script>
     $(document).on('change', '#selectHoRe', function(e) {
         var tipoHotel = this.options[e.target.selectedIndex].value;

@@ -16,11 +16,12 @@
                         <div class="col-md-6">
                             <div class="imageItinerario" style="background-image: url({{$item->imagen}})">
                             </div>
+                            <small>{!!$item->descimagen!!}</small>
                         </div>
                         <div class="col-md-6">
                             <div class="texto">
                                 <p>
-                                    {{$item->textolateral}}
+                                    {!!$item->textolateral!!}
                                 </p>
                             </div>
                         </div>
@@ -29,7 +30,7 @@
                         <div class="col-md-12">
                             <div class="texto">
                                 <p>
-                                    {{$item->textopie}}
+                                    {!!$item->textopie!!}
                                 </p>
                             </div>
                         </div>

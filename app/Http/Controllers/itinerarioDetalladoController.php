@@ -20,6 +20,15 @@ class itinerarioDetalladoController extends Controller
         ->where('activo','=',1)
         ->where('id_dias','=',$id)
         ->get();
-        return view("generalViews.itinerarioDetallado",['itinerario'=>$itinerario]);
+        $info = DB::table('tbl_dias')
+        ->select('tbl_dias.cantidad as cantidad',
+    			 'tbl_paquete.nombre as paquete')
+        ->where('tbl_dias.id_dias',$id)
+        ->where('tbl_dias.activo',1)
+        ->join('tbl_paquete', 'tbl_paquete.id_paquete','=','tbl_dias.id_paquete')
+        ->first();
+        return view("generalViews.itinerarioDetallado",['itinerario'=>$itinerario,
+    	'info' => $info,
+    	'id'=>$id]);
     }
 }

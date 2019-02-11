@@ -62,11 +62,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Precio de hotel</label>
+                        <label class="col-md-3 col-xs-12 control-label">Seleccion ubicación del hotel</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                <input value="{{$hotel->precio}}" name="precio" type="text" class="form-control" />
+                                <select class="form-control" name="municipio" id="municipio">
+                                        <option selected value="{{$hotel->id_municipio}}">{{$hotel->nombre}}</option>
+                                        @foreach($municipio as $item)
+                                        <option value="{{$item->id_municipio}}">{{$item->nombre}}</option>
+                                        @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -61,7 +61,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Respuesta secundaria</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
-                                    <textarea class="form-control" name="descripcion" id="textolateral" cols="30" rows="15"></textarea>
+                                    <textarea class="form-control summernote" name="descripcion" id="textolateral" cols="30" rows="15"></textarea>
                                     {!! $errors->first('descripcion','<span class="help-block">Es necesario introducir una descripcion</span>')!!}
                                 </div>
                             </div>

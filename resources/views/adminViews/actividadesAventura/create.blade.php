@@ -35,15 +35,17 @@
 
                     </div>
 
-                    <div class="InlcusionesContainer">
-                        
-                    </div>
-                   
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="button" class="addInclusiones"><i class="fa fa-plus-circle"></i>Añadir Inclusiones</button>
+                   <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Inclusiones de la actividad</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <textarea class="form-control summernote" name="inclusiones" id="inclusiones" cols="30" rows="20">{{old('inclusiones')}}</textarea>
+                            </div>
+                            {!! $errors->first('inclusiones','<span class="help-block">Es necesario introducir inclusiones</span>')!!}
                         </div>
                     </div>
+                   
+                    
 
 
                     

@@ -23,42 +23,16 @@
                                              <tr>
                                                  <th>Imagen</th>
                                                  <th>Título</th>
-                                                 <th>Detalles</th>
+                                                 <th>Inclusiones</th>
                                                  <th>Acciones</th>
                                              </tr>
                                          </thead>
                                          <tbody>
                                          @foreach($ActividadAventura as $item)   
                                          <tr>
-
-                                            <td class="tdShort">
-                                                <img src="{{asset($item->imagen)}}" alt="">
-                                                
-                                            </td>
-
+                                            <td class="tdShort"><img src="{{asset($item->imagen)}}" alt=""></td>
                                             <td>{{$item->titulo}}</td>
-                                            <td>
-                                                <table >
-                                                    <thead>
-                                                        
-                                                        <tr>
-                                                            <th>Inclusiones</th>
-                                                        </tr>
- 
-                                                    </thead>
-                                                    <tbody>
-                                                    @foreach($ActividadAventuraDetalle as $itemDetalle)
-                                                        @if($item->id_actividadAventura == $itemDetalle->id_actividadAventura)
-                                                    <tr>
-                                                        
-                                                        <td>{{$itemDetalle->inclusion}}</td>
-                                                        
-                                                    </tr>
-                                                    @endif
-                                                        @endforeach
-                                                    </tbody> 
-                                                </table>
-                                            </td>
+                                            <td>{!!$item->inclusiones!!}</td>                                            </td>
                                             <td class="actionsContainer">
                                             <ul>                                                
                                                 <a href="{{URL::action('adminActividadAventuraController@edit',$item->id_actividadAventura)}}">

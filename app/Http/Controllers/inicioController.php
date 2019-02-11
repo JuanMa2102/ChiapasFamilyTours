@@ -39,6 +39,15 @@ class inicioController extends Controller
         $infoGeneral = DB::table('tbl_general')
         ->where('activo','=',1)
         ->get();
+        $atractivos = DB::table('tbl_atractivos')
+        ->where('activo','=',1)
+        ->get();
+        $atractivosDetalle = DB::table('tbl_atractivosdetalles')
+        ->where('activo','=',1)
+        ->get();
+        $ruta = DB::table('tbl_ruta')
+        ->get();
+        
         return view("generalViews.inicio",["slider"=>$slider,
                                            "paquetes"=>$paquetes,
                                            "dias"=>$dias,
@@ -46,7 +55,10 @@ class inicioController extends Controller
                                            "hotelesCuatroEstrella"=>$hotelesCuatroEstrella,
                                            "reserva"=>$reserva,
                                            "reservaDetalle"=>$reservaDetalle,
-                                           "infoGeneral"=>$infoGeneral
+                                           "infoGeneral"=>$infoGeneral,
+                                           "atractivos"=>$atractivos,
+                                           "atractivosDetalle"=>$atractivosDetalle,
+                                           "ruta"=>$ruta
                                           ]);
     }
 }

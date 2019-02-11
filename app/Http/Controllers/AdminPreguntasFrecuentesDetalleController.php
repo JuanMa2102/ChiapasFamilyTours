@@ -35,19 +35,19 @@ class AdminPreguntasFrecuentesDetalleController extends Controller
         ->where('id_preguntaFrecuente','=',$id)
         ->get();
         
-        return view("adminViews.preguntasFrecuentes.preguntaDetalle.index",['Detalle'=>$Detalle,
+        return view("adminViews.preguntasFrecuentes.PreguntaDetalle.index",['Detalle'=>$Detalle,
                                                                   'id'=>$id]);
     }
 
     public function create(){
-        return view("adminViews.preguntasFrecuentes.preguntaDetalle.create");
+        return view("adminViews.preguntasFrecuentes.PreguntaDetalle.create");
     }
     public function edit($id){
         $informacion = DB::table('tbl_preguntasfrecuentesdetalle')
         ->where('activo','=',1)
         ->where('id_preguntasFrecuentesDetalle','=',$id)
         ->first();
-        return view("adminViews.preguntasFrecuentes.preguntaDetalle.edit",['informacion'=>$informacion]);
+        return view("adminViews.preguntasFrecuentes.PreguntaDetalle.edit",['informacion'=>$informacion]);
     }
     public function store(Request $request){
         $credentials=$this->validate(request(),[
