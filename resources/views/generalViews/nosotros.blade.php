@@ -1,10 +1,12 @@
 @extends('masterPage.masterPrincipal') @section('content')
-
-<section class="parallax-window" data-parallax="scroll" data-image-src="img/header_bg.jpg" data-natural-width="1400" data-natural-height="470">
-    <div class="parallax-content-1">
-        <div class="animated fadeInDown">
-            <h1>Nosotros</h1>
-            <p>Descubra quién es Chiapas Family Tours</p>
+<section class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/paginainicio.JPG')}}" data-natural-width="1400" data-natural-height="470">
+    <div class="parallax-content-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <h1>NOSOTROS</h1>
+                </div>
+            </div>
         </div>
     </div>
 </section>

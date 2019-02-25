@@ -29,6 +29,8 @@ Route::resource('/nosotros','nosotrosController');
 Route::resource('/politicas','politicasController');
 Route::resource('/busqueda-hotel','busquedaHotelController');
 Route::resource('/share','shareController');
+Route::resource('/clientes','clientesController');
+Route::resource('/porque-elegirnos','elegirnosController');
 // Route::get('/proof', function()
 // {
 //     return view('generalViews.compartir');
@@ -70,6 +72,7 @@ Route::resource('administrador/preguntasFrecuentes', 'AdminPreguntasFrecuentesCo
 Route::resource('administrador/politicas', 'AdminPoliticasController');
 Route::resource('administrador/clientes','AdminClientesController');
 Route::resource('administrador/tipos-hoteles','AdminTiposHotelesController');
+Route::resource('administrador/porque-elegirnos','AdminElegirnosController');
 
 Route::get('administrador/paquetes/dias/crearDia/{diaActual}',[
     'as' => 'crearDia',

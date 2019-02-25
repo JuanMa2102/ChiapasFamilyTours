@@ -42,7 +42,8 @@
                         <div class="img_container hoteles" style="background-image: url({{($item->imagenHotel)}})">
                         </div>
                         <div class="hotel_title">
-                            <h3><strong>{{ $item->nombreHotel }}</strong> - <span style="font-size: 11px">{{$item->tipoHotel}}</span></h3>
+                            <h3><strong>{{ $item->nombreHotel }}</strong></h3>
+                            <p style="text-align: center;">{{$item->tipoHotel}} - {{$item->municipio}}</p>
                             <div class="hotelActions">
                                 <div class="verEnMapa"><button direccion="{{$item->direccionHotel}}" class="seeOnMap">Ver en mapa</button></div>
                                 <div class="visitarPaginaHotel"><a href="{{$item->paginaHotel == null ? '#' : 'http://'.$item->paginaHotel}}" target="_blank">{{$item->paginaHotel == null ? 'Sin página' : 'Ir a página web'}}</a></div>

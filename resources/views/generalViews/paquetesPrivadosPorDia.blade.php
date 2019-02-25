@@ -91,13 +91,13 @@
                     </div>
                     <div class="col-md-9">
                         <ul class="listHoteles">
-                            <h3>{{$hoteles[0]->municipio}}</h3>
+                            <h3 style="font-weight: bold;">{{$hoteles[0]->municipio}}</h3>
                             @php
                             $temp = $hoteles[0]->id_municipio;
                             @endphp
                             @foreach($hoteles as $item)
                             @if($item->id_municipio != $temp)
-                            <h3>{{$item->municipio}}</h3>
+                            <h3 style="font-weight: bold;">{{$item->municipio}}</h3>
                             @php
                             $temp = $item->id_municipio;
                             @endphp
@@ -133,7 +133,7 @@
                         <!-- BTN HOTEL -->
                         <!-- Sin Precio -->
                         <table class="table">
-                            <h3>PRECIO DEL PAQUETE POR PERSONA</h3>
+                            <h3 style="font-weight:bold;">PRECIO DEL PAQUETE POR PERSONA</h3>
                             <thead>
                                 <tr>
                                     <th>Hotel</th>
@@ -143,7 +143,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                           
                                 @foreach($tipoHotel as $item)
+
+                                @php
+                                $contAsociados = 0;
+                                $hoteles2 = DB::table('tbl_hoteles')
+                                ->select('tbl_hoteles.id_hotel')
+                                ->join('tbl_hoteldia','tbl_hoteles.id_hotel','=','tbl_hoteldia.id_hotel')
+                                ->where('tbl_hoteles.id_TipoHotel',$item->id_tipoHotel)
+                                ->where('tbl_hoteldia.id_dias',$id_dia)
+                                ->get();
+                                @endphp
+                                @if(Count($hoteles2) > 0)
                                 <tr>
                                     <td>{{$item->descripcion}}</td>
                                     <td>@foreach($precioHotel as $itemP) @if($itemP->id_tipoHotel == $item->id_tipoHotel && $itemP->id_dias == $id_dia ) ${{$itemP->preciocuadruple}} @endif @endforeach</td>
@@ -151,14 +163,20 @@
                                         @foreach($precioHotel as $itemP) @if($itemP->id_tipoHotel == $item->id_tipoHotel && $itemP->id_dias == $id_dia ) ${{$itemP->precio}} @endif @endforeach
                                     </td>
                                     <td>
-                                        @foreach($hoteles as $itemB) @if($itemB->asociado == 1 && $itemB->tpHotel == $item->id_tipoHotel) {{$itemB->nombreHotel.' / '}} @endif @endforeach
+                                    Todos los hoteles {{$item->descripcion}}
+                                        @foreach($hoteles as $itemB) 
+                                        @if($itemB->asociado == 1 && $itemB->tpHotel == $item->id_tipoHotel) 
+                                                {{$contAsociados == 0 ? " excepto: " . $itemB->nombreHotel . ' / ' : " " . $itemB->nombreHotel.' / '}} 
+                                                @php $contAsociados++; @endphp
+                                        @endif 
+                                        @endforeach
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
                         {!! $precioHotel[0]->descripcion !!}
-                        <p>* Suplemento @foreach($hoteles as $item){{$item->asociado == 0 ? $item->nombreHotel . ", " : ''}} @endforeach</p>
                         <!-- END BTN HOTEL -->
                         <!-- End row  -->
                     </div>
@@ -179,20 +197,37 @@
             <aside class="col-md-5" id="sidebar">
             <div class="box_style_1">
                     <span class="tape"></span>
-                    <div class="shareButtonContent">
-                       <button type="button" class="shareButton shareSwitch"><i class="icon-share"></i> COMPARTIR CON UN AMIGO</button>
-                    </div>
+                    {!! Form::open(array('url' => 'share','autocomplete'=>'off','method'=>'POST', 'files' => 'true')) !!} {{Form::token()}}
+                        <div class="group-form">
+                            <label for="mine">De:</label>
+                            <input type="text" required class="form-control" id="mine" name="mine" placeholder="Ingrese nombre y apellido">
+                            <input type="hidden" value="{{url()->current()}}" name="url">
+                            <input type="hidden" value="{{$id}}" name="paqueteActual">
+                            <input type="hidden" value="{{$id_dia}}" name="diaActual">
+                        </div>
+                        <div class="group-form">
+                            <label for="friend">Para:</label>
+                            <input type="email" required class="form-control" id="friend" name="friend" placeholder="Ingrese correo de amigo">
+                        </div>
+                        <div class="group-form">
+                            <label for="emailMessage">Mensaje:</label>
+                            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje para él"></textarea>
+                        </div>
+                        <div class="shareButtonContent">
+                                    <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTA PÁGINA</button>
+                                    </div>
+                    {!! Form::close() !!}
                     
                 </div>
                 {!! Form::open(array('url' => 'paquetesPrivadosPorDia','autocomplete'=>'off','method'=>'POST', 'onsubmit'=>'return validarsend();')) !!} {{Form::token()}}
                 <div class="theiaStickySidebar barraCotizacion">
                     <div class="box_style_1 expose">
-                        <h3 class="inner">- ENVIAR SOLICITUD -</h3>
+                        <h3 class="inner">- SOLICITUD -</h3>
                         <div class="llamar">
                             <span style="margin: auto; display: block; text-align: center; font-size: 450%;"><i class="icon_set_1_icon-57"></i></span>
                             <p style="display: block; margin: auto; font-size: 125%; text-align: center; margin-top: 1%;">Comuníquese con nosostros a los siguientes números:</p>
                             <p style="font-weight: 500;display: block; margin: auto; font-size: 150%; text-align: center; margin-top: 1%;">{{$general->telefono}}</p>
-                            <p style="display: block; margin: auto; font-size: 200%; text-align: center; margin-top: 1%;">O</p>
+                            <p style="display: block; margin: 3% auto; font-size: 150%; text-align: center;">Ó</p>
                         </div>
                         <p style="display: block; margin: auto; font-size: 120%; text-align: center; margin-top: 1%;">Introduzca los siguientes datos</p>
 
@@ -333,26 +368,7 @@
     <div class="closeButtonContent">
         <button class="closeButton"><i class="icon-cancel-7"></i></button>
     </div>
-    {!! Form::open(array('url' => 'share','autocomplete'=>'off','method'=>'POST', 'files' => 'true')) !!} {{Form::token()}}
-        <div class="group-form">
-            <label for="mine">De:</label>
-            <input type="email" required class="form-control" id="mine" name="mine" placeholder="Ingrese su correo">
-            <input type="hidden" value="{{url()->current()}}" name="url">
-            <input type="hidden" value="{{$id}}" name="paqueteActual">
-            <input type="hidden" value="{{$id_dia}}" name="diaActual">
-        </div>
-        <div class="group-form">
-            <label for="friend">Para:</label>
-            <input type="email" required class="form-control" id="friend" name="friend" placeholder="Ingrese correo de amigo">
-        </div>
-        <div class="group-form">
-            <label for="emailMessage">Mensaje:</label>
-            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje para él"></textarea>
-        </div>
-        <div class="shareButtonContent">
-                       <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTA PÁGINA</button>
-                    </div>
-    {!! Form::close() !!}
+    
     </div>
 </div>
 

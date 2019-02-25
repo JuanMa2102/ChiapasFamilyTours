@@ -50,6 +50,7 @@
                             <li><a href="/administrador/rutaTrabajo"><span class="fa fa-image"></span> Ruta de trabajo</a></li>
                             <li><a href="/administrador/politicas"><span class="fa fa-image"></span> Políticas de la empresa</a></li>
                             <li><a href="/administrador/clientes"><span class="fa fa-image"></span> ¿Qué dicen los clientes?</a></li>
+                            <li><a href="/administrador/porque-elegirnos"><span class="fa fa-image"></span> ¿Porqué elegirnos?</a></li>
                         </ul>
                     </li>
                     <li class="xn-openable">

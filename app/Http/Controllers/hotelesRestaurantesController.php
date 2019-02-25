@@ -15,6 +15,8 @@ class hotelesRestaurantesController extends Controller
         ->select('tbl_hoteles.nombre as nombreHotel',
                  'tbl_hoteles.direccion as direccionHotel',
                  'tbl_hoteles.pagina as paginaHotel',
+                 'tbl_hoteles.id_municipio as id_municipio',
+                 'tbl_municipios.nombre as municipio',
                  'tbl_hoteles.imagen as imagenHotel',
                  'tbl_hoteles.id_TipoHotel as idTipoHotel',
                  'tbl_tipohotel.descripcion as tipoHotel',
@@ -22,6 +24,9 @@ class hotelesRestaurantesController extends Controller
         ->where('tbl_hoteles.activo','=',1)
         ->where('tbl_tipohotel.activo',1)
         ->join('tbl_tipohotel', 'tbl_hoteles.id_TipoHotel','=','tbl_tipohotel.id_tipoHotel')
+        ->join('tbl_municipios','tbl_hoteles.id_municipio','=', 'tbl_municipios.id_municipio')
+        ->orderBy('tbl_municipios.prioridad','desc')
+        ->orderBy('tbl_hoteles.prioridad','desc')
         ->paginate(10);
         return view('generalViews.hoteles-all',["hoteles"=>$hotel,
                                                 "tipoHotel" => $tipoHoteles]);

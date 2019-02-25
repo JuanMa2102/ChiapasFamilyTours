@@ -147,6 +147,14 @@ $paquetes = DB::table('tbl_paquete')
 ->where('activo','=',1)
 ->get();
 @endphp
+<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
     <!-- preloader -->
     <div id="contenedorCarga">
         <figure id="logoChiapas">
@@ -167,14 +175,10 @@ $paquetes = DB::table('tbl_paquete')
                 <div class="row">
                     <div class="col-6">
                         <div class="topPhone">
-                            <i class="icon-phone"></i><strong>0045 043204434</strong></div>
+                            <i class="icon-phone"></i><strong>{{$infoGeneral[0]->telefono}}</strong></div>
                         </div>
                     <div class="col-6">
-                        <ul id="top_links">
-                            <li><a href="#" id="fb-icon"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#" id="tw-icon"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" id="inst-icon"><i class="icon-instagramm"></i></a></li>
-                        </ul>
+                        
                     </div>
                 </div><!-- End row -->
             </div><!-- End container-->
@@ -233,7 +237,7 @@ $paquetes = DB::table('tbl_paquete')
 
                             </li>
                             <li class="megamenu submenu">
-                                <a href="/actividadesDeAventura" class="show-submenu-mega">Atractivos</i></a>
+                                <a href="#" class="show-submenu">Atractivos</i></a>
                                 <div class="menu-wrapper">
                                 	<div class="row">
                                     @foreach($atractivos as $itemA)
@@ -302,6 +306,13 @@ $paquetes = DB::table('tbl_paquete')
                     <a href="tel://019616164137" id="telefono">Teléfono: {{$infoGeneral[0]->telefono}}</a>
                     <a href="mailto:reserva@chiapasfamilytours.com" id="email_footer">{{$infoGeneral[0]->email}}</a>
                     <p>{{$infoGeneral[0]->horario}}</p>
+                    <div class="socialNetworks">
+                        <ul>
+                            <li><a href="https://www.facebook.com/chiapasfamilytours/" id="fb-icon"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#" id="tw-icon"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#" id="inst-icon"><i class="icon-instagramm"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-2 col-sm-3">
                     <h3>Acerca de</h3>
@@ -327,12 +338,12 @@ $paquetes = DB::table('tbl_paquete')
                 <div class="col-md-4 col-sm-6">
                     <h3>Comentarios de clientes</h3>
                     <!--Post-->
-                    <p>Vea lo que dicen nuetros clientes <a style="text-decoration: underline" href="/nosotros">Aquí</a></p>
+                    <p>Vea lo que dicen nuetros clientes <a style="text-decoration: underline" href="/clientes">Aquí</a></p>
                     <div class="certificateImageContent">
                         <div class="titleCertificate">
-                            <h3>Registro nacional de turismo</h3>
+                            <h3>Registro Nacional de Turismo</h3>
                         </div>
-                        <a href="{{asset('img/restaurant2.jpg')}}" target="_blank"><div class="certificate" style="background-image: url({{asset('img/restaurant2.jpg')}})">
+                        <a href="{{asset('img/registroNacionalTurismo.jpg')}}" target="_blank"><div class="certificate" style="background-image: url({{asset('img/registroNacionalTurismo.jpg')}})">
                         </div></a>
                     </div>
                 </div>

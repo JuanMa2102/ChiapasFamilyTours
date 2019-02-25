@@ -6,42 +6,33 @@
         <div class="col-md-12">
             <!-- Form para hacer un update, usamos el método patch para que se vaya directo al controlador en su método update, que recibe una variable de tipo Request y la id -->
             <!-- Hagan todos los formularios de esta manera, para los de create vean en el proyecto de torres batiz cómo hacemos el formulario en el caso del create. -->
-            {!!Form::model($hotelActual,array('method'=>'PATCH','class'=>'form-horizontal','enctype'=>'multipart/form-data','files'=>'true','action'=>['AdminItinerariosController@update',$hotelActual->id_hotelDia]))!!} 
-            {{Form::token()}}
+            {!!Form::model($info,array('method'=>'PATCH','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>['AdminElegirnosController@update',$info->id_elegirnos]))!!} {{Form::token()}}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Editando Hotel incluido<strong></h3>
+                    <h3 class="panel-title"><strong>Editar Item</strong></h3>
                 </div>
                 <div class="panel-body">
-                <input name="tipoItinerario" type="hidden" value="EsteNoEsItinerario">
-                <input name="idPaqueteActual" type="hidden" value="{{$diaActual}}">
 
-                    <div class="seccionItinerario">
-                        <div class="form-group">
-                            <label class="col-md-3 col-xs-12 control-label">Elija un Hotel</label>
-                            <div class="col-md-6 col-xs-12">
-                                <div class="input-group">
-                                    <select class="form-control" name="hotel">
-                                        <option selected value="{{$hotelActual->id_hotel}}">{{$nombreHotel->nombre}}</option>
-                                        @foreach($hotel as $item)
-                                        <option value="{{$item->id_hotel}}">{{$item->nombre}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">¿Este hotel tiene sumplemento?</label>
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Título de Item</label>
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
-                                <input name="asociado" {{$hotelActual->asociado == 1 ? 'checked' : ''}} class="checkbox" type="checkbox">
+                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                <input value="{{ $info->titulo }}" name="titulo" type="text" class="form-control" />
                             </div>
                         </div>
-                    </div>   
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Descripción</label>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <textarea class="form-control summernote" name="descripcion" id="mision" cols="30" rows="5">{{ $info->descripcion }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-footer">
-                    
+                    <a href="{{URL::action('AdminElegirnosController@index')}}"><button type="button" class="btn btn-default"><i class="fa fa-mail-reply"></i> Atrás</button></a>
                     <button class="btn btn-primary pull-right">Guardar</button>
                 </div>
             </div>

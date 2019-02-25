@@ -47,6 +47,9 @@ class inicioController extends Controller
         ->get();
         $ruta = DB::table('tbl_ruta')
         ->get();
+        $elegirnos = DB::table('tbl_elegirnos')
+        ->where('activo',1)
+        ->get();
         
         return view("generalViews.inicio",["slider"=>$slider,
                                            "paquetes"=>$paquetes,
@@ -58,7 +61,8 @@ class inicioController extends Controller
                                            "infoGeneral"=>$infoGeneral,
                                            "atractivos"=>$atractivos,
                                            "atractivosDetalle"=>$atractivosDetalle,
-                                           "ruta"=>$ruta
+                                           "ruta"=>$ruta,
+                                           "elegirnos" => $elegirnos
                                           ]);
     }
 }

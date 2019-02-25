@@ -52,6 +52,7 @@
 
         <div class="main_title">
             <h2><span>Paquetes Privados<span></h2></div>
+            <p>INCLUYE:  EL GUIA  EXPERTO,  LA TRANSPORTACION PRIVADA, LOS HOTELES , LOS DESAYUNOS Y  TODAS LAS ENTRADAS  A LOS SITIOS A VISITAR. </p>
 					@foreach($paquetes as $key => $item)
             <div class="row">
                 <div class="paquetePrivado col-md-12">
@@ -220,7 +221,7 @@
 
         </div>
         <div class="col-md-8">
-            <span><h2 class="rutaTitle">NUESTRA RUTA DE TRABAJO</h2></span>
+            <span><h2 class="rutaTitle">NUESTRA RUTA FAVORITA DE TRABAJO</h2></span>
             <!-- START MAP -->
             <div style="position: relative; overflow: hidden" class="imageRutaContent">
                 <button class="timeSwitch"><i class="icon-menu"></i></button>
@@ -239,7 +240,8 @@
             <div class="banner colored">
 
                 <p style="font-size: 18px">
-                    Comuníquese con nosotros al número {{$infoGeneral[0]->telefono}} y le damos grandiosos tips antes de cotizar su viaje
+                <h4>VENTA DE  TOURS  CON  SERVICIOS TERRESTRES SEMI PRIVADOS</h4> EN TEMPORADA DE PUENTES Y  FINES DE SEMANA.
+                CONSULTENOS.  (PONER CORREO ELECTRONICO Y NUMERO DE TELEFONO.)
                 </p>
             </div>
             <!--MAPA-->
@@ -271,45 +273,41 @@
         </div>
 
         <div class="row">
-
+        @foreach($elegirnos as $item)
             <div class="col-md-4 wow zoomIn" data-wow-delay="0.2s">
-                <div class="feature_home">
-                    <i class=" icon-star-empty-2"></i>
-                    <h4>Nuestros 16 Paquetes son <span>PRIVADOS</span>. Solo para ud., Amigos y Familiares</h4>
-                    <p style="white-space: pre-line">
-                        Nosotros sugerimos la hora de inicio de los tours y el tiempo que dedicaremos a las visitas. !Pero ustedes deciden! ¡Sabrán de antemano las horas y minutos, que tendremos en carretera! La sección de itinerarios detallados le indica a qué hora terminan
-                        los tours y así usted, puede organizar su tiempo para otras actividades con su familia.
-                    </p>
-
+                <div style="min-height: 390px;" class="feature_home">
+                    <i class="{{$item->icon}}"></i>
+                    <h4>{{$item->titulo}}</h4>
+                    
+                    <div style="white-space: pre-line; height: 60px; overflow: hidden">
+                        {!! $item->descripcion !!}
+                    </div>
+                    <a href="/porque-elegirnos" style="margin-top: 2%; position: absolute; bottom: 0" class="btn_1 outline">Ver más</a>
                 </div>
             </div>
-
-            <div class="col-md-4 wow zoomIn" data-wow-delay="0.4s">
-                <div class="feature_home">
-                    <i class="icon-chat-5"></i>
-                    <h4>Más de 50 Tips y Respuestas a Preguntas Frecuentes.</h4>
-                    <h5 style="color: #f00">(Los Tips se encuentras en Atractivos Naturales y Culturales de Chiapas)</h5>
-                    <p style="white-space: pre-line">
-                        Más información: De los Atractivos Naturales y Culturales con los que cuenta Chiapas y con información gráfica que le podrá ayudar a hacer su propio itinerario. Posibilidad de incluir actividades de aventura: Rappel en diferentes niveles, Cañonismo, Tirolesas,
-                        Descenso de Cascadas en Balsa (Rafting) y Caminata en la Selva.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4 wow zoomIn" data-wow-delay="0.6s">
-                <div class="feature_home">
-                    <i class="icon_set_1_icon-57"></i>
-                    <h3>Asistencia</h3>
-                    <p style="white-space: pre-line; text-align: left">
-                        En requerimientos especiales como: * Habitaciones Handicap * Asientos para Bebés * Solicitud de Cunas * Renta de Silla de Ruedas * Disponibilidade de Guías en Diferentes Idiomas: - Inglés - Francés - Italiano - Alemán
-                    </p>
-
-                </div>
-            </div>
+        @endforeach
 
         </div>
         <!--End row -->
-
+        <div class="row">
+							<div class="col-md-6 col-sm-6 hidden-xs">
+								<img src="img/laptop.png" alt="chiapas-family-tours-laptopimage" class="img-responsive laptop">
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<h3><span>¿Le gustó la página?</span> recomiéndela a un amigo</h3>
+                                <p>Comparte con tus amigos y familiares los paquetes que te ofrecemos porque... entre amigos y familiares, los viajes son inolvidables.</p>
+                                <div class="socialNetworks">
+                                    <h3>Compártenos vía</h3>
+                                    <ul>
+                                    
+                                        <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchiapasfamilytours.com.mx%2F&amp;src=sdkpreparse" id="fb-icon"><i class="icon-facebook"></i></a></li>
+                                        <li><a target="_blank" href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('http://twitter.com/?status='+tit2+'%20'+dir+'');"><i class="icon-twitter"></i></a>
+                                        </li>
+                                        <li><a target="_blank" href="https://plus.google.com/share?url=http://www.chiapasfamilytours.com.mx/" id="inst-icon"><i class="icon-gplus-1"></i></a></li>
+                                    </ul>
+                                </div>
+							</div>
+						</div>
         <!-- End row -->
 
     </div>
@@ -323,6 +321,7 @@
 <title>Chiapas Family Tours | viajes a chiapas con amigos y familiares</title>
 <meta name="description" content="Chiapas Family Tours es una empresa que ofrece tours y viajes a pueblos mágicos, zonas arqueológicas con actividades de aventura en los lugares más bellos de este estado."/>
 <meta property="og:url" content="http://www.chiapasfamilytours.com.mx/" />
+<meta property="og:title" content="Chiapas Family Tours | viajes a chiapas con amigos y familiares">
 <meta property="og:description" content="Chiapas Family Tours es una empresa que ofrece tours y viajes a pueblos mágicos, zonas arqueológicas con actividades de aventura en los lugares más bellos de este estado."/>
 <link rel="canonical" href="http://www.chiapasfamilytours.com.mx/index.php" />
 @endsection

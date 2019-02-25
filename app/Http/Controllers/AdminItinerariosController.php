@@ -154,6 +154,7 @@ class AdminItinerariosController extends Controller
             ->where('activo',1)
             ->where('id_dias','=',$idDia)
             ->get();
+            
             return view("adminViews.paquetes.dias.itinerarios.editInfoHotelIncluded",[
                 'tipoHotel' => $tiposHoteles,
                 'descripcion' => $infoTabla,

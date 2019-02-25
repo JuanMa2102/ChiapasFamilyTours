@@ -8,9 +8,8 @@
     <div class="container margin_60" style="margin-top: 10%">
 
         <div class="main_title">
-            <h1><span>Paquetes Privados
-					<span></h1>
-						
+            <h1><span>Paquetes Privados<span></h1>
+            <p>INCLUYE:  EL GUIA  EXPERTO,  LA TRANSPORTACION PRIVADA, LOS HOTELES , LOS DESAYUNOS Y  TODAS LAS ENTRADAS  A LOS SITIOS A VISITAR. </p>
 					</div>
 					@foreach($paquetes as $item)
 					<div class="row">

@@ -32,6 +32,7 @@ class AdminHotelesController extends Controller
         ->where('tbl_tipohotel.activo',1)
         ->join('tbl_tipohotel', 'tbl_hoteles.id_TipoHotel','=','tbl_tipohotel.id_tipoHotel')
         ->join('tbl_municipios','tbl_hoteles.id_municipio','=','tbl_municipios.id_municipio')
+        ->orderBy('tbl_hoteles.prioridad','desc')
         ->get();
         
         return view("adminViews.hoteles.index",['hotel'=>$hotel]);
@@ -53,6 +54,7 @@ class AdminHotelesController extends Controller
                  'tbl_hoteles.direccion as direccionHotel',
                  'tbl_hoteles.pagina as paginaHotel',
                  'tbl_hoteles.imagen as imagenHotel',
+                 'tbl_hoteles.prioridad as prioridad',
                  'tbl_hoteles.id_TipoHotel as idTipoHotel',
                  'tbl_tipohotel.descripcion as tipoHotel',
                  'tbl_hoteles.id_hotel as idHotel')
@@ -75,7 +77,6 @@ class AdminHotelesController extends Controller
         $credentials=$this->validate(request(),[
             'nombre' => 'required', 
             'url' => 'required',
-            'pagina' => 'required',
             'tipo' => 'required',
             'municipio' => 'required',
             'imagenHotel'=>'required|mimes:jpg,JPG,PNG,jpeg,png|max:5000'
@@ -87,6 +88,7 @@ class AdminHotelesController extends Controller
         $tipoHotel = $request->get('tipo');
         $usuario=Auth::user()->id;
         $recomendado = 0;
+        $prioridad = $request->get('prioridad');
         $municipio = $request->get('municipio');
         if($request->get('recomendado') == "on"){
             $recomendado = 1;
@@ -105,6 +107,7 @@ class AdminHotelesController extends Controller
                 '".$imgHotel."',
                 '".$recomendado."',
                 '".$municipio."',
+                '".$prioridad."',
                 '".$usuario."',
                 '1'
             )";
@@ -124,6 +127,7 @@ class AdminHotelesController extends Controller
         $pagina = $request->get('pagina');
         $tipoHotel = $request->get('tipo');
         $usuario=Auth::user()->id;
+        $prioridad = $request->get('prioridad');
         $recomendado = 0;
         $municipio = $request->get('municipio');
         if($request->get('recomendado') == "on"){
@@ -152,6 +156,7 @@ class AdminHotelesController extends Controller
                 '".$imgHotel."',
                 '".$recomendado."',
                 '".$municipio."',
+                '".$prioridad."',
                 '".$usuario."',
                 '".$id."'
             )";
@@ -172,6 +177,7 @@ class AdminHotelesController extends Controller
                 'no importa',
                 '".$recomendado."',
                 '".$municipio."',
+                '".$prioridad."',
                 '".$usuario."',
                 '".$id."'
             )";
@@ -201,6 +207,7 @@ class AdminHotelesController extends Controller
                 'no importa',
                 '1',
                 'no importa',
+                '1',
                 '".$usuario."',
                 '".$id."'
             )";

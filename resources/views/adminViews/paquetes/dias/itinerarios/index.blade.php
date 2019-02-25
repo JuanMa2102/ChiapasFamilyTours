@@ -68,7 +68,7 @@
                                 <th>Hotel</th>
                                 <th>Página web</th>
                                 <th>Tipo de hotel</th>
-                                <th>Asociado al precio de paquete</th>
+                                <th>Sumplemento</th>
                                 <th>Acciones</th>
                             </thead>
                             <tbody>
@@ -77,7 +77,7 @@
                                     <td>{{$item->nombreHotel}}</td>
                                     <td>{{$item->paginaHotel}}</td>
                                     <td>{{$item->tipoHotel}}</td>
-                                    <td style="{{$item->asociado == 0 ? 'color: #f00' : 'color:     #0f0'}}">{{$item->asociado == 0 ? 'No asociado' : 'Asociado' }}</td>
+                                    <td style="{{$item->asociado == 0 ? 'color: #f00' : 'color:     #0f0'}}">{{$item->asociado == 0 ? 'No' : 'Sí' }}</td>
                                     <td>
                                         <ul>
                                         <a href="{{route('editAddedHotel',$item->idHotelDia)}}">
