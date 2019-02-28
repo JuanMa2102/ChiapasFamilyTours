@@ -208,6 +208,8 @@ class AdminHotelesController extends Controller
                 '1',
                 'no importa',
                 '1',
+                '1',
+                '0',
                 '".$usuario."',
                 '".$id."'
             )";

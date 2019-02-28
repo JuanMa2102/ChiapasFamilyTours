@@ -102,7 +102,7 @@
                             $temp = $item->id_municipio;
                             @endphp
                             @endif
-                            <li>- {{$item->nombreHotel}} - {{$item->tipoHotel}}</li>
+                            <li>- {{$item->nombreHotel}} - <span style="color:#056192;font-weight: bold">{{$item->tipoHotel}}</span></li>
                             @endforeach
                         </ul>
                     </div>
@@ -153,6 +153,7 @@
                                 ->join('tbl_hoteldia','tbl_hoteles.id_hotel','=','tbl_hoteldia.id_hotel')
                                 ->where('tbl_hoteles.id_TipoHotel',$item->id_tipoHotel)
                                 ->where('tbl_hoteldia.id_dias',$id_dia)
+                                ->where('tbl_hoteldia.activo',1)
                                 ->get();
                                 @endphp
                                 @if(Count($hoteles2) > 0)
@@ -166,7 +167,7 @@
                                     Todos los hoteles {{$item->descripcion}}
                                         @foreach($hoteles as $itemB) 
                                         @if($itemB->asociado == 1 && $itemB->tpHotel == $item->id_tipoHotel) 
-                                                {{$contAsociados == 0 ? " excepto: " . $itemB->nombreHotel . ' / ' : " " . $itemB->nombreHotel.' / '}} 
+                                                {!!$contAsociados == 0 ? " excepto:<br> " . $itemB->nombreHotel . ' / ' : " " . $itemB->nombreHotel.' / '!!}
                                                 @php $contAsociados++; @endphp
                                         @endif 
                                         @endforeach
@@ -211,7 +212,7 @@
                         </div>
                         <div class="group-form">
                             <label for="emailMessage">Mensaje:</label>
-                            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje para él"></textarea>
+                            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje"></textarea>
                         </div>
                         <div class="shareButtonContent">
                                     <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTA PÁGINA</button>

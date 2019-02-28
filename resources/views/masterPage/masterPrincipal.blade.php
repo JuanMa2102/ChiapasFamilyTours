@@ -313,6 +313,14 @@ $paquetes = DB::table('tbl_paquete')
                             <li><a href="#" id="inst-icon"><i class="icon-instagramm"></i></a></li>
                         </ul>
                     </div>
+                    <h3>Aceptamos Pagos Mediante:</h3>
+                    <div class="socialNetworks">
+                        <ul>
+                            <li><img src="{{asset('img/paypay_logo.png')}}" alt=""></li>
+                            <li><img src="{{asset('img/oxxo_logo.png')}}" alt=""></li>
+                            <li><img src="{{asset('img/banorte_logo.png')}}" alt=""></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-2 col-sm-3">
                     <h3>Acerca de</h3>

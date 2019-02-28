@@ -265,11 +265,8 @@
 
     <div class="container margin_60">
 
-        <div class="main_title">
+        <div style="margin-bottom: 2%;" class="main_title">
             <h2> <span>¿POR QUÉ ELEGIRNOS?</span> </h2>
-            <p>
-                Le ofrecemos los siguientes servicios
-            </p>
         </div>
 
         <div class="row">
@@ -303,7 +300,6 @@
                                         <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchiapasfamilytours.com.mx%2F&amp;src=sdkpreparse" id="fb-icon"><i class="icon-facebook"></i></a></li>
                                         <li><a target="_blank" href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('http://twitter.com/?status='+tit2+'%20'+dir+'');"><i class="icon-twitter"></i></a>
                                         </li>
-                                        <li><a target="_blank" href="https://plus.google.com/share?url=http://www.chiapasfamilytours.com.mx/" id="inst-icon"><i class="icon-gplus-1"></i></a></li>
                                     </ul>
                                 </div>
 							</div>
