@@ -241,7 +241,7 @@
 
                 <p style="font-size: 18px">
                 <h4>VENTA DE  TOURS  CON  SERVICIOS TERRESTRES SEMI PRIVADOS</h4> EN TEMPORADA DE PUENTES Y  FINES DE SEMANA.
-                CONSULTENOS.  (PONER CORREO ELECTRONICO Y NUMERO DE TELEFONO.)
+                CONSULTENOS.  {{$infoGeneral[0]->telefono}}, correo {{$infoGeneral[0]->email}}
                 </p>
             </div>
             <!--MAPA-->

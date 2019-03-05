@@ -102,7 +102,7 @@
                             $temp = $item->id_municipio;
                             @endphp
                             @endif
-                            <li>- {{$item->nombreHotel}} - <span style="color:#056192;font-weight: bold">{{$item->tipoHotel}}</span></li>
+                            <li>- {{$item->nombreHotel}} - <span style="{{$item->tipoHotel == 'Boutique' ? 'color:#056192;font-weight: bold' : '' }}">{{$item->tipoHotel}}</span></li>
                             @endforeach
                         </ul>
                     </div>

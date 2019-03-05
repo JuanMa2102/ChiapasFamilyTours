@@ -5986,7 +5986,7 @@ Author URI: http://themeforest.net/user/Ansonika/
         height: 150px;
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: top;
+        background-position: 50% 30%;
         transform-origin: center;
         transition: ease all 0.2s;
     }
