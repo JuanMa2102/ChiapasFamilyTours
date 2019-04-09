@@ -68,7 +68,7 @@
 
 
         <div class="col-md-5 map-right hidden-sm hidden-xs">
-            <iframe src="" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2074371.8115083806!2d-92.34817621230894!3d16.302530693045174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858d44b49757ce67%3A0xcf0033824619d615!2sChiapas!5e0!3m2!1ses-419!2smx!4v1554560356589!5m2!1ses-419!2smx" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
     </div>
     <!-- End row-->

@@ -18,7 +18,7 @@
 	<main>
 		<div class="container margin_60">
 			<div class="main_title">
-				<h2>Traslados a <span>Aeropouerto y Hoteles</span></h2>
+				<h2>Traslados a <span>Aeropuerto y Hoteles</span></h2>
 			</div>
 			<hr>
 

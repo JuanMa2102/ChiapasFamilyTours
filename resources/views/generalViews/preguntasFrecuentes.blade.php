@@ -27,10 +27,10 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{ $item->id_preguntaFrecuente}}">{{ $item->pregunta }}<i class="indicator icon-minus pull-right"></i></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{ $item->id_preguntaFrecuente}}">{{ $item->pregunta }}<i class="indicator icon-plus pull-right"></i></a>
 							</h4>
 						</div>
-						<div id="{{ $item->id_preguntaFrecuente}}" class="panel-collapse collapse in">
+						<div id="{{ $item->id_preguntaFrecuente}}" class="panel-collapse collapse">
 							<div class="panel-body">
 								<p>
 								{!! $item->respuesta !!}

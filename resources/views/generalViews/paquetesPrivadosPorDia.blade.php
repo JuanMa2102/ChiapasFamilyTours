@@ -69,9 +69,7 @@
                         @foreach($galeria as $item)
                         <div class="sp-slide">
                             <img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="{{$item->imagen}}" data-medium="{{$item->imagen}}">
-                            <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-vertical="0" data-width="100%" data-show-transition="up">
-                                {{$item->descripcion}}
-                            </p>
+                           
                         </div>
                         @endforeach
 
@@ -145,7 +143,7 @@
                             <tbody>
                            
                                 @foreach($tipoHotel as $item)
-
+                                @if($item->descripcion != "Cabañas 4 Estrellas")
                                 @php
                                 $contAsociados = 0;
                                 $hoteles2 = DB::table('tbl_hoteles')
@@ -173,6 +171,7 @@
                                         @endforeach
                                     </td>
                                 </tr>
+                                @endif
                                 @endif
                                 @endforeach
                             </tbody>

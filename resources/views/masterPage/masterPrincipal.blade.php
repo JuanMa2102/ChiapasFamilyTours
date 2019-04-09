@@ -304,7 +304,8 @@ $paquetes = DB::table('tbl_paquete')
                 <div class="col-md-4 col-sm-3">
                     <h3>¿Necesita ayuda?</h3>
                     <a href="tel://019616164137" id="telefono">Teléfono: {{$infoGeneral[0]->telefono}}</a>
-                    <a href="mailto:reserva@chiapasfamilytours.com" id="email_footer">{{$infoGeneral[0]->email}}</a>
+                    <a href="mailto:{{$infoGeneral[0]->email}}" id="email_footer">Oficina: {{$infoGeneral[0]->email}}</a>
+                    <a href="mailto:ot6164137@hotmail.com" id="email_footer">Personal: ot6164137@hotmail.com</a>
                     <p>{{$infoGeneral[0]->horario}}</p>
                     <div class="socialNetworks">
                         <ul>
