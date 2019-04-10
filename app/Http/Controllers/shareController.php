@@ -20,9 +20,11 @@ class shareController extends Controller
     }
     public function store(Request $request){
         // dd($request->all());
+        
         $datos = [];
         $share = $request->get('friend');
         $url = $request->get('url');
+        $mine = $request->get('mine');
         $paqueteActual = $request->get('paqueteActual');
         $diaActual = $request->get('diaActual');
         $infoPaquete = DB::table('tbl_paquete')
@@ -42,11 +44,11 @@ class shareController extends Controller
 
 
 
-        Mail::send('generalViews.compartir',['datos'=>$datos], function($messaje) use ($share){
+        Mail::send('generalViews.compartir',['datos'=>$datos], function($messaje) use ($share,$mine){
             
             $messaje->from('servicios.creativasoftline@gmail.com','Chiapas Family Tours - Enlace Compartido');
             // $messaje->to('reserva@chiapasfamilytours.com.mx')->subject('Chiapas Family Tours - Enlace Compartido');
-            $messaje->to($share)->subject('Chiapas Family Tours - Enlace Compartido');
+            $messaje->to($share)->subject($mine.' te compartió un enlace');
             
         });
         return redirect()->back()->with("success","Se ha compartido enlace con amigo.");;

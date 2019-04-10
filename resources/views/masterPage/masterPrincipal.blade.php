@@ -305,7 +305,6 @@ $paquetes = DB::table('tbl_paquete')
                     <h3>¿Necesita ayuda?</h3>
                     <a href="tel://019616164137" id="telefono">Teléfono: {{$infoGeneral[0]->telefono}}</a>
                     <a href="mailto:{{$infoGeneral[0]->email}}" id="email_footer">Oficina: {{$infoGeneral[0]->email}}</a>
-                    <a href="mailto:ot6164137@hotmail.com" id="email_footer">Personal: ot6164137@hotmail.com</a>
                     <p>{{$infoGeneral[0]->horario}}</p>
                     <div class="socialNetworks">
                         <ul>
@@ -344,7 +343,7 @@ $paquetes = DB::table('tbl_paquete')
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-3 col-sm-6">
                     <h3>Comentarios de clientes</h3>
                     <!--Post-->
                     <p>Vea lo que dicen nuetros clientes <a style="text-decoration: underline" href="/clientes">Aquí</a></p>
@@ -356,10 +355,11 @@ $paquetes = DB::table('tbl_paquete')
                         </div></a>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-12">
+                <div class="col-md-3 col-sm-12">
                     <h3>Contáctenos</h3>
-                    <p>Puede enviarnos un formulario en la sección de contactos</p>
-                    <a style="text-decoration: underline" href="/contactos">Ir a contactos</a>
+                    <p style="text-align: justify">Puede enviarnos un formulario en la sección de <a style="text-decoration: underline" href="/contactos"> contactos</a> o puede mandar un correo a la siguiente cuenta:</p>
+                    <h3 style="text-align: center">Gerente de Operaciones</h3>
+                    <a href="mailto:ot6164137@hotmail.com" id="email_footer">ot6164137@hotmail.com</a>
                 </div>
             </div>
             <!-- End row -->

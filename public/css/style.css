@@ -966,7 +966,7 @@ Author URI: http://themeforest.net/user/Ansonika/
     }
     
     footer a:hover {
-        color: #999;
+        color: #ffff00;
     }
     
     footer ul {
@@ -5985,8 +5985,8 @@ Author URI: http://themeforest.net/user/Ansonika/
         width: 100%;
         height: 150px;
         background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50% 30%;
+        background-size: 130% 180%;
+        background-position: 50% 0%;
         transform-origin: center;
         transition: ease all 0.2s;
     }

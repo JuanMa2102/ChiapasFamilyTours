@@ -92,7 +92,7 @@
                     <hr>
                     
                     <p>
-                        Para nosotros es un gusto atenderle, por ello, en caso de que usted quiera ser mucho más específico, porfavor envíenos un email a la siguiente dirección de correo.
+                    Para nosotros es un gusto atenderle. Por ello, en caso de alguna duda o requerimiento especial, contacte al Gerente de Operaciones. ot6164137@hotmail.com
                     </p>
                     <ul id="contact-info">
                         <li>{{$infoGeneral[0]->email}}</li>

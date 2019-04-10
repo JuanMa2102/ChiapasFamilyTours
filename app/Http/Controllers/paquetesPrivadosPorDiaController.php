@@ -143,6 +143,7 @@ class PaquetesPrivadosPorDiaController extends Controller
         ->orderBy('tbl_tipohotel.descripcion','desc')
         ->get();
         $precioHoteles = DB::table('tbl_desctablapordia')
+        ->where('id_dias',$id_dia)
         ->where('activo',1)
         ->get();
 

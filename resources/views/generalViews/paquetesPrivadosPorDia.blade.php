@@ -211,10 +211,10 @@
                         </div>
                         <div class="group-form">
                             <label for="emailMessage">Mensaje:</label>
-                            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje"></textarea>
+                            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje. Ejem. Nos gustó este paquete, ¿Qué opinas?"></textarea>
                         </div>
                         <div class="shareButtonContent">
-                                    <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTA PÁGINA</button>
+                                    <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTE PAQUETE</button>
                                     </div>
                     {!! Form::close() !!}
                     

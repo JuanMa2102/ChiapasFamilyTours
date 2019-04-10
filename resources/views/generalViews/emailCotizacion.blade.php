@@ -15,7 +15,7 @@
     }
 </style>
 <body>
-    <p>A <a href="http://www.creativasoftline.com">Creativa Softline</a> le es un gusto hacerle saber sus...</p>
+
     <h1>Datos de Cliente</h1>
     @php
     $cont = count($datos) - 1;
