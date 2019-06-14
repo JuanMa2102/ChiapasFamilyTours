@@ -12,7 +12,7 @@
                                  <div class="panel-heading">                                
                                      <h3 class="panel-title">ACTIVIDADES DE AVENTURA</h3>
                                      <div class="row">
-                                         <a href="{{URL::action('adminActividadAventuraController@create')}}"><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nueva Actividad</button></a>
+                                         <a href="/administrador/create-actividad-aventura"><button class="btn btn-primary newBtn pull-right"><i class="fa fa-plus-circle"></i> Nueva Actividad</button></a>
                                      </div> 
                                                                 
                                  </div>
@@ -35,7 +35,7 @@
                                             <td>{!!$item->inclusiones!!}</td>                                            </td>
                                             <td class="actionsContainer">
                                             <ul>                                                
-                                                <a href="{{URL::action('adminActividadAventuraController@edit',$item->id_actividadAventura)}}">
+                                                <a href="/administrador/edit-actividad-aventura/{{$item->id_actividadAventura}}">
                                                     <button class="btn btn-info"><i class="fa fa-edit"></i></button>
                                                 </a>
 

@@ -4,8 +4,8 @@
                 
                 <div class="row">
                     <div class="col-md-12">
-                        
-                {!!Form::model($informacion,array('method'=>'PATCH','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>['adminActividadAventuraController@update',$informacion->id_actividadAventura]))!!} 
+                    <form action="/administrador/updating-actividad-aventura/{{$informacion->id_actividadAventura}}" method="post" class="form-horizontal", enctype="multipart/form-data">
+                
                     {{Form::token()}}
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -49,7 +49,7 @@
                                 <button class="btn btn-primary pull-right">Guardar</button>
                             </div>
                         </div>
-                        {!!Form::close()!!} 
+                        </form>
                         
                     </div>
                 </div>                    

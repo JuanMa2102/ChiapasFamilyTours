@@ -137,7 +137,7 @@ class AdminPaquetesController extends Controller
                 '".$imgPaquete."',
                 '".$preciotachado."',
                 '".$subtituloprecio."',
-                '".$guia."'
+                '".$guia."',
                 '".$usuario."',
                 '".$id."'
             )";

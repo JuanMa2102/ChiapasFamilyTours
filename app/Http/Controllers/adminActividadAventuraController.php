@@ -59,15 +59,16 @@ class adminActividadAventuraController extends Controller
             '".$id."',
             '".$usuario."',
             '".$titulo."',
-            'No Importa'
+            'No Importa',
+            'no importa'
         )";
         
         $datos =  DB::select($sql, array(1,10));
 
         if($datos==null){
-            return Redirect::to('administrador/adminActividadAventura')->withErrors(['erroregistro'=> 'Error']);
+            return Redirect::to('/administrador/adminActividadAventura')->withErrors(['erroregistro'=> 'Error']);
         }
-        return Redirect::to('administrador/adminActividadAventura');
+        return Redirect::to('/administrador/adminActividadAventura');
     }
 
     public function store(Request $request)

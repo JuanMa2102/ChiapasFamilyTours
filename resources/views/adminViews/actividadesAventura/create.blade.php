@@ -6,7 +6,8 @@
         <div class="col-md-12">
             <!-- Form para hacer un update, usamos el método patch para que se vaya directo al controlador en su método update, que recibe una variable de tipo Request y la id -->
             <!-- Hagan todos los formularios de esta manera, para los de create vean en el proyecto de torres batiz cómo hacemos el formulario en el caso del create. -->
-            {!!Form::open(array('method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data','action'=>'adminActividadAventuraController@store'))!!} {{Form::token()}}
+            <form action="/administrador/creating-actividad-aventura" method="post" class="form-horizontal", enctype="multipart/form-data">
+            {{Form::token()}}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><strong>Nueva Actividad de Aventura</strong></h3>
@@ -56,7 +57,7 @@
                     <button class="btn btn-primary pull-right">Guardar</button>
                 </div>
             </div>
-            {!!Form::close()!!}
+            </form>
 
         </div>
     </div>

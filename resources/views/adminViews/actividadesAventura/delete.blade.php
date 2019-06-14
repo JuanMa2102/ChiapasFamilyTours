@@ -1,5 +1,7 @@
 <div class="message-box message-box-danger animated fadeIn" id="message-box-danger-{{$item->id_actividadAventura}}">
-{{Form::Open(array('action'=>array('adminActividadAventuraController@destroy',$item->id_actividadAventura),'method'=>'delete'))}}
+<form action="/administrador/delete-actividad-aventura/{{$item->id_actividadAventura}}" method="post">
+{{Form::token()}}
+<input type="hidden" value="{{$item->id_actividadAventura}}">
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-times"></span> Eliminar Registro</div>
@@ -14,5 +16,5 @@
                     </div>
                 </div>
             </div>
-{{Form::Close()}}
+</form>
 </div>
