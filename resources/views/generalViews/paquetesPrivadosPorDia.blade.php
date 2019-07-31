@@ -195,32 +195,9 @@
                 <hr>
             </div>
             <aside class="col-md-5" id="sidebar">
-            <div class="box_style_1">
-                    <span class="tape"></span>
-                    {!! Form::open(array('url' => 'share','autocomplete'=>'off','method'=>'POST', 'files' => 'true')) !!} {{Form::token()}}
-                        <div class="group-form">
-                            <label for="mine">De:</label>
-                            <input type="text" required class="form-control" id="mine" name="mine" placeholder="Ingrese nombre y apellido">
-                            <input type="hidden" value="{{url()->current()}}" name="url">
-                            <input type="hidden" value="{{$id}}" name="paqueteActual">
-                            <input type="hidden" value="{{$id_dia}}" name="diaActual">
-                        </div>
-                        <div class="group-form">
-                            <label for="friend">Para:</label>
-                            <input type="email" required class="form-control" id="friend" name="friend" placeholder="Ingrese correo de amigo">
-                        </div>
-                        <div class="group-form">
-                            <label for="emailMessage">Mensaje:</label>
-                            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje. Ejem. Nos gustó este paquete, ¿Qué opinas?"></textarea>
-                        </div>
-                        <div class="shareButtonContent">
-                                    <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTE PAQUETE</button>
-                                    </div>
-                    {!! Form::close() !!}
-                    
-                </div>
+            <div class="theiaStickySidebar barraCotizacion">
                 {!! Form::open(array('url' => 'paquetesPrivadosPorDia','autocomplete'=>'off','method'=>'POST', 'onsubmit'=>'return validarsend();')) !!} {{Form::token()}}
-                <div class="theiaStickySidebar barraCotizacion">
+                
                     <div class="box_style_1 expose">
                         <h3 class="inner">- SOLICITUD -</h3>
                         <div class="llamar">
@@ -346,9 +323,35 @@
 
                     </div>
                     <!--/box_style_1 -->
+               
+                {!! Form::close() !!}
+                <div class="box_style_1">
+                    <span class="tape"></span>
+                    {!! Form::open(array('url' => 'share','autocomplete'=>'off','method'=>'POST', 'files' => 'true')) !!} {{Form::token()}}
+                        <div class="group-form">
+                            <label for="mine">De:</label>
+                            <input type="text" required class="form-control" id="mine" name="mine" placeholder="Ingrese nombre y apellido">
+                            <input type="hidden" value="{{url()->current()}}" name="url">
+                            <input type="hidden" value="{{$id}}" name="paqueteActual">
+                            <input type="hidden" value="{{$id_dia}}" name="diaActual">
+                        </div>
+                        <div class="group-form">
+                            <label for="friend">Para:</label>
+                            <input type="email" required class="form-control" id="friend" name="friend" placeholder="Ingrese correo de amigo">
+                        </div>
+                        <div class="group-form">
+                            <label for="emailMessage">Mensaje:</label>
+                            <textarea name="emailMessage" class="form-control" id="emailMessage" cols="30" rows="10" placeholder="Deje un mensaje. Ejem. Nos gustó este paquete, ¿Qué opinas?"></textarea>
+                        </div>
+                        <div class="shareButtonContent">
+                                    <button type="submit" class="shareButton"><i class="icon-share"></i> COMPARTIR ESTE PAQUETE</button>
+                                    </div>
+                    {!! Form::close() !!}
+                    
+                </div>
                 </div>
                 <!--/sticky -->
-                {!! Form::close() !!}
+              
             </aside>
             <!--End  single_tour_desc-->
         </div>
